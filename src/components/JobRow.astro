@@ -2,6 +2,7 @@
 import type { FramedJob } from '../lib/ui/data';
 import { href } from '../lib/ui/data';
 import { ageLabel, keywordLabel, strikePath, workModeLabel } from '../lib/ui/format';
+import ModeChip from './ModeChip.astro';
 import Score from './Score.astro';
 
 interface Props {
@@ -31,7 +32,7 @@ const search = [job.title, job.company, job.location, workModeLabel(job.work_mod
         >{job.title}</a
       ><span class="tag new" data-new-mark hidden>NUEVA</span><span class="tag applied">POSTULADA</span>
     </p>
-    <p class="meta"><span class="pcode" aria-hidden="true">{job.frame}</span>{job.company} · {workModeLabel(job.work_mode, job.relocation)} · {job.location} · {ageLabel(job.posted_at, today)}</p>
+    <p class="meta"><span class="pcode" aria-hidden="true">{job.frame}</span><ModeChip mode={job.work_mode} relocation={job.relocation} />{job.company} · {job.location} · {ageLabel(job.posted_at, today)}</p>
   </div>
   <p class="stack">{stack || 'Sin palabras clave'}</p>
   <div class="bar" aria-hidden="true"><i style={`width:${job.score}%`}></i></div>
@@ -136,8 +137,11 @@ const search = [job.title, job.company, job.location, workModeLabel(job.work_mod
   }
 
   /* Discarded rows stay visible, struck through. */
-  .frame[data-status='descartada'] :is(.title, .meta, .stack, .pts, .code, .pcode) {
+  .frame[data-status='descartada'] :is(.title, .meta, .stack, .pts, .code, .pcode, .meta :global(.mode)) {
     color: var(--dim);
+  }
+  .frame[data-status='descartada'] .meta :global(.mode) {
+    border-color: var(--rule);
   }
   .frame[data-status='descartada'] .bar i {
     background: var(--rule-strong);

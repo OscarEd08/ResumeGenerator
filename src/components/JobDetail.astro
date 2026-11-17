@@ -2,7 +2,8 @@
 /** Job detail: compact in the desktop panel, full (with description) on its own page. */
 import type { FramedJob } from '../lib/ui/data';
 import { href } from '../lib/ui/data';
-import { dateLabel, keywordLabel, salaryLabel, workModeLabel } from '../lib/ui/format';
+import { dateLabel, keywordLabel, salaryLabel } from '../lib/ui/format';
+import ModeChip from './ModeChip.astro';
 import Score from './Score.astro';
 import StatusControls from './StatusControls.astro';
 import TailorCommand from './TailorCommand.astro';
@@ -15,7 +16,7 @@ interface Props {
 const { job, full = false, headingLevel = 'h2' } = Astro.props;
 const Heading = headingLevel;
 const salary = salaryLabel(job.salary);
-const meta = [job.company, workModeLabel(job.work_mode, job.relocation), job.location, salary].filter(Boolean).join(' · ');
+const meta = [job.company, job.location, salary].filter(Boolean).join(' · ');
 const paragraphs = job.description
   .split(/\n+/)
   .map((p) => p.trim())
@@ -27,7 +28,7 @@ const paragraphs = job.description
     <Heading class="title" tabindex="-1">{job.title}</Heading>
     <p class="meta">
       <span class="code"><span class="sr">Cuadro </span>{job.frame}</span><span class="new-mark" data-new-mark hidden>NUEVA</span>
-      <span>{meta}</span>
+      <ModeChip mode={job.work_mode} relocation={job.relocation} /><span>{meta}</span>
     </p>
   </div>
 
