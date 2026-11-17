@@ -47,6 +47,8 @@ The CV content comes only from a verified profile bank built from the owner's ow
 
 The owner asked for a modern, minimalist interface.
 
+Binding color constraint from the owner (2026-11-16): no blue, no red, and none of Claude's brand colors (terracotta/coral orange, warm cream) anywhere in the interface. The owner also rejects anything that reads as a corporate dashboard, a generic AI template, decorative, or uncomfortable on a phone.
+
 ## Evidence on Hand
 
 - Profile records: `docs/bertoni-experience.md`, `docs/cv-bertoni-proyectos.md`, `docs/cv-proyectos-personales.md`.
