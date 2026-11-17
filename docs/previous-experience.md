@@ -34,7 +34,7 @@
 - Maintained and extended an invoicing application built with ASP.NET MVC and VB.NET.
 - Integrated SQL Server with the Bsale API to automate invoice issuance. Validated APIs with Postman within a Scrum workflow.
   - ⚠️ The CV adds "reducing manual data-entry errors by 40%". No measurement backs this number. Suggested wording without the number: "Integrated SQL Server with the Bsale API to automate invoice issuance and reduce manual data entry."
-- Note: these dates overlap with the Bertoni Solutions position (from Jan 2024). This was a side freelance engagement; confirm the dates before publishing (see `cv-bertoni-proyectos.md`, section 6).
+- Note: these dates overlap with the Bertoni Solutions position (from Jan 2024). Confirmed by the owner (2026-11-16): it was a side freelance engagement in parallel with Bertoni; dates are correct.
 
 ## Komatsu Mitsui
 
