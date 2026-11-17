@@ -1,0 +1,33 @@
+[
+  {"last_updated": 1794873629, "legal": "Synthetic fixture shaped like https://remoteok.com/api. API Terms of Service: link back to the URL on Remote OK and mention Remote OK as a source."},
+  {
+    "slug": "remote-full-stack-dotnet-developer-delta-200001",
+    "id": "200001",
+    "epoch": 1794700000,
+    "date": "2026-11-14T12:00:00+00:00",
+    "company": "Delta Labs",
+    "position": "Full Stack .NET Developer",
+    "tags": ["dotnet", "c#", "angular", "dev"],
+    "description": "<p>.NET Core, C#, Angular, SQL Server and Docker. Remote, worldwide.</p>",
+    "location": "Worldwide",
+    "salary_min": 50000,
+    "salary_max": 70000,
+    "apply_url": "https://remoteok.com/remote-jobs/remote-full-stack-dotnet-developer-delta-200001",
+    "url": "https://remoteok.com/remote-jobs/remote-full-stack-dotnet-developer-delta-200001"
+  },
+  {
+    "slug": "remote-php-developer-epsilon-200002",
+    "id": "200002",
+    "epoch": 1794600000,
+    "date": "2026-11-13T12:00:00+00:00",
+    "company": "Epsilon",
+    "position": "PHP Developer",
+    "tags": ["php", "laravel"],
+    "description": "<p>PHP and Laravel.</p>",
+    "location": "",
+    "salary_min": 0,
+    "salary_max": 0,
+    "apply_url": "https://remoteok.com/remote-jobs/remote-php-developer-epsilon-200002",
+    "url": "https://remoteok.com/remote-jobs/remote-php-developer-epsilon-200002"
+  }
+]

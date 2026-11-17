@@ -1,0 +1,24 @@
+{
+  "$schema_version": 1,
+  "experience": [
+    {
+      "id": "exp-a",
+      "highlights": [
+        {"id": "h1", "tags": ["dotnet", "csharp", "azure"], "evidence": "verified"},
+        {"id": "h2", "tags": ["dotnet", "azure", "azure-functions", "sql-server"], "evidence": "verified"},
+        {"id": "h3", "tags": ["dotnet", "aspnet-core", "angular", "typescript"], "evidence": "verified"},
+        {"id": "h4", "tags": ["dotnet", "azure-devops", "ci-cd"], "evidence": "partial"},
+        {"id": "h5", "tags": ["leadership"], "evidence": "verified"}
+      ]
+    }
+  ],
+  "projects": [
+    {"id": "p1", "stack": ["Next.js 16", "React 19"], "highlights": [{"id": "h6", "tags": ["react", "nextjs"], "evidence": "verified"}]}
+  ],
+  "education": [],
+  "skills": [
+    {"label": "Backend", "details": ["C#", ".NET", "ASP.NET Core", "Entity Framework Core"]},
+    {"label": "Data", "details": ["SQL Server", "PostgreSQL"]},
+    {"label": "Cloud and delivery", "details": ["Azure", "Docker", "Git"]}
+  ]
+}

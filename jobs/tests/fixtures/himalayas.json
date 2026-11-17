@@ -1,0 +1,50 @@
+{
+  "comments": "Synthetic fixture shaped like https://himalayas.app/jobs/api/search (trimmed).",
+  "offset": 0,
+  "limit": 20,
+  "totalCount": 2,
+  "jobs": [
+    {
+      "title": "Software Engineer, .NET",
+      "excerpt": "Backend .NET role",
+      "companyName": "Zeta Software",
+      "companySlug": "zeta-software",
+      "employmentType": "Full Time",
+      "minSalary": 40000,
+      "maxSalary": 55000,
+      "salaryPeriod": "annual",
+      "seniority": ["Mid-level"],
+      "currency": "USD",
+      "locationRestrictions": ["Peru", "Colombia", "Mexico"],
+      "timezoneRestrictions": [-5, -6],
+      "categories": ["Software-Engineer"],
+      "parentCategories": ["Software Development"],
+      "description": "<p>C# and ASP.NET Core APIs, Entity Framework, PostgreSQL. Experience with React is a plus.</p>",
+      "pubDate": 1794600000,
+      "expiryDate": 1797200000,
+      "applicationLink": "https://himalayas.app/companies/zeta-software/jobs/software-engineer-net?utm_source=api",
+      "guid": "https://himalayas.app/companies/zeta-software/jobs/software-engineer-net"
+    },
+    {
+      "title": "Backend Engineer",
+      "excerpt": "Expired posting",
+      "companyName": "Eta",
+      "companySlug": "eta",
+      "employmentType": "Full Time",
+      "minSalary": null,
+      "maxSalary": null,
+      "salaryPeriod": "annual",
+      "seniority": ["Senior"],
+      "currency": "USD",
+      "locationRestrictions": [],
+      "timezoneRestrictions": [],
+      "categories": [],
+      "parentCategories": [],
+      "description": "<p>C# backend.</p>",
+      "pubDate": 1790000000,
+      "expiryDate": 1790500000,
+      "applicationLink": "https://himalayas.app/companies/eta/jobs/backend-engineer",
+      "guid": "https://himalayas.app/companies/eta/jobs/backend-engineer"
+    }
+  ]
+}

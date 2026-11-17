@@ -1,0 +1,47 @@
+[
+  {
+    "id": "li-3001",
+    "site": "linkedin",
+    "job_url": "https://www.linkedin.com/jobs/view/3001/?trackingId=abc&refId=xyz",
+    "title": "Desarrollador .NET Semi Senior",
+    "company": "Theta Peru S.A.C.",
+    "location": "Lima, Lima, Peru",
+    "date_posted": "2026-11-15",
+    "is_remote": false,
+    "min_amount": null,
+    "max_amount": null,
+    "currency": null,
+    "interval": null,
+    "description": "**Requisitos**\n\n* 3 años de experiencia con C# y .NET Core\n* SQL Server\n* Angular\n\n**Deseable**\n\n* Azure"
+  },
+  {
+    "id": "in-4001",
+    "site": "indeed",
+    "job_url": "https://www.indeed.com/viewjob?jk=4001&utm_source=x",
+    "title": "Remote C# Developer",
+    "company": "Iota LLC",
+    "location": "Austin, TX, US",
+    "date_posted": "2026-11-14",
+    "is_remote": true,
+    "min_amount": 90000.0,
+    "max_amount": 120000.0,
+    "currency": "USD",
+    "interval": "yearly",
+    "description": "C#, .NET, Azure and React. Must be located in the US."
+  },
+  {
+    "id": "in-4002",
+    "site": "indeed",
+    "job_url": "https://www.indeed.com/viewjob?jk=4002",
+    "title": ".NET Developer",
+    "company": "Kappa",
+    "location": "Dallas, TX, US",
+    "date_posted": null,
+    "is_remote": false,
+    "min_amount": null,
+    "max_amount": null,
+    "currency": null,
+    "interval": null,
+    "description": "On-site in Dallas. C# and .NET."
+  }
+]

@@ -1,0 +1,45 @@
+{
+  "0-legal-notice": "Synthetic fixture shaped like https://remotive.com/api/remote-jobs (trimmed).",
+  "job-count": 3,
+  "jobs": [
+    {
+      "id": 1000001,
+      "url": "https://remotive.com/remote-jobs/software-development/senior-dotnet-engineer-1000001",
+      "title": "Senior .NET Engineer (C#, Azure, Angular)",
+      "company_name": "Acme Cloud Inc.",
+      "category": "Software Development",
+      "tags": ["c#", ".net", "azure", "angular"],
+      "job_type": "full_time",
+      "publication_date": "2026-11-14T20:33:53",
+      "candidate_required_location": "Latin America",
+      "salary": "$60k - $80k",
+      "description": "<p>We build cloud apps with <strong>C#</strong> and .NET 8 on Microsoft Azure.</p><ul><li>ASP.NET Core Web API</li><li>Azure Functions and SQL Server</li><li>Angular and TypeScript front end</li><li>CI/CD with Azure DevOps</li></ul><p>Nice to have: Kubernetes</p>"
+    },
+    {
+      "id": 1000002,
+      "url": "https://remotive.com/remote-jobs/software-development/java-backend-developer-1000002",
+      "title": "Java Backend Developer",
+      "company_name": "Beta Corp",
+      "category": "Software Development",
+      "tags": ["java", "spring"],
+      "job_type": "full_time",
+      "publication_date": "2026-11-13T10:00:00",
+      "candidate_required_location": "USA only",
+      "salary": "",
+      "description": "<p>Java 17, Spring Boot, Kafka and AWS. 8+ years of experience.</p>"
+    },
+    {
+      "id": 1000003,
+      "url": "https://remotive.com/remote-jobs/marketing/growth-marketer-1000003",
+      "title": "Growth Marketer",
+      "company_name": "Gamma",
+      "category": "Marketing",
+      "tags": [],
+      "job_type": "contract",
+      "publication_date": "2026-11-12T08:00:00",
+      "candidate_required_location": "Worldwide",
+      "salary": "",
+      "description": "<p>Run campaigns.</p>"
+    }
+  ]
+}

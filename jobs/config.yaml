@@ -1,0 +1,271 @@
+# Job search pipeline configuration.
+# Everything here is safe to edit by hand. Run `python -m jobs.run --dry-run`
+# after a change to see the effect without touching data/jobs.json.
+
+# Search terms used by every keyword-based source (JobSpy, Remotive, Himalayas).
+# Keep the list short: each term multiplies the number of requests.
+search_terms:
+  - ".NET developer"
+  - "C# backend"
+  - "Full stack .NET Angular"
+  - "Software engineer .NET Azure"
+
+# Only postings from the last N hours (JobSpy only; the remote APIs return their current feed).
+hours_old: 72
+
+# Generic User-Agent for the remote-job APIs. Never put personal data here.
+user_agent: "resume-generator-job-scout/1.0 (personal job search tool; daily batch)"
+request_timeout_seconds: 30
+
+sources:
+  jobspy:
+    enabled: true
+    # Results per site and per search call. Boards block aggressively; keep it small.
+    results_wanted: 15
+    # Fetch the full LinkedIn description (one extra request per posting).
+    fetch_description: true
+    # Each search runs once per search term.
+    searches:
+      - name: peru
+        sites: [linkedin, indeed]
+        location: "Lima, Peru"
+        country_indeed: peru
+        is_remote: false
+        default_country: PE      # used when the posting location cannot be parsed
+      - name: remote-latam
+        sites: [linkedin]
+        location: "Latin America"
+        is_remote: true
+      - name: remote-us
+        sites: [indeed, google]
+        location: "United States"
+        country_indeed: usa
+        is_remote: true
+  remotive:
+    enabled: true
+    limit_per_term: 30           # Remotive advises at most 4 calls a day, max 2 per minute
+    delay_seconds: 31
+  remoteok:
+    enabled: true                # one request for the whole feed, filtered locally
+  himalayas:
+    enabled: true
+    pages_per_term: 1            # 20 jobs per page
+    delay_seconds: 2
+
+# Stage 1: hard filters (a posting that fails one is dropped).
+filters:
+  # The title must contain one of these (case-insensitive) to be a software role.
+  title_must_match_any:
+    - developer
+    - engineer
+    - desarrollador
+    - programador
+    - ingeniero
+    - software
+    - backend
+    - back-end
+    - full stack
+    - fullstack
+    - full-stack
+    - architect
+    - arquitecto
+    - tech lead
+    - ".net"
+    - "c#"
+  # Titles containing any of these are dropped.
+  exclude_title_keywords:
+    - intern
+    - internship
+    - practicante
+    - practicas
+    - prácticas
+    - trainee
+    - becario
+    - qa analyst
+    - data scientist
+    - designer
+    - sales
+    - recruiter
+  # A title naming one of these stacks is dropped unless the posting mentions a core term.
+  exclude_title_stacks_without_core: [java, php, ruby, python, golang, ios, android, salesforce, sap, flutter, react-native, scala, rust, wordpress]
+  # On-site/hybrid postings are only kept in these countries (ISO-2). Remote postings are always kept.
+  onsite_countries: [PE]
+
+# Stage 2: deterministic score (0-100).
+scoring:
+  zones:
+    apply: 85      # score >= 85
+    review: 70     # 70 <= score < 85; below is "low"
+  min_score_to_keep: 35          # postings below this are not written to data/jobs.json
+  coverage_weight: 70            # share of the score from keyword coverage
+  core_weight: 30                # share from the core stack below
+  # Core stack: weights are summed (capped at 1) when the posting mentions the term.
+  core_terms:
+    dotnet: 0.35
+    csharp: 0.2
+    azure: 0.2
+    angular: 0.15
+    sql-server: 0.1
+  title_term_weight: 3           # a term in the title counts this much
+  description_term_weight: 1
+  nice_to_have_weight: 0.5       # a term only found in a "nice to have" section
+  min_evidence_weight: 6         # postings with less total term weight get a reduced coverage share
+  skills_min_strength: 0.6       # profile strength of terms listed in the skills section
+  profile_saturation: 8          # highlights needed for full profile strength of a term
+  adjustments:
+    remote_abroad_bonus: 5
+    peru_bonus: 0
+    region_restricted_penalty: 25   # remote but limited to regions that exclude Peru/LatAm
+    too_senior_penalty: 20
+    junior_penalty: 5
+    years_penalty: 10
+    exclusion_penalty: 40
+  # A remote posting that states a location (city, country, region) is "restricted" unless the
+  # location text contains one of these, i.e. it is open to a candidate in Peru (UTC-5).
+  eligible_regions: [worldwide, anywhere, global, latam, latin america, south america, americas, peru, perú, lima,
+                     usa timezones, us timezones, americas timezones, utc-5, gmt-5]
+  seniority:
+    too_senior_title: [principal, staff, director, head of, vp, chief, distinguished]
+    junior_title: [junior, jr, entry level, entry-level]
+    max_years_required: 6
+  # Text in the posting that lowers the score (not a hard drop).
+  exclusion_keywords: [security clearance, us citizens only, must be located in the us, green card]
+
+# Output.
+output:
+  path: data/jobs.json
+  prune_after_days: 30
+  max_description_chars: 4000
+
+# Canonical tech terms and their aliases (case-insensitive, matched on word boundaries).
+# Canonical keys match the tags in data/profile.json where the profile has them.
+# Terms absent from the profile become "missing" keywords when a posting asks for them.
+synonyms:
+  dotnet: [".net", "dotnet", ".net core", "net core", ".net framework", "asp.net"]
+  csharp: ["c#", "csharp", "c sharp"]
+  aspnet-core: ["asp.net core", "aspnet core", "asp.net web api", "web api"]
+  aspnet-mvc: ["asp.net mvc"]
+  entity-framework: ["entity framework", "ef core", "entityframework"]
+  blazor: ["blazor"]
+  vb-net: ["vb.net"]
+  azure: ["azure", "microsoft azure"]
+  azure-functions: ["azure functions", "azure function"]
+  azure-devops: ["azure devops", "azure pipelines", "vsts"]
+  container-apps: ["container apps", "azure container apps"]
+  key-vault: ["key vault"]
+  application-insights: ["application insights", "app insights"]
+  bicep: ["bicep"]
+  angular: ["angular"]
+  angularjs: ["angularjs", "angular.js"]
+  react: ["react", "react.js", "reactjs"]
+  nextjs: ["next.js", "nextjs"]
+  vue: ["vue", "vue.js", "vuejs"]
+  typescript: ["typescript"]
+  javascript: ["javascript"]
+  nodejs: ["node.js", "nodejs"]
+  nestjs: ["nestjs", "nest.js"]
+  html: ["html", "html5"]
+  css: ["css", "css3", "sass", "scss"]
+  tailwind: ["tailwind", "tailwindcss"]
+  sql-server: ["sql server", "mssql", "t-sql", "tsql"]
+  postgresql: ["postgresql", "postgres"]
+  mysql: ["mysql"]
+  mongodb: ["mongodb", "mongo"]
+  redis: ["redis"]
+  sqlite: ["sqlite"]
+  docker: ["docker"]
+  kubernetes: ["kubernetes", "k8s", "aks"]
+  ci-cd: ["ci/cd", "ci-cd", "continuous integration", "continuous delivery"]
+  github-actions: ["github actions"]
+  git: ["git"]
+  rest-api: ["rest api", "restful", "rest apis", "api rest"]
+  graphql: ["graphql"]
+  microservices: ["microservices", "microservicios", "micro services"]
+  clean-architecture: ["clean architecture", "arquitectura limpia"]
+  ddd: ["ddd", "domain-driven design", "domain driven design"]
+  xunit: ["xunit"]
+  nunit: ["nunit"]
+  playwright: ["playwright"]
+  vitest: ["vitest"]
+  tdd: ["tdd", "test-driven"]
+  python: ["python"]
+  java: ["java"]
+  spring: ["spring boot", "spring framework"]
+  kotlin: ["kotlin"]
+  golang: ["golang"]
+  php: ["php"]
+  laravel: ["laravel"]
+  ruby: ["ruby", "ruby on rails", "rails"]
+  aws: ["aws", "amazon web services"]
+  gcp: ["gcp", "google cloud"]
+  terraform: ["terraform"]
+  rabbitmq: ["rabbitmq"]
+  kafka: ["kafka"]
+  service-bus: ["service bus", "azure service bus"]
+  signalr: ["signalr"]
+  oauth: ["oauth", "oauth2", "openid connect", "oidc"]
+  llm: ["llm", "llms", "large language model"]
+  azure-openai: ["azure openai"]
+  business-central: ["business central", "dynamics 365 business central"]
+  power-apps: ["power apps", "powerapps"]
+  meilisearch: ["meilisearch"]
+  elasticsearch: ["elasticsearch", "elastic search"]
+  abp: ["abp framework", "abp.io"]
+
+# Display labels used in reasons (fallback: the canonical key).
+labels:
+  dotnet: ".NET"
+  csharp: "C#"
+  aspnet-core: "ASP.NET Core"
+  entity-framework: "Entity Framework"
+  azure: "Azure"
+  azure-functions: "Azure Functions"
+  azure-devops: "Azure DevOps"
+  angular: "Angular"
+  typescript: "TypeScript"
+  javascript: "JavaScript"
+  sql-server: "SQL Server"
+  postgresql: "PostgreSQL"
+  react: "React"
+  nextjs: "Next.js"
+  nodejs: "Node.js"
+  kubernetes: "Kubernetes"
+  ci-cd: "CI/CD"
+  rest-api: "REST APIs"
+  aws: "AWS"
+  gcp: "Google Cloud"
+  java: "Java"
+  php: "PHP"
+  python: "Python"
+  docker: "Docker"
+  graphql: "GraphQL"
+  microservices: "Microservices"
+  kafka: "Kafka"
+  laravel: "Laravel"
+  spring: "Spring Boot"
+  kotlin: "Kotlin"
+  terraform: "Terraform"
+  mongodb: "MongoDB"
+  vue: "Vue"
+  redis: "Redis"
+  mysql: "MySQL"
+  nunit: "NUnit"
+  xunit: "xUnit"
+  rabbitmq: "RabbitMQ"
+  golang: "Go"
+  service-bus: "Service Bus"
+  key-vault: "Key Vault"
+  elasticsearch: "Elasticsearch"
+  github-actions: "GitHub Actions"
+  html: "HTML"
+  css: "CSS"
+  ruby: "Ruby"
+  vb-net: "VB.NET"
+  aspnet-mvc: "ASP.NET MVC"
+  blazor: "Blazor"
+  ddd: "DDD"
+  oauth: "OAuth"
+  llm: "LLMs"
+
+# When the same posting arrives from several sources, prefer this order (first wins on ties).
+source_priority: [himalayas, remotive, remoteok, linkedin, indeed, glassdoor, google]
