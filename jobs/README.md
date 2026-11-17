@@ -16,9 +16,14 @@ Fetches job postings, normalizes and deduplicates them, filters and scores each 
     .venv-jobs/Scripts/python -m jobs.run                     # all enabled sources, writes data/jobs.json
     .venv-jobs/Scripts/python -m jobs.run --dry-run           # same, writes nothing
     .venv-jobs/Scripts/python -m jobs.run --sources remotive,himalayas --limit 10
+    .venv-jobs/Scripts/python -m jobs.run --rescore-only      # offline: re-score data/jobs.json, no fetch
 
 - `--sources`: comma-separated subset of `jobspy, remotive, remoteok, himalayas`.
 - `--limit N`: keep at most N postings per source (quick checks).
+- `--rescore-only`: offline re-score of the existing output file with the current scorer, `data/profile.json`
+  and `jobs/config.yaml`. Nothing is fetched; `generated_at`, `sources`, ids and dates are kept; score, zone,
+  matched, missing and reasons are recomputed (filters and the keep threshold still apply). Combine with
+  `--dry-run` to preview. Use it after changing the scorer, the profile or the config.
 - `--config`, `--output`: alternative config or output file.
 
 The run prints per-source counts and errors, the zone distribution and the top 5 postings. Output
@@ -94,4 +99,4 @@ and usable in `/tailor <job-id>`.
     -20 principal/staff/director titles; -5 junior titles; -10 when more than 6 years are required;
     -40 for exclusion phrases such as "US citizens only".
 - `matched` / `missing`: posting terms the profile has / lacks, heaviest first.
-- `reasons`: 2-4 short rule-generated English strings (stack match, remote/Peru, penalties, missing).
+- `reasons`: 2-4 short rule-generated Spanish strings shown in the UI (stack match, remote/Peru, penalties, missing).

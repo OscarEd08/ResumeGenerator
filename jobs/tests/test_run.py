@@ -73,3 +73,32 @@ def test_limit_caps_jobs_per_source(cfg, profile, tmp_path, monkeypatch, today):
 def test_cli_parses_sources(monkeypatch):
     args = run_module.parse_args(["--dry-run", "--sources", "remotive,himalayas", "--limit", "5"])
     assert args.dry_run is True and args.sources == ["remotive", "himalayas"] and args.limit == 5
+
+
+def test_rescore_only_rescores_existing_file_without_fetching(cfg, profile, tmp_path, monkeypatch, today):
+    stub_sources(monkeypatch)
+    out = tmp_path / "jobs.json"
+    run_module.run_pipeline(cfg, profile, ["remotive"], today=today, output=out, session=None)
+    before = json.loads(out.read_text(encoding="utf-8"))
+    for job in before["jobs"]:
+        job["reasons"] = ["stale"]
+    out.write_text(json.dumps(before), encoding="utf-8")
+
+    def no_fetch(*args, **kwargs):
+        raise AssertionError("rescore must not fetch")
+
+    monkeypatch.setattr(remotive, "fetch", no_fetch)
+    result = run_module.rescore_file(cfg, profile, out)
+    after = json.loads(out.read_text(encoding="utf-8"))
+    assert after["generated_at"] == before["generated_at"]
+    assert after["sources"] == before["sources"]
+    assert [j["id"] for j in after["jobs"]] == [j["id"] for j in before["jobs"]]
+    assert all(j["reasons"] != ["stale"] for j in after["jobs"])
+    keep = ("first_seen", "last_seen", "source", "url", "score")
+    assert [{k: j[k] for k in keep} for j in after["jobs"]] == [{k: j[k] for k in keep} for j in before["jobs"]]
+    assert result.jobs == len(after["jobs"])
+
+
+def test_cli_parses_rescore_only():
+    assert run_module.parse_args(["--rescore-only"]).rescore_only is True
+    assert run_module.parse_args([]).rescore_only is False

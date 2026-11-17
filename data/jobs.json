@@ -59,8 +59,8 @@
       ],
       "missing": [],
       "reasons": [
-        "Strong stack match: .NET, Angular, SQL Server, C#",
-        "Remote role open abroad"
+        "Coincidencia fuerte de stack: .NET, Angular, SQL Server, C#",
+        "Puesto remoto abierto al extranjero"
       ],
       "market": "abroad"
     },
@@ -92,8 +92,8 @@
       ],
       "missing": [],
       "reasons": [
-        "Strong stack match: .NET, Azure, CI/CD, C#",
-        "Remote role in Peru"
+        "Coincidencia fuerte de stack: .NET, Azure, CI/CD, C#",
+        "Puesto remoto en Perú"
       ],
       "market": "peru"
     },
@@ -124,10 +124,10 @@
       ],
       "missing": [],
       "reasons": [
-        "Strong stack match: Azure, .NET, Angular, React",
-        "Based in Peru",
-        "Junior role, below current level",
-        "Few technical details in the posting"
+        "Coincidencia fuerte de stack: Azure, .NET, Angular, React",
+        "Puesto en Perú",
+        "Puesto junior, por debajo del nivel actual",
+        "La oferta trae pocos detalles técnicos"
       ],
       "market": "peru"
     },
@@ -168,9 +168,9 @@
         "java"
       ],
       "reasons": [
-        "Partial stack match: .NET, C#, Azure, CI/CD",
-        "Remote role open abroad",
-        "Missing: AWS, Kubernetes, Java"
+        "Coincidencia parcial de stack: .NET, C#, Azure, CI/CD",
+        "Puesto remoto abierto al extranjero",
+        "Falta: AWS, Kubernetes, Java"
       ],
       "market": "abroad"
     },
@@ -221,9 +221,9 @@
         "terraform"
       ],
       "reasons": [
-        "Partial stack match: .NET, C#, Azure, TypeScript",
-        "Remote role in Peru",
-        "Missing: AWS, Java, Kafka"
+        "Coincidencia parcial de stack: .NET, C#, Azure, TypeScript",
+        "Puesto remoto en Perú",
+        "Falta: AWS, Java, Kafka"
       ],
       "market": "peru"
     },
@@ -252,10 +252,10 @@
       ],
       "missing": [],
       "reasons": [
-        "Strong stack match: .NET, C#, git",
-        "Remote role in Peru",
-        "Junior role, below current level",
-        "Few technical details in the posting"
+        "Coincidencia fuerte de stack: .NET, C#, git",
+        "Puesto remoto en Perú",
+        "Puesto junior, por debajo del nivel actual",
+        "La oferta trae pocos detalles técnicos"
       ],
       "market": "peru"
     },
@@ -304,9 +304,9 @@
         "vue"
       ],
       "reasons": [
-        "Partial stack match: React, Azure, .NET, TypeScript",
-        "Remote role open abroad",
-        "Missing: AWS, Google Cloud, Go"
+        "Coincidencia parcial de stack: React, Azure, .NET, TypeScript",
+        "Puesto remoto abierto al extranjero",
+        "Falta: AWS, Google Cloud, Go"
       ],
       "market": "abroad"
     },
@@ -343,9 +343,9 @@
       ],
       "missing": [],
       "reasons": [
-        "Strong stack match: .NET, TypeScript, C#",
-        "Remote role open abroad",
-        "Few technical details in the posting"
+        "Coincidencia fuerte de stack: .NET, TypeScript, C#",
+        "Puesto remoto abierto al extranjero",
+        "La oferta trae pocos detalles técnicos"
       ],
       "market": "abroad"
     },
@@ -374,9 +374,9 @@
       ],
       "missing": [],
       "reasons": [
-        "Strong stack match: Azure, SQL Server, Key Vault",
-        "Based in Peru",
-        "Few technical details in the posting"
+        "Coincidencia fuerte de stack: Azure, SQL Server, Key Vault",
+        "Puesto en Perú",
+        "La oferta trae pocos detalles técnicos"
       ],
       "market": "peru"
     },
@@ -425,9 +425,9 @@
         "vue"
       ],
       "reasons": [
-        "Partial stack match: Azure, .NET, TypeScript, Angular",
-        "Remote role open abroad",
-        "Missing: AWS, Google Cloud, Go"
+        "Coincidencia parcial de stack: Azure, .NET, TypeScript, Angular",
+        "Puesto remoto abierto al extranjero",
+        "Falta: AWS, Google Cloud, Go"
       ],
       "market": "abroad"
     },
@@ -470,8 +470,8 @@
       ],
       "missing": [],
       "reasons": [
-        "Strong stack match: .NET, C#, Azure, TypeScript",
-        "Remote but restricted: Remote (Ireland)"
+        "Coincidencia fuerte de stack: .NET, C#, Azure, TypeScript",
+        "Remoto pero restringido: Remote (Ireland)"
       ],
       "market": "abroad"
     },
@@ -508,8 +508,8 @@
       ],
       "missing": [],
       "reasons": [
-        "Strong stack match: Azure, .NET, Angular, C#",
-        "Remote but restricted: Remote (Canada)"
+        "Coincidencia fuerte de stack: Azure, .NET, Angular, C#",
+        "Remoto pero restringido: Remote (Canada)"
       ],
       "market": "abroad"
     },
@@ -543,8 +543,8 @@
       ],
       "missing": [],
       "reasons": [
-        "Strong stack match: Azure, .NET, CI/CD, ASP.NET Core",
-        "Remote but restricted: Remote (Brazil)"
+        "Coincidencia fuerte de stack: Azure, .NET, CI/CD, ASP.NET Core",
+        "Remoto pero restringido: Remote (Brazil)"
       ],
       "market": "abroad"
     },
@@ -600,9 +600,9 @@
         "vue"
       ],
       "reasons": [
-        "Partial stack match: Azure, .NET, TypeScript, Azure DevOps",
-        "Remote role open abroad",
-        "Missing: AWS, Google Cloud, Go"
+        "Coincidencia parcial de stack: Azure, .NET, TypeScript, Azure DevOps",
+        "Puesto remoto abierto al extranjero",
+        "Falta: AWS, Google Cloud, Go"
       ],
       "market": "abroad"
     },
@@ -640,8 +640,8 @@
       ],
       "missing": [],
       "reasons": [
-        "Strong stack match: .NET, Azure, TypeScript, Azure DevOps",
-        "Remote but restricted: Remote (Philippines)"
+        "Coincidencia fuerte de stack: .NET, Azure, TypeScript, Azure DevOps",
+        "Remoto pero restringido: Remote (Philippines)"
       ],
       "market": "abroad"
     },
@@ -686,9 +686,9 @@
         "aws"
       ],
       "reasons": [
-        "Strong stack match: .NET, Angular, Azure, Azure DevOps",
-        "Remote but restricted: Remote (Brazil)",
-        "Missing: AWS"
+        "Coincidencia fuerte de stack: .NET, Angular, Azure, Azure DevOps",
+        "Remoto pero restringido: Remote (Brazil)",
+        "Falta: AWS"
       ],
       "market": "abroad"
     },
@@ -721,8 +721,8 @@
       ],
       "missing": [],
       "reasons": [
-        "Strong stack match: Azure, .NET, C#, CI/CD",
-        "Remote but restricted: Remote (Canada)"
+        "Coincidencia fuerte de stack: Azure, .NET, C#, CI/CD",
+        "Remoto pero restringido: Remote (Canada)"
       ],
       "market": "abroad"
     },
@@ -755,8 +755,8 @@
       ],
       "missing": [],
       "reasons": [
-        "Strong stack match: Azure, .NET, C#, CI/CD",
-        "Remote but restricted: Remote (Canada)"
+        "Coincidencia fuerte de stack: Azure, .NET, C#, CI/CD",
+        "Remoto pero restringido: Remote (Canada)"
       ],
       "market": "abroad"
     },
@@ -802,9 +802,9 @@
         "aws"
       ],
       "reasons": [
-        "Strong stack match: .NET, C#, Azure, Azure DevOps",
-        "Remote but restricted: Remote (Germany)",
-        "Missing: AWS"
+        "Coincidencia fuerte de stack: .NET, C#, Azure, Azure DevOps",
+        "Remoto pero restringido: Remote (Germany)",
+        "Falta: AWS"
       ],
       "market": "abroad"
     },
@@ -847,8 +847,8 @@
       ],
       "missing": [],
       "reasons": [
-        "Strong stack match: .NET, C#, SQL Server, clean-architecture",
-        "Remote but restricted: Remote (Albania, Andorra, Austria, Belarus, Belgium, Bosnia and Herzegovina, …)"
+        "Coincidencia fuerte de stack: .NET, C#, SQL Server, clean-architecture",
+        "Remoto pero restringido: Remote (Albania, Andorra, Austria, Belarus, Belgium, Bosnia and Herzegovina, …)"
       ],
       "market": "abroad"
     },
@@ -891,9 +891,9 @@
         "aws"
       ],
       "reasons": [
-        "Strong stack match: .NET, Angular, ASP.NET Core, C#",
-        "Remote but restricted: Remote (Brazil)",
-        "Missing: AWS"
+        "Coincidencia fuerte de stack: .NET, Angular, ASP.NET Core, C#",
+        "Remoto pero restringido: Remote (Brazil)",
+        "Falta: AWS"
       ],
       "market": "abroad"
     },
@@ -931,8 +931,8 @@
       ],
       "missing": [],
       "reasons": [
-        "Strong stack match: Azure, .NET, Azure DevOps, React",
-        "Remote but restricted: Remote (Brazil)"
+        "Coincidencia fuerte de stack: Azure, .NET, Azure DevOps, React",
+        "Remoto pero restringido: Remote (Brazil)"
       ],
       "market": "abroad"
     },
@@ -967,8 +967,8 @@
       ],
       "missing": [],
       "reasons": [
-        "Strong stack match: .NET, C#, Azure, ASP.NET Core",
-        "Remote but restricted: Richardson, TX, USA"
+        "Coincidencia fuerte de stack: .NET, C#, Azure, ASP.NET Core",
+        "Remoto pero restringido: Richardson, TX, USA"
       ],
       "market": "abroad"
     },
@@ -1010,8 +1010,8 @@
       ],
       "missing": [],
       "reasons": [
-        "Strong stack match: .NET, Azure, CI/CD, React",
-        "Remote but restricted: Remote (United States)"
+        "Coincidencia fuerte de stack: .NET, Azure, CI/CD, React",
+        "Remoto pero restringido: Remote (United States)"
       ],
       "market": "abroad"
     },
@@ -1045,8 +1045,8 @@
       ],
       "missing": [],
       "reasons": [
-        "Strong stack match: C#, Azure, .NET, SQL Server",
-        "Remote but restricted: Jalisco, Mexico"
+        "Coincidencia fuerte de stack: C#, Azure, .NET, SQL Server",
+        "Remoto pero restringido: Jalisco, Mexico"
       ],
       "market": "abroad"
     },
@@ -1082,9 +1082,9 @@
         "kafka"
       ],
       "reasons": [
-        "Strong stack match: .NET, Angular, Azure, C#",
-        "Remote but restricted: Remote (Argentina)",
-        "Missing: Kafka"
+        "Coincidencia fuerte de stack: .NET, Angular, Azure, C#",
+        "Remoto pero restringido: Remote (Argentina)",
+        "Falta: Kafka"
       ],
       "market": "abroad"
     },
@@ -1125,9 +1125,9 @@
         "aws"
       ],
       "reasons": [
-        "Strong stack match: .NET, Angular, React, Azure",
-        "Remote but restricted: Remote (India)",
-        "Missing: AWS"
+        "Coincidencia fuerte de stack: .NET, Angular, React, Azure",
+        "Remoto pero restringido: Remote (India)",
+        "Falta: AWS"
       ],
       "market": "abroad"
     },
@@ -1173,9 +1173,9 @@
         "kubernetes"
       ],
       "reasons": [
-        "Strong stack match: .NET, C#, Azure, TypeScript",
-        "Remote but restricted: Remote (Poland)",
-        "Missing: Kubernetes"
+        "Coincidencia fuerte de stack: .NET, C#, Azure, TypeScript",
+        "Remoto pero restringido: Remote (Poland)",
+        "Falta: Kubernetes"
       ],
       "market": "abroad"
     },
@@ -1215,9 +1215,9 @@
         "mongodb"
       ],
       "reasons": [
-        "Strong stack match: .NET, Azure, TypeScript, Angular",
-        "Remote but restricted: Remote (United States)",
-        "Missing: MongoDB"
+        "Coincidencia fuerte de stack: .NET, Azure, TypeScript, Angular",
+        "Remoto pero restringido: Remote (United States)",
+        "Falta: MongoDB"
       ],
       "market": "abroad"
     },
@@ -1255,8 +1255,8 @@
       ],
       "missing": [],
       "reasons": [
-        "Strong stack match: Azure, .NET, TypeScript, React",
-        "Remote but restricted: Knoxville, TN, USA"
+        "Coincidencia fuerte de stack: Azure, .NET, TypeScript, React",
+        "Remoto pero restringido: Knoxville, TN, USA"
       ],
       "market": "abroad"
     },
@@ -1306,9 +1306,9 @@
         "service-bus"
       ],
       "reasons": [
-        "Strong stack match: .NET, Angular, Azure, Azure DevOps",
-        "Remote but restricted: Remote (Egypt)",
-        "Missing: NUnit, RabbitMQ, Redis"
+        "Coincidencia fuerte de stack: .NET, Angular, Azure, Azure DevOps",
+        "Remoto pero restringido: Remote (Egypt)",
+        "Falta: NUnit, RabbitMQ, Redis"
       ],
       "market": "abroad"
     },
@@ -1347,9 +1347,9 @@
         "gcp"
       ],
       "reasons": [
-        "Strong stack match: .NET, Angular, C#, Azure",
-        "Remote but restricted: Remote (Ireland)",
-        "Missing: AWS, Google Cloud"
+        "Coincidencia fuerte de stack: .NET, Angular, C#, Azure",
+        "Remoto pero restringido: Remote (Ireland)",
+        "Falta: AWS, Google Cloud"
       ],
       "market": "abroad"
     },
@@ -1394,9 +1394,9 @@
         "redis"
       ],
       "reasons": [
-        "Strong stack match: Azure, .NET, CI/CD, Angular",
-        "Remote but restricted: Brazil",
-        "Missing: MongoDB, Redis"
+        "Coincidencia fuerte de stack: Azure, .NET, CI/CD, Angular",
+        "Remoto pero restringido: Brazil",
+        "Falta: MongoDB, Redis"
       ],
       "market": "abroad"
     },
@@ -1434,9 +1434,9 @@
       ],
       "missing": [],
       "reasons": [
-        "Strong stack match: TypeScript, CI/CD, React, Python",
-        "Remote role open abroad",
-        "Few technical details in the posting"
+        "Coincidencia fuerte de stack: TypeScript, CI/CD, React, Python",
+        "Puesto remoto abierto al extranjero",
+        "La oferta trae pocos detalles técnicos"
       ],
       "market": "abroad"
     },
@@ -1471,9 +1471,9 @@
         "kubernetes"
       ],
       "reasons": [
-        "Strong stack match: .NET, C#, Azure, CI/CD",
-        "Remote but restricted: Remote (Cyprus)",
-        "Missing: Kubernetes"
+        "Coincidencia fuerte de stack: .NET, C#, Azure, CI/CD",
+        "Remoto pero restringido: Remote (Cyprus)",
+        "Falta: Kubernetes"
       ],
       "market": "abroad"
     },
@@ -1510,9 +1510,9 @@
       ],
       "missing": [],
       "reasons": [
-        "Strong stack match: .NET, Azure, Angular, SQL Server",
-        "Remote but restricted: Remote (India)",
-        "Asks for 7+ years of experience"
+        "Coincidencia fuerte de stack: .NET, Azure, Angular, SQL Server",
+        "Remoto pero restringido: Remote (India)",
+        "Pide 7+ años de experiencia"
       ],
       "market": "abroad"
     },
@@ -1544,8 +1544,8 @@
       ],
       "missing": [],
       "reasons": [
-        "Strong stack match: .NET, SQL Server, C#, CSS",
-        "Remote but restricted: Greater Curitiba"
+        "Coincidencia fuerte de stack: .NET, SQL Server, C#, CSS",
+        "Remoto pero restringido: Greater Curitiba"
       ],
       "market": "abroad"
     },
@@ -1587,9 +1587,9 @@
         "nunit"
       ],
       "reasons": [
-        "Strong stack match: .NET, Angular, TypeScript, SQL Server",
-        "Remote but restricted: Remote (Ukraine)",
-        "Missing: NUnit"
+        "Coincidencia fuerte de stack: .NET, Angular, TypeScript, SQL Server",
+        "Remoto pero restringido: Remote (Ukraine)",
+        "Falta: NUnit"
       ],
       "market": "abroad"
     },
@@ -1639,9 +1639,9 @@
         "ruby"
       ],
       "reasons": [
-        "Partial stack match: .NET, TypeScript, Angular, React",
-        "Remote role open abroad",
-        "Missing: Vue, Go, Java"
+        "Coincidencia parcial de stack: .NET, TypeScript, Angular, React",
+        "Puesto remoto abierto al extranjero",
+        "Falta: Vue, Go, Java"
       ],
       "market": "abroad"
     },
@@ -1683,9 +1683,9 @@
         "aws"
       ],
       "reasons": [
-        "Strong stack match: TypeScript, LLMs, React, Docker",
-        "Remote role open abroad",
-        "Missing: AWS"
+        "Coincidencia fuerte de stack: TypeScript, LLMs, React, Docker",
+        "Puesto remoto abierto al extranjero",
+        "Falta: AWS"
       ],
       "market": "abroad"
     },
@@ -1723,9 +1723,9 @@
       ],
       "missing": [],
       "reasons": [
-        "Strong stack match: TypeScript, LLMs, React, Python",
-        "Remote role open abroad",
-        "Few technical details in the posting"
+        "Coincidencia fuerte de stack: TypeScript, LLMs, React, Python",
+        "Puesto remoto abierto al extranjero",
+        "La oferta trae pocos detalles técnicos"
       ],
       "market": "abroad"
     },
@@ -1768,9 +1768,9 @@
         "signalr"
       ],
       "reasons": [
-        "Strong stack match: .NET, C#, React, SQL Server",
-        "Remote but restricted: Remote (United States)",
-        "Missing: AWS, signalr"
+        "Coincidencia fuerte de stack: .NET, C#, React, SQL Server",
+        "Remoto pero restringido: Remote (United States)",
+        "Falta: AWS, signalr"
       ],
       "market": "abroad"
     },
@@ -1805,8 +1805,8 @@
       ],
       "missing": [],
       "reasons": [
-        "Strong stack match: .NET, SQL Server, C#, git",
-        "Remote but restricted: Remote (United States)"
+        "Coincidencia fuerte de stack: .NET, SQL Server, C#, git",
+        "Remoto pero restringido: Remote (United States)"
       ],
       "market": "abroad"
     },
@@ -1842,9 +1842,9 @@
         "service-bus"
       ],
       "reasons": [
-        "Strong stack match: Azure, .NET, Azure DevOps, CI/CD",
-        "Remote but restricted: Petoskey, MI, USA",
-        "Missing: Service Bus"
+        "Coincidencia fuerte de stack: Azure, .NET, Azure DevOps, CI/CD",
+        "Remoto pero restringido: Petoskey, MI, USA",
+        "Falta: Service Bus"
       ],
       "market": "abroad"
     },
@@ -1892,9 +1892,9 @@
         "terraform"
       ],
       "reasons": [
-        "Strong stack match: Azure, .NET, Angular, C#",
-        "Remote but restricted: Remote (Canada)",
-        "Missing: Elasticsearch, Service Bus, Terraform"
+        "Coincidencia fuerte de stack: Azure, .NET, Angular, C#",
+        "Remoto pero restringido: Remote (Canada)",
+        "Falta: Elasticsearch, Service Bus, Terraform"
       ],
       "market": "abroad"
     },
@@ -1938,9 +1938,9 @@
         "angularjs"
       ],
       "reasons": [
-        "Strong stack match: .NET, Angular, SQL Server, C#",
-        "Remote but restricted: Remote (India)",
-        "Missing: angularjs"
+        "Coincidencia fuerte de stack: .NET, Angular, SQL Server, C#",
+        "Remoto pero restringido: Remote (India)",
+        "Falta: angularjs"
       ],
       "market": "abroad"
     },
@@ -1976,9 +1976,9 @@
         "aws"
       ],
       "reasons": [
-        "Strong stack match: Azure, .NET, C#, ASP.NET Core",
-        "Remote but restricted: Remote (India)",
-        "Missing: AWS"
+        "Coincidencia fuerte de stack: Azure, .NET, C#, ASP.NET Core",
+        "Remoto pero restringido: Remote (India)",
+        "Falta: AWS"
       ],
       "market": "abroad"
     },
@@ -2022,9 +2022,9 @@
         "angularjs"
       ],
       "reasons": [
-        "Strong stack match: .NET, Angular, SQL Server, C#",
-        "Remote but restricted: Remote (American Samoa, Australia, Bangladesh, Bhutan, British Indian Ocean Territory, Brunei Darussalam, …)",
-        "Missing: angularjs"
+        "Coincidencia fuerte de stack: .NET, Angular, SQL Server, C#",
+        "Remoto pero restringido: Remote (American Samoa, Australia, Bangladesh, Bhutan, British Indian Ocean Territory, Brunei Darussalam, …)",
+        "Falta: angularjs"
       ],
       "market": "abroad"
     },
@@ -2068,9 +2068,9 @@
         "angularjs"
       ],
       "reasons": [
-        "Strong stack match: .NET, Angular, SQL Server, C#",
-        "Remote but restricted: Remote (India)",
-        "Missing: angularjs"
+        "Coincidencia fuerte de stack: .NET, Angular, SQL Server, C#",
+        "Remoto pero restringido: Remote (India)",
+        "Falta: angularjs"
       ],
       "market": "abroad"
     },
@@ -2119,9 +2119,9 @@
       ],
       "missing": [],
       "reasons": [
-        "Strong stack match: .NET, Azure, Azure DevOps, CI/CD",
-        "Remote but restricted: Remote (United States)",
-        "Asks for 8+ years of experience"
+        "Coincidencia fuerte de stack: .NET, Azure, Azure DevOps, CI/CD",
+        "Remoto pero restringido: Remote (United States)",
+        "Pide 8+ años de experiencia"
       ],
       "market": "abroad"
     },
@@ -2156,8 +2156,8 @@
       ],
       "missing": [],
       "reasons": [
-        "Strong stack match: .NET, SQL Server, C#, Entity Framework",
-        "Remote but restricted: Remote (United States)"
+        "Coincidencia fuerte de stack: .NET, SQL Server, C#, Entity Framework",
+        "Remoto pero restringido: Remote (United States)"
       ],
       "market": "abroad"
     },
@@ -2200,9 +2200,9 @@
         "java"
       ],
       "reasons": [
-        "Strong stack match: .NET, C#, Angular, LLMs",
-        "Remote but restricted: Remote (India)",
-        "Missing: Java"
+        "Coincidencia fuerte de stack: .NET, C#, Angular, LLMs",
+        "Remoto pero restringido: Remote (India)",
+        "Falta: Java"
       ],
       "market": "abroad"
     },
@@ -2245,8 +2245,8 @@
       ],
       "missing": [],
       "reasons": [
-        "Strong stack match: .NET, TypeScript, CI/CD, React",
-        "Remote but restricted: USA"
+        "Coincidencia fuerte de stack: .NET, TypeScript, CI/CD, React",
+        "Remoto pero restringido: USA"
       ],
       "market": "abroad"
     },
@@ -2288,8 +2288,8 @@
       ],
       "missing": [],
       "reasons": [
-        "Strong stack match: .NET, Angular, TypeScript, abp",
-        "Remote but restricted: Remote (Egypt)"
+        "Coincidencia fuerte de stack: .NET, Angular, TypeScript, abp",
+        "Remoto pero restringido: Remote (Egypt)"
       ],
       "market": "abroad"
     },
@@ -2338,9 +2338,9 @@
         "service-bus"
       ],
       "reasons": [
-        "Strong stack match: Azure, .NET, Azure DevOps, CI/CD",
-        "Remote but restricted: Remote (Mexico)",
-        "Missing: Google Cloud, Kubernetes, Service Bus"
+        "Coincidencia fuerte de stack: Azure, .NET, Azure DevOps, CI/CD",
+        "Remoto pero restringido: Remote (Mexico)",
+        "Falta: Google Cloud, Kubernetes, Service Bus"
       ],
       "market": "abroad"
     },
@@ -2372,8 +2372,8 @@
       ],
       "missing": [],
       "reasons": [
-        "Strong stack match: .NET, C#, GraphQL",
-        "Remote but restricted: Remote (United States)"
+        "Coincidencia fuerte de stack: .NET, C#, GraphQL",
+        "Remoto pero restringido: Remote (United States)"
       ],
       "market": "abroad"
     },
@@ -2411,9 +2411,9 @@
       ],
       "missing": [],
       "reasons": [
-        "Strong stack match: Azure, .NET, Azure DevOps, CI/CD",
-        "Remote but restricted: Tysons, VA, USA",
-        "Asks for 8+ years of experience"
+        "Coincidencia fuerte de stack: Azure, .NET, Azure DevOps, CI/CD",
+        "Remoto pero restringido: Tysons, VA, USA",
+        "Pide 8+ años de experiencia"
       ],
       "market": "abroad"
     },
@@ -2454,10 +2454,10 @@
         "service-bus"
       ],
       "reasons": [
-        "Strong stack match: .NET, C#, Azure, Azure DevOps",
-        "Remote but restricted: Remote (Canada)",
-        "Junior role, below current level",
-        "Missing: Service Bus"
+        "Coincidencia fuerte de stack: .NET, C#, Azure, Azure DevOps",
+        "Remoto pero restringido: Remote (Canada)",
+        "Puesto junior, por debajo del nivel actual",
+        "Falta: Service Bus"
       ],
       "market": "abroad"
     },
@@ -2495,9 +2495,9 @@
         "mysql"
       ],
       "reasons": [
-        "Strong stack match: .NET, Angular, C#, CSS",
-        "Remote but restricted: Remote (United States)",
-        "Missing: MySQL"
+        "Coincidencia fuerte de stack: .NET, Angular, C#, CSS",
+        "Remoto pero restringido: Remote (United States)",
+        "Falta: MySQL"
       ],
       "market": "abroad"
     },
@@ -2536,9 +2536,9 @@
         "gcp"
       ],
       "reasons": [
-        "Strong stack match: .NET, C#, REST APIs, Azure",
-        "Remote but restricted: Remote (Romania)",
-        "Missing: AWS, Google Cloud"
+        "Coincidencia fuerte de stack: .NET, C#, REST APIs, Azure",
+        "Remoto pero restringido: Remote (Romania)",
+        "Falta: AWS, Google Cloud"
       ],
       "market": "abroad"
     },
@@ -2571,9 +2571,9 @@
       ],
       "missing": [],
       "reasons": [
-        "Strong stack match: C#, .NET, git, SQL Server",
-        "Remote but restricted: Remote (United Kingdom)",
-        "Few technical details in the posting"
+        "Coincidencia fuerte de stack: C#, .NET, git, SQL Server",
+        "Remoto pero restringido: Remote (United Kingdom)",
+        "La oferta trae pocos detalles técnicos"
       ],
       "market": "abroad"
     },
@@ -2605,9 +2605,9 @@
       ],
       "missing": [],
       "reasons": [
-        "Strong stack match: TypeScript, JavaScript, PostgreSQL",
-        "Remote role open abroad",
-        "Few technical details in the posting"
+        "Coincidencia fuerte de stack: TypeScript, JavaScript, PostgreSQL",
+        "Puesto remoto abierto al extranjero",
+        "La oferta trae pocos detalles técnicos"
       ],
       "market": "abroad"
     },
@@ -2650,9 +2650,9 @@
         "service-bus"
       ],
       "reasons": [
-        "Strong stack match: .NET, C#, Azure, Azure DevOps",
-        "Remote but restricted: Remote (Canada)",
-        "Missing: Elasticsearch, Service Bus"
+        "Coincidencia fuerte de stack: .NET, C#, Azure, Azure DevOps",
+        "Remoto pero restringido: Remote (Canada)",
+        "Falta: Elasticsearch, Service Bus"
       ],
       "market": "abroad"
     },
@@ -2682,9 +2682,9 @@
       ],
       "missing": [],
       "reasons": [
-        "Strong stack match: Azure",
-        "Remote role open abroad",
-        "Few technical details in the posting"
+        "Coincidencia fuerte de stack: Azure",
+        "Puesto remoto abierto al extranjero",
+        "La oferta trae pocos detalles técnicos"
       ],
       "market": "abroad"
     },
@@ -2728,9 +2728,9 @@
         "vue"
       ],
       "reasons": [
-        "Partial stack match: CSS, git, HTML, JavaScript",
-        "Remote role open abroad",
-        "Missing: PHP, Vue"
+        "Coincidencia parcial de stack: CSS, git, HTML, JavaScript",
+        "Puesto remoto abierto al extranjero",
+        "Falta: PHP, Vue"
       ],
       "market": "abroad"
     },
@@ -2765,9 +2765,9 @@
         "gcp"
       ],
       "reasons": [
-        "Partial stack match: Azure, LLMs, Python, git",
-        "Based in Peru",
-        "Missing: AWS, Google Cloud"
+        "Coincidencia parcial de stack: Azure, LLMs, Python, git",
+        "Puesto en Perú",
+        "Falta: AWS, Google Cloud"
       ],
       "market": "peru"
     },
@@ -2805,9 +2805,9 @@
         "gcp"
       ],
       "reasons": [
-        "Partial stack match: Azure, .NET, Azure DevOps, LLMs",
-        "Remote but restricted: Remote, USA",
-        "Missing: AWS, Google Cloud"
+        "Coincidencia parcial de stack: Azure, .NET, Azure DevOps, LLMs",
+        "Remoto pero restringido: Remote, USA",
+        "Falta: AWS, Google Cloud"
       ],
       "market": "abroad"
     },
@@ -2845,9 +2845,9 @@
         "gcp"
       ],
       "reasons": [
-        "Partial stack match: Azure, .NET, Azure DevOps, LLMs",
-        "Remote but restricted: Remote, USA",
-        "Missing: AWS, Google Cloud"
+        "Coincidencia parcial de stack: Azure, .NET, Azure DevOps, LLMs",
+        "Remoto pero restringido: Remote, USA",
+        "Falta: AWS, Google Cloud"
       ],
       "market": "abroad"
     },
@@ -2890,9 +2890,9 @@
         "nunit"
       ],
       "reasons": [
-        "Strong stack match: .NET, Angular, TypeScript, CI/CD",
-        "Remote but restricted: Remote (Ukraine)",
-        "Missing: Kubernetes, NUnit"
+        "Coincidencia fuerte de stack: .NET, Angular, TypeScript, CI/CD",
+        "Remoto pero restringido: Remote (Ukraine)",
+        "Falta: Kubernetes, NUnit"
       ],
       "market": "abroad"
     },
@@ -2936,9 +2936,9 @@
       ],
       "missing": [],
       "reasons": [
-        "Strong stack match: .NET, TypeScript, CI/CD, Angular",
-        "Remote but restricted: Remote (India)",
-        "Asks for 8+ years of experience"
+        "Coincidencia fuerte de stack: .NET, TypeScript, CI/CD, Angular",
+        "Remoto pero restringido: Remote (India)",
+        "Pide 8+ años de experiencia"
       ],
       "market": "abroad"
     },
@@ -2970,9 +2970,9 @@
       ],
       "missing": [],
       "reasons": [
-        "Strong stack match: C#, .NET, SQL Server",
-        "Remote but restricted: Remote (United States)",
-        "Few technical details in the posting"
+        "Coincidencia fuerte de stack: C#, .NET, SQL Server",
+        "Remoto pero restringido: Remote (United States)",
+        "La oferta trae pocos detalles técnicos"
       ],
       "market": "abroad"
     },
@@ -3019,9 +3019,9 @@
         "terraform"
       ],
       "reasons": [
-        "Strong stack match: Azure, .NET, Azure DevOps, CI/CD",
-        "Remote but restricted: Remote (Mexico)",
-        "Missing: Kubernetes, Service Bus, Terraform"
+        "Coincidencia fuerte de stack: Azure, .NET, Azure DevOps, CI/CD",
+        "Remoto pero restringido: Remote (Mexico)",
+        "Falta: Kubernetes, Service Bus, Terraform"
       ],
       "market": "abroad"
     },
@@ -3051,10 +3051,10 @@
         "kubernetes"
       ],
       "reasons": [
-        "Strong stack match: Azure",
-        "Based in Peru",
-        "Few technical details in the posting",
-        "Missing: Kafka, Kubernetes"
+        "Coincidencia fuerte de stack: Azure",
+        "Puesto en Perú",
+        "La oferta trae pocos detalles técnicos",
+        "Falta: Kafka, Kubernetes"
       ],
       "market": "peru"
     },
@@ -3094,9 +3094,9 @@
         "spring"
       ],
       "reasons": [
-        "Partial stack match: Azure, Azure DevOps, CI/CD, Angular",
-        "Based in Peru",
-        "Missing: Java, Redis, Service Bus"
+        "Coincidencia parcial de stack: Azure, Azure DevOps, CI/CD, Angular",
+        "Puesto en Perú",
+        "Falta: Java, Redis, Service Bus"
       ],
       "market": "peru"
     },
@@ -3129,9 +3129,9 @@
       ],
       "missing": [],
       "reasons": [
-        "Strong stack match: .NET, Angular, C#, REST APIs",
-        "Remote but restricted: Remote (India)",
-        "Asks for 10+ years of experience"
+        "Coincidencia fuerte de stack: .NET, Angular, C#, REST APIs",
+        "Remoto pero restringido: Remote (India)",
+        "Pide 10+ años de experiencia"
       ],
       "market": "abroad"
     },
@@ -3171,10 +3171,10 @@
         "java"
       ],
       "reasons": [
-        "Partial stack match: TypeScript, Python, Docker, git",
-        "Remote role open abroad",
-        "Few technical details in the posting",
-        "Missing: Java"
+        "Coincidencia parcial de stack: TypeScript, Python, Docker, git",
+        "Puesto remoto abierto al extranjero",
+        "La oferta trae pocos detalles técnicos",
+        "Falta: Java"
       ],
       "market": "abroad"
     },
@@ -3208,9 +3208,9 @@
         "service-bus"
       ],
       "reasons": [
-        "Partial stack match: Azure, TypeScript, Azure Functions, Microservices",
-        "Based in Peru",
-        "Missing: Kubernetes, Redis, Service Bus"
+        "Coincidencia parcial de stack: Azure, TypeScript, Azure Functions, Microservices",
+        "Puesto en Perú",
+        "Falta: Kubernetes, Redis, Service Bus"
       ],
       "market": "peru"
     },
@@ -3252,10 +3252,10 @@
         "terraform"
       ],
       "reasons": [
-        "Strong stack match: .NET, Azure, CI/CD, SQL Server",
-        "Remote but restricted: Remote (Mexico)",
-        "Asks for 8+ years of experience",
-        "Missing: Terraform"
+        "Coincidencia fuerte de stack: .NET, Azure, CI/CD, SQL Server",
+        "Remoto pero restringido: Remote (Mexico)",
+        "Pide 8+ años de experiencia",
+        "Falta: Terraform"
       ],
       "market": "abroad"
     },
@@ -3296,9 +3296,9 @@
         "redis"
       ],
       "reasons": [
-        "Partial stack match: Azure, .NET, SQL Server, ASP.NET Core",
-        "Remote but restricted: Remote (India)",
-        "Missing: AWS, Redis"
+        "Coincidencia parcial de stack: Azure, .NET, SQL Server, ASP.NET Core",
+        "Remoto pero restringido: Remote (India)",
+        "Falta: AWS, Redis"
       ],
       "market": "abroad"
     },
@@ -3349,10 +3349,10 @@
         "rabbitmq"
       ],
       "reasons": [
-        "Strong stack match: Azure, .NET, C#, TypeScript",
-        "Remote but restricted: Remote (United States)",
-        "Asks for 7+ years of experience",
-        "Missing: Kafka, RabbitMQ"
+        "Coincidencia fuerte de stack: Azure, .NET, C#, TypeScript",
+        "Remoto pero restringido: Remote (United States)",
+        "Pide 7+ años de experiencia",
+        "Falta: Kafka, RabbitMQ"
       ],
       "market": "abroad"
     },
@@ -3393,9 +3393,9 @@
         "redis"
       ],
       "reasons": [
-        "Partial stack match: Azure, .NET, SQL Server, ASP.NET Core",
-        "Remote but restricted: Remote (India)",
-        "Missing: AWS, Redis"
+        "Coincidencia parcial de stack: Azure, .NET, SQL Server, ASP.NET Core",
+        "Remoto pero restringido: Remote (India)",
+        "Falta: AWS, Redis"
       ],
       "market": "abroad"
     },
@@ -3436,9 +3436,9 @@
         "redis"
       ],
       "reasons": [
-        "Partial stack match: Azure, .NET, SQL Server, ASP.NET Core",
-        "Remote but restricted: Remote (India)",
-        "Missing: AWS, Redis"
+        "Coincidencia parcial de stack: Azure, .NET, SQL Server, ASP.NET Core",
+        "Remoto pero restringido: Remote (India)",
+        "Falta: AWS, Redis"
       ],
       "market": "abroad"
     },
@@ -3476,9 +3476,9 @@
         "mysql"
       ],
       "reasons": [
-        "Strong stack match: .NET, React, ASP.NET Core, C#",
-        "Remote but restricted: Remote (Croatia)",
-        "Missing: MySQL"
+        "Coincidencia fuerte de stack: .NET, React, ASP.NET Core, C#",
+        "Remoto pero restringido: Remote (Croatia)",
+        "Falta: MySQL"
       ],
       "market": "abroad"
     },
@@ -3522,9 +3522,9 @@
         "service-bus"
       ],
       "reasons": [
-        "Partial stack match: .NET, Angular, Azure, CI/CD",
-        "Remote but restricted: Remote (India)",
-        "Missing: angularjs, Redis, Service Bus"
+        "Coincidencia parcial de stack: .NET, Angular, Azure, CI/CD",
+        "Remoto pero restringido: Remote (India)",
+        "Falta: angularjs, Redis, Service Bus"
       ],
       "market": "abroad"
     },
@@ -3555,9 +3555,9 @@
       ],
       "missing": [],
       "reasons": [
-        "Strong stack match: .NET, C#",
-        "Remote but restricted: Remote (India)",
-        "Few technical details in the posting"
+        "Coincidencia fuerte de stack: .NET, C#",
+        "Remoto pero restringido: Remote (India)",
+        "La oferta trae pocos detalles técnicos"
       ],
       "market": "abroad"
     },
@@ -3601,9 +3601,9 @@
         "service-bus"
       ],
       "reasons": [
-        "Partial stack match: .NET, Angular, Azure, CI/CD",
-        "Remote but restricted: Remote (India)",
-        "Missing: angularjs, Redis, Service Bus"
+        "Coincidencia parcial de stack: .NET, Angular, Azure, CI/CD",
+        "Remoto pero restringido: Remote (India)",
+        "Falta: angularjs, Redis, Service Bus"
       ],
       "market": "abroad"
     },
@@ -3639,9 +3639,9 @@
         "golang"
       ],
       "reasons": [
-        "Partial stack match: Angular, Python, git, Microservices",
-        "Remote role open abroad",
-        "Missing: Google Cloud, Go"
+        "Coincidencia parcial de stack: Angular, Python, git, Microservices",
+        "Puesto remoto abierto al extranjero",
+        "Falta: Google Cloud, Go"
       ],
       "market": "abroad"
     },
@@ -3675,9 +3675,9 @@
         "kubernetes"
       ],
       "reasons": [
-        "Strong stack match: .NET, Angular, git",
-        "Remote but restricted: Remote (Spain)",
-        "Missing: Kubernetes"
+        "Coincidencia fuerte de stack: .NET, Angular, git",
+        "Remoto pero restringido: Remote (Spain)",
+        "Falta: Kubernetes"
       ],
       "market": "abroad"
     },
@@ -3710,9 +3710,9 @@
       ],
       "missing": [],
       "reasons": [
-        "Strong stack match: C#, Azure, CI/CD, Python",
-        "Remote but restricted: Remote (India)",
-        "Few technical details in the posting"
+        "Coincidencia fuerte de stack: C#, Azure, CI/CD, Python",
+        "Remoto pero restringido: Remote (India)",
+        "La oferta trae pocos detalles técnicos"
       ],
       "market": "abroad"
     },
@@ -3748,10 +3748,10 @@
         "aws"
       ],
       "reasons": [
-        "Partial stack match: TypeScript, LLMs, Python, Node.js",
-        "Remote role open abroad",
-        "Few technical details in the posting",
-        "Missing: Java, AWS"
+        "Coincidencia parcial de stack: TypeScript, LLMs, Python, Node.js",
+        "Puesto remoto abierto al extranjero",
+        "La oferta trae pocos detalles técnicos",
+        "Falta: Java, AWS"
       ],
       "market": "abroad"
     },
@@ -3782,9 +3782,9 @@
       ],
       "missing": [],
       "reasons": [
-        "Strong stack match: LLMs, Python",
-        "Remote role open abroad",
-        "Few technical details in the posting"
+        "Coincidencia fuerte de stack: LLMs, Python",
+        "Puesto remoto abierto al extranjero",
+        "La oferta trae pocos detalles técnicos"
       ],
       "market": "abroad"
     },
@@ -3825,10 +3825,10 @@
         "gcp"
       ],
       "reasons": [
-        "Partial stack match: LLMs, TypeScript, PostgreSQL, vitest",
-        "Remote role open abroad",
-        "Few technical details in the posting",
-        "Missing: Google Cloud"
+        "Coincidencia parcial de stack: LLMs, TypeScript, PostgreSQL, vitest",
+        "Puesto remoto abierto al extranjero",
+        "La oferta trae pocos detalles técnicos",
+        "Falta: Google Cloud"
       ],
       "market": "abroad"
     },
@@ -3870,10 +3870,10 @@
         "service-bus"
       ],
       "reasons": [
-        "Strong stack match: Azure, .NET, Azure Functions, ASP.NET Core",
-        "Remote but restricted: Remote (Colombia)",
-        "Asks for 7+ years of experience",
-        "Missing: Service Bus"
+        "Coincidencia fuerte de stack: Azure, .NET, Azure Functions, ASP.NET Core",
+        "Remoto pero restringido: Remote (Colombia)",
+        "Pide 7+ años de experiencia",
+        "Falta: Service Bus"
       ],
       "market": "abroad"
     },
@@ -3912,10 +3912,10 @@
         "aws"
       ],
       "reasons": [
-        "Partial stack match: TypeScript, React, PostgreSQL",
-        "Remote role open abroad",
-        "Few technical details in the posting",
-        "Missing: AWS"
+        "Coincidencia parcial de stack: TypeScript, React, PostgreSQL",
+        "Puesto remoto abierto al extranjero",
+        "La oferta trae pocos detalles técnicos",
+        "Falta: AWS"
       ],
       "market": "abroad"
     },
@@ -3955,9 +3955,9 @@
         "gcp"
       ],
       "reasons": [
-        "Partial stack match: CI/CD, SQL Server, Docker, GitHub Actions",
-        "Remote role open abroad",
-        "Missing: AWS, Kubernetes, Terraform"
+        "Coincidencia parcial de stack: CI/CD, SQL Server, Docker, GitHub Actions",
+        "Puesto remoto abierto al extranjero",
+        "Falta: AWS, Kubernetes, Terraform"
       ],
       "market": "abroad"
     },
@@ -3991,10 +3991,10 @@
         "terraform"
       ],
       "reasons": [
-        "Partial stack match: Azure, Python, Docker, git",
-        "Based in Peru",
-        "Junior role, below current level",
-        "Missing: Kubernetes, Terraform"
+        "Coincidencia parcial de stack: Azure, Python, Docker, git",
+        "Puesto en Perú",
+        "Puesto junior, por debajo del nivel actual",
+        "Falta: Kubernetes, Terraform"
       ],
       "market": "peru"
     },
@@ -4028,9 +4028,9 @@
         "java"
       ],
       "reasons": [
-        "Partial stack match: Angular, Azure, Azure DevOps, PostgreSQL",
-        "Based in Peru",
-        "Missing: Google Cloud, Java"
+        "Coincidencia parcial de stack: Angular, Azure, Azure DevOps, PostgreSQL",
+        "Puesto en Perú",
+        "Falta: Google Cloud, Java"
       ],
       "market": "peru"
     },
@@ -4072,10 +4072,10 @@
         "mysql"
       ],
       "reasons": [
-        "Strong stack match: .NET, Angular, React, SQL Server",
-        "Remote but restricted: Pittsburgh, PA, USA",
-        "Asks for 8+ years of experience",
-        "Missing: MySQL"
+        "Coincidencia fuerte de stack: .NET, Angular, React, SQL Server",
+        "Remoto pero restringido: Pittsburgh, PA, USA",
+        "Pide 8+ años de experiencia",
+        "Falta: MySQL"
       ],
       "market": "abroad"
     },
@@ -4109,10 +4109,10 @@
         "gcp"
       ],
       "reasons": [
-        "Partial stack match: CI/CD, Python, git",
-        "Remote role open abroad",
-        "Few technical details in the posting",
-        "Missing: Google Cloud"
+        "Coincidencia parcial de stack: CI/CD, Python, git",
+        "Puesto remoto abierto al extranjero",
+        "La oferta trae pocos detalles técnicos",
+        "Falta: Google Cloud"
       ],
       "market": "abroad"
     },
@@ -4150,9 +4150,9 @@
       ],
       "missing": [],
       "reasons": [
-        "Strong stack match: .NET, Azure, Azure DevOps, Angular",
-        "Remote but restricted: Remote (United States)",
-        "Title suggests a staff level role"
+        "Coincidencia fuerte de stack: .NET, Azure, Azure DevOps, Angular",
+        "Remoto pero restringido: Remote (United States)",
+        "El título sugiere nivel staff"
       ],
       "market": "abroad"
     },
@@ -4188,10 +4188,10 @@
         "vue"
       ],
       "reasons": [
-        "Strong stack match: .NET, React, Angular, C#",
-        "Remote but restricted: Remote (India)",
-        "Asks for 7+ years of experience",
-        "Missing: Vue"
+        "Coincidencia fuerte de stack: .NET, React, Angular, C#",
+        "Remoto pero restringido: Remote (India)",
+        "Pide 7+ años de experiencia",
+        "Falta: Vue"
       ],
       "market": "abroad"
     },
@@ -4236,9 +4236,9 @@
         "service-bus"
       ],
       "reasons": [
-        "Partial stack match: .NET, Azure, SQL Server, C#",
-        "Remote but restricted: Remote (Philippines)",
-        "Missing: AWS, Google Cloud, MySQL"
+        "Coincidencia parcial de stack: .NET, Azure, SQL Server, C#",
+        "Remoto pero restringido: Remote (Philippines)",
+        "Falta: AWS, Google Cloud, MySQL"
       ],
       "market": "abroad"
     },
@@ -4272,9 +4272,9 @@
         "terraform"
       ],
       "reasons": [
-        "Partial stack match: CI/CD, Python, GitHub Actions, REST APIs",
-        "Based in Peru",
-        "Missing: Google Cloud, Terraform"
+        "Coincidencia parcial de stack: CI/CD, Python, GitHub Actions, REST APIs",
+        "Puesto en Perú",
+        "Falta: Google Cloud, Terraform"
       ],
       "market": "peru"
     },
@@ -4312,9 +4312,9 @@
         "kubernetes"
       ],
       "reasons": [
-        "Partial stack match: .NET, Python, C#, Docker",
-        "Remote but restricted: Redwood City, CA, USA",
-        "Missing: Kubernetes"
+        "Coincidencia parcial de stack: .NET, Python, C#, Docker",
+        "Remoto pero restringido: Redwood City, CA, USA",
+        "Falta: Kubernetes"
       ],
       "market": "abroad"
     },
@@ -4349,9 +4349,9 @@
       ],
       "missing": [],
       "reasons": [
-        "Strong stack match: Azure, .NET, ASP.NET Core, C#",
-        "Remote but restricted: Remote (India)",
-        "Title suggests a principal level role"
+        "Coincidencia fuerte de stack: Azure, .NET, ASP.NET Core, C#",
+        "Remoto pero restringido: Remote (India)",
+        "El título sugiere nivel principal"
       ],
       "market": "abroad"
     },
@@ -4383,9 +4383,9 @@
       ],
       "missing": [],
       "reasons": [
-        "Strong stack match: .NET, VB.NET, C#",
-        "Remote but restricted: Remote (United States)",
-        "Few technical details in the posting"
+        "Coincidencia fuerte de stack: .NET, VB.NET, C#",
+        "Remoto pero restringido: Remote (United States)",
+        "La oferta trae pocos detalles técnicos"
       ],
       "market": "abroad"
     },
@@ -4416,9 +4416,9 @@
       ],
       "missing": [],
       "reasons": [
-        "Strong stack match: C#, .NET",
-        "Remote but restricted: Remote (Portugal)",
-        "Few technical details in the posting"
+        "Coincidencia fuerte de stack: C#, .NET",
+        "Remoto pero restringido: Remote (Portugal)",
+        "La oferta trae pocos detalles técnicos"
       ],
       "market": "abroad"
     },
@@ -4454,9 +4454,9 @@
         "terraform"
       ],
       "reasons": [
-        "Partial stack match: .NET, C#, Docker, DDD",
-        "Remote but restricted: Remote (Germany)",
-        "Missing: AWS, Terraform"
+        "Coincidencia parcial de stack: .NET, C#, Docker, DDD",
+        "Remoto pero restringido: Remote (Germany)",
+        "Falta: AWS, Terraform"
       ],
       "market": "abroad"
     },
@@ -4503,9 +4503,9 @@
         "mysql"
       ],
       "reasons": [
-        "Partial stack match: .NET, Angular, React, Azure",
-        "Remote but restricted: Remote (Vietnam)",
-        "Missing: Vue, AWS, Google Cloud"
+        "Coincidencia parcial de stack: .NET, Angular, React, Azure",
+        "Remoto pero restringido: Remote (Vietnam)",
+        "Falta: Vue, AWS, Google Cloud"
       ],
       "market": "abroad"
     },
@@ -4540,9 +4540,9 @@
       ],
       "missing": [],
       "reasons": [
-        "Strong stack match: Python",
-        "Remote role open abroad",
-        "Few technical details in the posting"
+        "Coincidencia fuerte de stack: Python",
+        "Puesto remoto abierto al extranjero",
+        "La oferta trae pocos detalles técnicos"
       ],
       "market": "abroad"
     },
@@ -4573,9 +4573,9 @@
       ],
       "missing": [],
       "reasons": [
-        "Strong stack match: .NET, DDD",
-        "Remote but restricted: Remote (Australia)",
-        "Few technical details in the posting"
+        "Coincidencia fuerte de stack: .NET, DDD",
+        "Remoto pero restringido: Remote (Australia)",
+        "La oferta trae pocos detalles técnicos"
       ],
       "market": "abroad"
     },
@@ -4613,9 +4613,9 @@
         "aws"
       ],
       "reasons": [
-        "Partial stack match: .NET, C#, CI/CD, Docker",
-        "Remote but restricted: Remote (Germany)",
-        "Missing: AWS"
+        "Coincidencia parcial de stack: .NET, C#, CI/CD, Docker",
+        "Remoto pero restringido: Remote (Germany)",
+        "Falta: AWS"
       ],
       "market": "abroad"
     },
@@ -4651,9 +4651,9 @@
         "redis"
       ],
       "reasons": [
-        "Partial stack match: C#, .NET, SQL Server, PostgreSQL",
-        "Remote but restricted: Remote (Hong Kong)",
-        "Missing: MongoDB, Redis"
+        "Coincidencia parcial de stack: C#, .NET, SQL Server, PostgreSQL",
+        "Remoto pero restringido: Remote (Hong Kong)",
+        "Falta: MongoDB, Redis"
       ],
       "market": "abroad"
     },
@@ -4694,9 +4694,9 @@
         "gcp"
       ],
       "reasons": [
-        "Partial stack match: .NET, CI/CD, React, Python",
-        "Remote but restricted: San Francisco, CA, USA",
-        "Missing: AWS, Google Cloud"
+        "Coincidencia parcial de stack: .NET, CI/CD, React, Python",
+        "Remoto pero restringido: San Francisco, CA, USA",
+        "Falta: AWS, Google Cloud"
       ],
       "market": "abroad"
     },
@@ -4737,9 +4737,9 @@
         "gcp"
       ],
       "reasons": [
-        "Partial stack match: .NET, CI/CD, React, Python",
-        "Remote but restricted: Seattle, WA, USA",
-        "Missing: AWS, Google Cloud"
+        "Coincidencia parcial de stack: .NET, CI/CD, React, Python",
+        "Remoto pero restringido: Seattle, WA, USA",
+        "Falta: AWS, Google Cloud"
       ],
       "market": "abroad"
     },
@@ -4772,9 +4772,9 @@
       ],
       "missing": [],
       "reasons": [
-        "Strong stack match: Azure, .NET",
-        "Remote but restricted: OK, USA",
-        "Few technical details in the posting"
+        "Coincidencia fuerte de stack: Azure, .NET",
+        "Remoto pero restringido: OK, USA",
+        "La oferta trae pocos detalles técnicos"
       ],
       "market": "abroad"
     },
@@ -4801,9 +4801,9 @@
       ],
       "missing": [],
       "reasons": [
-        "Strong stack match: .NET",
-        "Remote but restricted: Brazil",
-        "Few technical details in the posting"
+        "Coincidencia fuerte de stack: .NET",
+        "Remoto pero restringido: Brazil",
+        "La oferta trae pocos detalles técnicos"
       ],
       "market": "abroad"
     },
@@ -4845,9 +4845,9 @@
         "redis"
       ],
       "reasons": [
-        "Partial stack match: C#, Azure, .NET, Azure DevOps",
-        "Remote but restricted: Remote (Brazil)",
-        "Missing: AWS, Kubernetes, MongoDB"
+        "Coincidencia parcial de stack: C#, Azure, .NET, Azure DevOps",
+        "Remoto pero restringido: Remote (Brazil)",
+        "Falta: AWS, Kubernetes, MongoDB"
       ],
       "market": "abroad"
     },
@@ -4883,8 +4883,8 @@
       ],
       "missing": [],
       "reasons": [
-        "Strong stack match: TypeScript, React, GraphQL, CSS",
-        "Remote but restricted: Remote (Ireland)"
+        "Coincidencia fuerte de stack: TypeScript, React, GraphQL, CSS",
+        "Remoto pero restringido: Remote (Ireland)"
       ],
       "market": "abroad"
     }

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { ageLabel, frameCode, salaryLabel, tilt } from '../../src/lib/ui/format';
+import { ageLabel, frameCode, salaryLabel, strikePath, tilt } from '../../src/lib/ui/format';
 
 describe('frameCode', () => {
   it('pads the 1-based index to three digits', () => {
@@ -34,5 +34,19 @@ describe('salaryLabel', () => {
     expect(salaryLabel({ min: null, max: 40, currency: 'USD', period: 'hourly' })).toBe('USD hasta 40 / hora');
     expect(salaryLabel(null)).toBeNull();
     expect(salaryLabel({ min: null, max: null, currency: 'USD', period: null })).toBeNull();
+  });
+});
+
+describe('strikePath', () => {
+  it('is deterministic per id and stays inside its box', () => {
+    const ids = ['job-0fff297c', 'job-7e3bdcf5', 'job-049a58de', 'job-17cb282e'];
+    for (const id of ids) {
+      const d = strikePath(id);
+      expect(strikePath(id)).toBe(d);
+      const m = d.match(/^M8 ([\d.]+)C240 ([\d.]+) 528 ([\d.]+) 792 ([\d.]+)$/);
+      expect(m).not.toBeNull();
+      for (const y of m!.slice(1).map(Number)) expect(y >= 0 && y <= 14).toBe(true);
+    }
+    expect(new Set(ids.map(strikePath)).size).toBeGreaterThan(1);
   });
 });

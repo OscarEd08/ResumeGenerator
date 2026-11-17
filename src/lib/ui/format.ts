@@ -124,3 +124,18 @@ export function dateLabel(iso: string | null): string {
   const months = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'];
   return `${d} ${months[m - 1]} ${y}`;
 }
+
+/**
+ * Hand-drawn discard strike in an 800x14 box (close to a row's real aspect, so round caps stay round): a slightly bowed line whose ends and bow vary per id,
+ * so no two struck frames share the same stroke.
+ */
+export function strikePath(id: string): string {
+  let h = 7;
+  for (const ch of id) h = (h * 131 + ch.charCodeAt(0)) >>> 0;
+  const pick = (shift: number, span: number) => ((h >>> shift) % (span * 2 + 1)) - span;
+  const r = (n: number) => Math.round(n * 10) / 10;
+  const y0 = r(7 + pick(0, 3) * 0.9);
+  const y1 = r(7 + pick(5, 3) * 0.9);
+  const bow = r(7 + pick(10, 4) * 0.8);
+  return `M8 ${y0}C240 ${bow} 528 ${r((bow + y1) / 2)} 792 ${y1}`;
+}

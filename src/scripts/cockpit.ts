@@ -4,7 +4,19 @@
  * The static HTML is complete without this script or without storage.
  */
 import { matchesFilter, normalize, parseFilter, serializeFilter, type Filter } from '../lib/ui/filter';
-import { isNew, localToday, OPENED_KEY, parseVisit, rollVisit, VISIT_KEY, type Visit } from '../lib/ui/novelty';
+import {
+  isNew,
+  localToday,
+  OPENED_KEY,
+  opensFrame,
+  parseOpened,
+  parseVisit,
+  rollVisit,
+  VISIT_KEY,
+  withOpened,
+  type FrameEvent,
+  type Visit,
+} from '../lib/ui/novelty';
 import { applyStatus, isStatus, readStatuses, STATUS_KEY, statusOf, type StatusMap } from '../lib/ui/status';
 
 function load(key: string): string | null {
@@ -22,19 +34,10 @@ function save(key: string, value: string): void {
   }
 }
 
-function readOpened(): Set<string> {
-  try {
-    const list = JSON.parse(load(OPENED_KEY) ?? '[]');
-    return new Set(Array.isArray(list) ? list.filter((x) => typeof x === 'string') : []);
-  } catch {
-    return new Set();
-  }
-}
-
 const today = localToday();
 const latestRoll = document.body.dataset.roll ?? today;
 let statuses: StatusMap = readStatuses(load(STATUS_KEY));
-const opened = readOpened();
+let opened = parseOpened(load(OPENED_KEY));
 const visit: Visit = rollVisit(parseVisit(load(VISIT_KEY)), today);
 save(VISIT_KEY, JSON.stringify(visit));
 
@@ -64,10 +67,12 @@ function paintNovelty(): void {
   if (counter && document.querySelector('.frame')) counter.textContent = String(count);
 }
 
-function markOpened(id: string): void {
-  if (opened.has(id)) return;
-  opened.add(id);
+/** Records that the owner met a frame; every event except seeing it in the strip clears NUEVA. */
+function markOpened(id: string, event: FrameEvent): void {
+  if (!opensFrame(event) || opened.has(id)) return;
+  opened = withOpened(opened, id);
   save(OPENED_KEY, JSON.stringify([...opened]));
+  paintNovelty();
 }
 
 /* Status buttons (list panel and detail page). */
@@ -81,11 +86,14 @@ document.addEventListener('click', (event) => {
   statuses = applyStatus(statuses, id, status);
   save(STATUS_KEY, JSON.stringify(statuses));
   paintStatus();
-  if (before !== 'preseleccionada' && statusOf(statuses, id) === 'preseleccionada') {
-    for (const ring of document.querySelectorAll(`[data-job="${id}"] .ring`)) {
-      ring.classList.remove('draw');
-      void (ring as SVGElement).getBoundingClientRect();
-      ring.classList.add('draw');
+  markOpened(id, 'status');
+  const after = statusOf(statuses, id);
+  const mark = after === 'preseleccionada' ? '.ring' : after === 'descartada' ? '.strike' : null;
+  if (mark && before !== after) {
+    for (const el of document.querySelectorAll<SVGElement>(`[data-job="${id}"] ${mark}`)) {
+      el.classList.remove('draw');
+      void el.getBoundingClientRect();
+      el.classList.add('draw');
     }
   }
   applyFilter?.();
@@ -122,9 +130,9 @@ document.addEventListener('click', async (event) => {
   }
 });
 
-/* Detail page: opening a job clears its NUEVA mark. */
+/* Detail page: opening a job clears its NUEVA mark (so do the desktop panel and any status change). */
 const page = document.querySelector<HTMLElement>('[data-detail-page]');
-if (page?.dataset.job) markOpened(page.dataset.job);
+if (page?.dataset.job) markOpened(page.dataset.job, 'detail');
 
 /* List page: filters, empty states and the desktop detail panel. */
 let applyFilter: (() => void) | null = null;
@@ -212,7 +220,7 @@ function initList(strip: HTMLElement): void {
     commit({ market: 'all', minScore: 0, onlyNew: false, status: 'all', q: '' });
   });
 
-  function select(id: string, opts: { focus?: boolean; open?: boolean } = {}): void {
+  function select(id: string, opts: { focus?: boolean } = {}): void {
     if (!panels) return;
     for (const p of panels.querySelectorAll<HTMLElement>('[data-panel]')) p.hidden = p.dataset.panel !== id;
     for (const r of rows) {
@@ -222,10 +230,7 @@ function initList(strip: HTMLElement): void {
       if (on) link?.setAttribute('aria-current', 'true');
       else link?.removeAttribute('aria-current');
     }
-    if (opts.open !== false) {
-      markOpened(id);
-      paintNovelty();
-    }
+    markOpened(id, 'panel');
     if (opts.focus) panels.querySelector<HTMLElement>(`[data-panel="${id}"] h2`)?.focus({ preventScroll: true });
   }
 
@@ -243,7 +248,7 @@ function initList(strip: HTMLElement): void {
   const first = rows.find((r) => !r.hidden) ?? rows[0];
   if (desktop.matches && (initial || first)) {
     const id = rows.some((r) => r.dataset.job === initial) ? initial : first!.dataset.job!;
-    if (id) select(id, { open: Boolean(initial) });
+    if (id) select(id);
   }
 }
 

@@ -1,7 +1,7 @@
 ---
 import type { FramedJob } from '../lib/ui/data';
 import { href } from '../lib/ui/data';
-import { ageLabel, keywordLabel, tilt } from '../lib/ui/format';
+import { ageLabel, keywordLabel, strikePath } from '../lib/ui/format';
 import Score from './Score.astro';
 
 interface Props {
@@ -23,7 +23,6 @@ const search = [job.title, job.company, job.location, ...job.matched.map(keyword
   data-first-seen={job.first_seen}
   data-search={search}
   data-status="nueva"
-  style={`--t:${tilt(job.id)}`}
 >
   <span class="code mono">{job.frame}</span>
   <div class="who">
@@ -32,11 +31,14 @@ const search = [job.title, job.company, job.location, ...job.matched.map(keyword
         >{job.title}</a
       ><span class="tag new" data-new-mark hidden>NUEVA</span><span class="tag applied">POSTULADA</span>
     </p>
-    <p class="meta">{job.company} · {job.location} · {ageLabel(job.posted_at, today)}</p>
+    <p class="meta"><span class="pcode" aria-hidden="true">{job.frame}</span>{job.company} · {job.location} · {ageLabel(job.posted_at, today)}</p>
   </div>
-  <p class="stack">{stack || 'Sin keywords'}</p>
+  <p class="stack">{stack || 'Sin palabras clave'}</p>
   <div class="bar" aria-hidden="true"><i style={`width:${job.score}%`}></i></div>
   <div class="pts"><Score id={job.id} score={job.score} /></div>
+  <svg class="strike" viewBox="0 0 800 14" preserveAspectRatio="none" aria-hidden="true">
+    <path pathLength="1" d={strikePath(job.id)}></path>
+  </svg>
 </li>
 
 <style>
@@ -134,23 +136,46 @@ const search = [job.title, job.company, job.location, ...job.matched.map(keyword
   }
 
   /* Discarded rows stay visible, struck through. */
-  .frame[data-status='descartada'] :is(.title, .meta, .stack, .pts, .code) {
+  .frame[data-status='descartada'] :is(.title, .meta, .stack, .pts, .code, .pcode) {
     color: var(--dim);
   }
   .frame[data-status='descartada'] .bar i {
     background: var(--rule-strong);
   }
-  .frame[data-status='descartada']::before {
-    content: '';
+  .pcode {
+    display: none;
+  }
+  /* Discard strike: hand-drawn like the shortlist ring (same stroke, round caps), varied per id. */
+  .strike {
     position: absolute;
     left: 56px;
-    right: 72px;
     top: 50%;
-    height: 2px;
-    background: var(--mark);
-    opacity: 0.85;
-    transform: rotate(calc(var(--t) * 0.15deg));
+    width: calc(100% - 128px);
+    height: 14px;
+    overflow: visible;
+    transform: translateY(-50%);
+    fill: none;
+    stroke: var(--mark);
+    stroke-width: 1.75;
+    stroke-linecap: round;
+    stroke-dasharray: 1;
+    stroke-dashoffset: 0;
+    opacity: 0;
     pointer-events: none;
+  }
+  .frame[data-status='descartada'] .strike {
+    opacity: 1;
+  }
+  .strike:global(.draw) {
+    animation: strike 420ms var(--ease) both;
+  }
+  @keyframes strike {
+    from {
+      stroke-dashoffset: 1;
+    }
+    to {
+      stroke-dashoffset: 0;
+    }
   }
 
   @media (max-width: 1280px) {
@@ -175,6 +200,12 @@ const search = [job.title, job.company, job.location, ...job.matched.map(keyword
     .code {
       display: none;
     }
+    .pcode {
+      display: inline;
+      margin-right: 8px;
+      font: 500 12px var(--mono);
+      color: var(--muted);
+    }
     .who {
       grid-area: who;
     }
@@ -198,9 +229,9 @@ const search = [job.title, job.company, job.location, ...job.matched.map(keyword
       margin-left: 6px;
       vertical-align: 2px;
     }
-    .frame[data-status='descartada']::before {
+    .strike {
       left: var(--gutter);
-      right: 76px;
+      width: calc(100% - var(--gutter) - 76px);
     }
   }
 </style>

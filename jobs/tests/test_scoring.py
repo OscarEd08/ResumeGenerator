@@ -73,6 +73,18 @@ def test_dotnet_azure_angular_job_scores_high(cfg, profile):
     assert "kubernetes" in scored.missing
     assert 2 <= len(scored.reasons) <= 4
     assert any(".NET" in r for r in scored.reasons)
+    assert scored.reasons[0].startswith("Coincidencia fuerte de stack: ")
+    assert any(r.startswith("Falta: ") for r in scored.reasons)
+
+
+def test_reasons_are_spanish(cfg, profile):
+    vocab = build_vocabulary(profile, cfg)
+    assert "Puesto remoto abierto al extranjero" in score_job(DOTNET_JOB, vocab, cfg).reasons
+    assert "Sin coincidencias con el stack del perfil" in score_job(job("Backend Developer", "Java and Kafka."), vocab, cfg).reasons
+    years = score_job(DOTNET_JOB.model_copy(update={"description": DOTNET_JOB.description + " 10+ years of experience."}), vocab, cfg)
+    assert "Pide 10+ años de experiencia" in years.reasons
+    peru = score_job(DOTNET_JOB.model_copy(update={"market": "peru", "location": "Lima"}), vocab, cfg)
+    assert "Puesto remoto en Perú" in peru.reasons
 
 
 def test_java_only_job_scores_low(cfg, profile):
@@ -87,7 +99,7 @@ def test_region_restriction_and_seniority_penalties(cfg, profile):
     base = score_job(DOTNET_JOB, vocab, cfg).score
     restricted = score_job(DOTNET_JOB.model_copy(update={"location": "Remote (USA only)"}), vocab, cfg)
     assert restricted.score <= base - cfg.scoring.adjustments.region_restricted_penalty + 1
-    assert any("restricted" in r.lower() for r in restricted.reasons)
+    assert any(r.startswith("Remoto pero restringido: ") for r in restricted.reasons)
     principal = score_job(DOTNET_JOB.model_copy(update={"title": "Principal .NET Engineer (C#, Azure)"}), vocab, cfg)
     assert principal.score < base
     years = score_job(DOTNET_JOB.model_copy(update={"description": DOTNET_JOB.description + " 10+ years of experience."}), vocab, cfg)
@@ -100,7 +112,7 @@ def test_remote_limited_to_other_countries_is_restricted(cfg, profile):
     for location in ("Remote (Brazil)", "Remote (Ireland)", "Austin, TX, US"):
         scored = score_job(DOTNET_JOB.model_copy(update={"location": location}), vocab, cfg)
         assert scored.score < base, location
-        assert any("restricted" in r.lower() for r in scored.reasons), location
+        assert any(r.startswith("Remoto pero restringido: ") for r in scored.reasons), location
     for location in ("Remote", "Remote (Worldwide)", "Remote (Latin America)", "Remote (Peru, Colombia, Mexico)",
                      "Remote (USA, Canada, USA timezones)"):
         scored = score_job(DOTNET_JOB.model_copy(update={"location": location}), vocab, cfg)
@@ -127,7 +139,7 @@ def test_thin_posting_scores_below_detailed_one(cfg, profile):
     thin = score_job(job(".NET Developer", ""), vocab, cfg)
     assert thin.score < score_job(DOTNET_JOB, vocab, cfg).score
     assert thin.zone != "apply"
-    assert "Few technical details in the posting" in thin.reasons
+    assert "La oferta trae pocos detalles técnicos" in thin.reasons
 
 
 def test_score_is_clamped_and_zone_consistent(cfg, profile):

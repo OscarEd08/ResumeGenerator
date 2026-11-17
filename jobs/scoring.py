@@ -153,47 +153,47 @@ def score_job(job: Job, vocab: dict[str, float], cfg: Config) -> Job:
     negatives: list[str] = []
     top = sorted(matched, key=lambda t: (-matched[t] * vocab[t], t))[:4]
     if top:
-        strength = "Strong" if coverage >= 0.75 else "Partial"
-        positives.append(f"{strength} stack match: {', '.join(cfg.label(t) for t in top)}")
+        strength = "fuerte" if coverage >= 0.75 else "parcial"
+        positives.append(f"Coincidencia {strength} de stack: {', '.join(cfg.label(t) for t in top)}")
     else:
-        negatives.append("No overlap with the profile stack")
+        negatives.append("Sin coincidencias con el stack del perfil")
 
     if job.remote and job.market == "abroad":
         if _region_restricted(job, cfg):
             score -= adj.region_restricted_penalty
-            negatives.append(f"Remote but restricted: {job.location}")
+            negatives.append(f"Remoto pero restringido: {job.location}")
         else:
             score += adj.remote_abroad_bonus
-            positives.append("Remote role open abroad")
+            positives.append("Puesto remoto abierto al extranjero")
     elif job.market == "peru":
         score += adj.peru_bonus
-        positives.append("Remote role in Peru" if job.remote else "Based in Peru")
+        positives.append("Puesto remoto en Perú" if job.remote else "Puesto en Perú")
 
     senior = _contains_any(job.title, s.seniority.too_senior_title)
     if senior:
         score -= adj.too_senior_penalty
-        negatives.append(f"Title suggests a {senior} level role")
+        negatives.append(f"El título sugiere nivel {senior}")
     elif _contains_any(job.title, s.seniority.junior_title):
         score -= adj.junior_penalty
-        negatives.append("Junior role, below current level")
+        negatives.append("Puesto junior, por debajo del nivel actual")
     years = [int(n) for n in _YEARS.findall(job.description) if 0 < int(n) <= 25]
     if years and max(years) > s.seniority.max_years_required:
         score -= adj.years_penalty
-        negatives.append(f"Asks for {max(years)}+ years of experience")
+        negatives.append(f"Pide {max(years)}+ años de experiencia")
     excluded = _contains_any(f"{job.title}\n{job.description}\n{job.location}", s.exclusion_keywords)
     if excluded:
         score -= adj.exclusion_penalty
-        negatives.append(f"Requirement: {excluded}")
+        negatives.append(f"Requisito: {excluded}")
     if evidence < 1:
-        negatives.append("Few technical details in the posting")
+        negatives.append("La oferta trae pocos detalles técnicos")
     if missing:
         top_missing = sorted(missing, key=lambda t: (-missing[t], t))[:3]
-        negatives.append(f"Missing: {', '.join(cfg.label(t) for t in top_missing)}")
+        negatives.append(f"Falta: {', '.join(cfg.label(t) for t in top_missing)}")
 
     final = max(0, min(100, round(score)))
     reasons = (positives[:2] + negatives)[:4]
     if len(reasons) < 2:
-        reasons.append(f"Keyword coverage {round(coverage * 100)}%")
+        reasons.append(f"Cobertura de palabras clave: {round(coverage * 100)}%")
     return job.model_copy(update={
         "score": final,
         "zone": zone_for(final, cfg),

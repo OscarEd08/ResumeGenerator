@@ -41,3 +41,28 @@ export function localToday(now: Date = new Date()): string {
   const pad = (n: number) => String(n).padStart(2, '0');
   return `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}`;
 }
+
+/**
+ * How the owner meets a frame. Showing it in the desktop panel, opening its detail page or changing its
+ * status all count as opening it; only seeing it in the strip keeps the NUEVA mark.
+ */
+export type FrameEvent = 'strip' | 'panel' | 'detail' | 'status';
+
+export function opensFrame(event: FrameEvent): boolean {
+  return event !== 'strip';
+}
+
+export function withOpened(opened: ReadonlySet<string>, id: string): Set<string> {
+  const next = new Set(opened);
+  next.add(id);
+  return next;
+}
+
+export function parseOpened(raw: string | null): Set<string> {
+  try {
+    const list = JSON.parse(raw ?? '[]');
+    return new Set(Array.isArray(list) ? list.filter((x): x is string => typeof x === 'string') : []);
+  } catch {
+    return new Set();
+  }
+}

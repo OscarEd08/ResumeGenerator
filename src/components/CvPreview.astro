@@ -1,5 +1,5 @@
 ---
-/** Shows the real PDF (embedded on desktop) with its PNG page renders as the phone fallback. */
+/** CV preview: the PNG page renders, each page whole on the ground, plus download and the native PDF viewer. */
 import type { CvEntry } from '../lib/ui/cvs';
 import { href } from '../lib/ui/data';
 
@@ -8,14 +8,27 @@ interface Props {
 }
 const { cv } = Astro.props;
 const pdf = href(`cv/${cv.pdf}`);
+const total = cv.pages.length;
 ---
 
 <main id="contenido" class="cv">
   <div class="head">
-    <div>
-      <p class="lbl">{cv.isBase ? 'Perfil completo' : `CV adaptado · ${cv.id}`}</p>
+    <div class="who">
       <h1>{cv.title}</h1>
-      {cv.company && <p class="meta">{cv.company} · <a href={href(`ofertas/${cv.id}/`)}>Ver oferta</a></p>}
+      <p class="meta">
+        {
+          cv.isBase ? (
+            <span>Perfil completo, sin adaptar</span>
+          ) : (
+            <>
+              <span class="code">{cv.id}</span>
+              {cv.company && <span>{cv.company}</span>}
+              <a href={href(`ofertas/${cv.id}/`)}>Ver oferta</a>
+            </>
+          )
+        }
+        {total > 0 && <span class="code">{total} {total === 1 ? 'página' : 'páginas'}</span>}
+      </p>
     </div>
     <div class="actions">
       <a class="btn" href={pdf} target="_blank" rel="noopener">Abrir PDF</a>
@@ -23,21 +36,32 @@ const pdf = href(`cv/${cv.pdf}`);
     </div>
   </div>
 
-  <object class="embed" data={`${pdf}#navpanes=0&view=FitH`} type="application/pdf" aria-label={`PDF: ${cv.title}`}>
-    <p class="fallback">Tu navegador no muestra PDF incrustados. <a href={pdf}>Abre el PDF</a> o revisa las páginas abajo.</p>
-  </object>
-
   {
-    cv.pages.length > 0 ? (
+    total > 0 ? (
       <ol class="pages" aria-label="Páginas del CV">
         {cv.pages.map((page, i) => (
           <li>
-            <img src={href(`cv/${page}`)} alt={`Página ${i + 1} de ${cv.pages.length} del CV`} width="1240" height="1754" loading={i === 0 ? 'eager' : 'lazy'} />
+            <img
+              src={href(`cv/${page}`)}
+              alt={`Página ${i + 1} de ${total} del CV`}
+              width="1240"
+              height="1754"
+              loading={i === 0 ? 'eager' : 'lazy'}
+              decoding="async"
+            />
+            {total > 1 && (
+              <p class="folio" aria-hidden="true">
+                {i + 1} / {total}
+              </p>
+            )}
           </li>
         ))}
       </ol>
     ) : (
-      <p class="pages-missing">No hay imágenes de páginas para este CV; usa Abrir PDF.</p>
+      <div class="empty">
+        <p class="empty-title">Este CV no tiene imágenes de sus páginas.</p>
+        <p>Ábrelo en el visor del navegador con Abrir PDF o descárgalo.</p>
+      </div>
     )
   }
 </main>
@@ -46,8 +70,8 @@ const pdf = href(`cv/${cv.pdf}`);
   .cv {
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    padding: 24px var(--gutter) 48px;
+    gap: 28px;
+    padding: 24px var(--gutter) 56px;
   }
   .head {
     display: flex;
@@ -56,58 +80,85 @@ const pdf = href(`cv/${cv.pdf}`);
     justify-content: space-between;
     gap: 16px;
   }
+  .who {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+  }
   h1 {
-    margin-top: 6px;
     font-size: 26px;
     font-weight: 600;
+    line-height: 1.2;
     letter-spacing: -0.01em;
+    text-wrap: balance;
   }
   .meta {
-    margin-top: 4px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 4px 12px;
     color: var(--muted);
+  }
+  .meta a {
+    color: var(--soft);
+  }
+  .code {
+    font: 500 12px var(--mono);
   }
   .actions {
     display: flex;
     gap: 8px;
   }
-  .embed {
-    width: 100%;
-    height: calc(100vh - 190px);
-    min-height: 560px;
-    border: 1px solid var(--rule);
-    border-radius: 8px;
-    background: var(--panel);
-  }
-  .fallback {
-    padding: 24px;
-    color: var(--muted);
-  }
-  .pages,
-  .pages-missing {
-    display: none;
-  }
+  /* Paper on the ground: each page whole inside the viewport, no frame, no shadow. */
   .pages {
+    display: flex;
     flex-direction: column;
-    gap: 12px;
+    align-items: center;
+    gap: 32px;
+  }
+  .pages li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
   }
   .pages img {
     display: block;
-    width: 100%;
+    width: min(100%, calc((100svh - 96px) * 1240 / 1754));
     height: auto;
-    border-radius: 4px;
+    border-radius: 2px;
     background: #fff;
+  }
+  .folio {
+    font: 500 12px var(--mono);
+    color: var(--muted);
+  }
+  .empty {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-width: 60ch;
+    padding: 32px 0;
+    border-top: 1px solid var(--rule);
+    color: var(--muted);
+  }
+  .empty-title {
+    color: var(--paper);
+    font-size: 17px;
+    font-weight: 600;
   }
 
   @media (max-width: 760px) {
-    .embed {
-      display: none;
+    .cv {
+      gap: 20px;
     }
     .pages {
-      display: flex;
+      gap: 20px;
     }
-    .pages-missing {
-      display: block;
-      color: var(--muted);
+    .pages img {
+      width: 100%;
     }
     .actions {
       width: 100%;

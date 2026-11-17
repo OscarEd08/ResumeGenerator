@@ -2,6 +2,7 @@
 
 Usage (from the repo root):
     python -m jobs.run [--dry-run] [--sources jobspy,remotive,remoteok,himalayas] [--limit N]
+    python -m jobs.run --rescore-only [--dry-run]   # offline: re-score the existing file, no fetch
 """
 
 from __future__ import annotations
@@ -82,23 +83,33 @@ def load_previous(path: Path) -> list[Job]:
         return []
 
 
-def run_pipeline(cfg: Config, profile: dict, names: list[str], *, today: date, output: Path, session: Any,
-                 dry_run: bool = False, limit: int | None = None) -> RunResult:
-    fresh, summaries = collect(cfg, names, today, session, limit)
-    pool = prune(merge(load_previous(output), fresh, cfg.source_priority), today, cfg.output.prune_after_days)
+def score_pool(pool: list[Job], cfg: Config, profile: dict) -> list[Job]:
+    """Filter, score, apply the keep threshold and sort: the step shared by a run and a re-score."""
     vocab = build_vocabulary(profile, cfg)
     scored = [score_job(job, vocab, cfg) for job in pool if passes_filters(job, cfg)[0]]
     kept = [job for job in scored if job.score >= cfg.scoring.min_score_to_keep]
     kept.sort(key=lambda j: (-j.score, -(j.posted_at or j.first_seen).toordinal(), j.title.lower(), j.id))
+    return kept
+
+
+def write_document(output: Path, document: dict[str, Any], dry_run: bool) -> None:
+    JobsFile.model_validate(document)  # never write a file the site cannot read
+    if not dry_run:
+        output.parent.mkdir(parents=True, exist_ok=True)
+        output.write_text(json.dumps(document, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
+def run_pipeline(cfg: Config, profile: dict, names: list[str], *, today: date, output: Path, session: Any,
+                 dry_run: bool = False, limit: int | None = None) -> RunResult:
+    fresh, summaries = collect(cfg, names, today, session, limit)
+    pool = prune(merge(load_previous(output), fresh, cfg.source_priority), today, cfg.output.prune_after_days)
+    kept = score_pool(pool, cfg, profile)
     document = {
         "generated_at": datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z"),
         "sources": [s.dump() for s in summaries],
         "jobs": [job.model_dump(mode="json") for job in kept],
     }
-    JobsFile.model_validate(document)  # never write a file the site cannot read
-    if not dry_run:
-        output.parent.mkdir(parents=True, exist_ok=True)
-        output.write_text(json.dumps(document, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    write_document(output, document, dry_run)
     return RunResult(
         summaries=summaries,
         jobs=len(kept),
@@ -108,12 +119,35 @@ def run_pipeline(cfg: Config, profile: dict, names: list[str], *, today: date, o
     )
 
 
+def rescore_file(cfg: Config, profile: dict, output: Path, dry_run: bool = False) -> RunResult:
+    """Offline: re-score the postings already in `output` with the current scorer, profile and config.
+
+    Nothing is fetched. `generated_at`, `sources` and every posting's identity, dates and source fields
+    are kept; only score, zone, matched, missing and reasons are recomputed (filters and the keep
+    threshold apply as in a normal run).
+    """
+    raw = json.loads(output.read_text(encoding="utf-8"))
+    current = JobsFile.model_validate(raw)
+    kept = score_pool(current.jobs, cfg, profile)
+    document = {**raw, "jobs": [job.model_dump(mode="json") for job in kept]}
+    write_document(output, document, dry_run)
+    return RunResult(
+        summaries=current.sources,
+        jobs=len(kept),
+        zones=dict(Counter(job.zone for job in kept)),
+        top=kept[:5],
+        filtered=len(current.jobs) - len(kept),
+    )
+
+
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(prog="python -m jobs.run", description="Fetch, score and publish job postings.")
     parser.add_argument("--dry-run", action="store_true", help="run everything but do not write data/jobs.json")
     parser.add_argument("--sources", type=lambda s: [x.strip() for x in s.split(",") if x.strip()],
                         help=f"comma-separated subset of: {', '.join(SOURCES)} (default: enabled in config)")
     parser.add_argument("--limit", type=int, help="keep at most N postings per source (for quick checks)")
+    parser.add_argument("--rescore-only", action="store_true",
+                        help="offline: re-score the existing output file without fetching any source")
     parser.add_argument("--config", type=Path, help="alternative config file")
     parser.add_argument("--output", type=Path, help="alternative output file (default from config)")
     return parser.parse_args(argv)
@@ -129,15 +163,21 @@ def main(argv: list[str] | None = None) -> int:
     profile = json.loads((REPO_ROOT / "data" / "profile.json").read_text(encoding="utf-8"))
     output = args.output or REPO_ROOT / cfg.output.path
 
-    import requests
-
-    with requests.Session() as session:
-        try:
-            result = run_pipeline(cfg, profile, args.sources or enabled_sources(cfg), today=date.today(),
-                                  output=output, session=session, dry_run=args.dry_run, limit=args.limit)
-        except ValueError as error:
-            print(error, file=sys.stderr)
+    if args.rescore_only:
+        if not output.is_file():
+            print(f"Nothing to re-score: {output} does not exist", file=sys.stderr)
             return 2
+        result = rescore_file(cfg, profile, output, dry_run=args.dry_run)
+    else:
+        import requests
+
+        with requests.Session() as session:
+            try:
+                result = run_pipeline(cfg, profile, args.sources or enabled_sources(cfg), today=date.today(),
+                                      output=output, session=session, dry_run=args.dry_run, limit=args.limit)
+            except ValueError as error:
+                print(error, file=sys.stderr)
+                return 2
 
     print("\nSources:")
     for s in result.summaries:

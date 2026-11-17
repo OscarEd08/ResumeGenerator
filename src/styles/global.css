@@ -103,11 +103,10 @@ ol {
   font-weight: 500;
 }
 
-.lbl {
-  font: 500 12px/1.3 var(--mono);
-  letter-spacing: 0.06em;
-  color: var(--muted);
-  text-transform: uppercase;
+/* Section headings inside a page: one small step above body, in the UI face, sentence case. */
+.sec {
+  font: 600 13px/1.3 var(--sans);
+  color: var(--soft);
 }
 
 /* Buttons: one vocabulary across the site. */
