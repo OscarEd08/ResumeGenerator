@@ -1,0 +1,4 @@
+# Python toolchain for the CV generator (RenderCV + ATS tests).
+rendercv[full]==2.8
+pypdf==7.1.0
+pytest==9.2.0

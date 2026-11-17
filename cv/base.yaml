@@ -1,0 +1,161 @@
+# Base CV. Reproduces docs/Oscar_Pairazaman_CV.pdf (content verbatim, layout as close as RenderCV allows).
+# Build: python cv/build.py cv/base.yaml
+cv:
+  name: Oscar Pairazaman Arias
+  headline: .NET C# Engineer | Full Stack Development
+  location: Lima, Peru
+  phone: "+51964407956"
+  email: oscar.pairazaman11@gmail.com
+  social_networks:
+    - network: LinkedIn
+      username: oscarpairazaman
+  sections:
+    # The original summary paragraph has no visible heading; a zero-width-space title
+    # keeps the full-width rule under the header (as in the original) without visible text.
+    "​":
+      - "*Software developer delivering client projects with C#/.NET, ASP.NET Core, Entity Framework and Azure. Experience spans SaaS features, enterprise integrations, production troubleshooting and automated delivery. Builds frontend features with Angular and React, with recent Next.js work in a personal finance PWA. Designs AI-assisted development workflows with human review and automated tests.*"
+    # Entries without a location use a zero-width-space location so the date stays on the
+    # position line (second row), as in the original.
+    PROFESSIONAL EXPERIENCE:
+      - company: Bertoni Solutions
+        position: Semi Senior Software Developer
+        location: Remote from Lima, Peru
+        start_date: 2024-01
+        end_date: present
+        highlights:
+          - "Developed backend services and Angular features for a multi-tenant digital credentials SaaS platform: organizations, subscriptions, role management and Microsoft/Google authentication. Implemented retention and anonymization policies, self-service account deletion and audit logging for sensitive changes."
+          - Implemented integrations with Business Central and corporate procurement systems through REST APIs and cXML PunchOut, alongside resumable Azure Durable Functions workflows for catalog synchronization.
+          - Built Bicep infrastructure and Azure DevOps pipelines with pull-request validation, deployment approvals and Playwright E2E tests. Implemented secret-management and web-protection controls using Key Vault, Azure Front Door and WAF.
+          - Built a .NET search microservice for a multi-store e-commerce platform, including federated queries, relevance tuning, autocomplete and client-certificate authentication.
+          - Improved integration resilience with circuit breakers and timeouts. Instrumented Application Insights telemetry to investigate production incidents and monitor scheduled processes.
+          - Built a .NET and Blazor pilot to extract invoice data using Azure Content Understanding, with deterministic validation, clean architecture and automated tests. Delivered functional and technical documentation to the client.
+          - Designed and built internal Claude Code tooling to standardize AI-assisted development, covering requirements, design, implementation, code review and QA handoff, with human approval gates and security controls.
+      - company: Freelance Development
+        location: "​"
+        position: Full Stack Developer
+        start_date: 2026-10
+        end_date: present
+        summary: "*E-commerce project for a technology accessories retailer · Development and testing stage*"
+        highlights:
+          - Developed a storefront and backend using Astro, Preact, Vendure and PostgreSQL, including product search, a shopping cart and WhatsApp checkout.
+          - Extended Vendure with custom plugins for checkout, complaints, offers and store configuration. Restricted exposed GraphQL operations through an operation allowlist.
+          - Added automated tests with Vitest and Playwright, accessibility checks with axe-core and performance budgets with Lighthouse CI.
+          - Implemented GitHub Actions deployments with image scanning, database backups, smoke tests and automatic rollback. Deployed the application to the client's test environment.
+      - company: Cloud Store
+        location: "​"
+        position: Freelance Web Developer
+        start_date: 2024-08
+        end_date: 2024-10
+        highlights:
+          - Maintained and extended an invoicing application built with ASP.NET MVC and VB.NET.
+          - Integrated SQL Server with the Bsale API to automate invoice issuance, reducing manual data-entry errors by 40%. Validated APIs with Postman within a Scrum workflow.
+      - company: Komatsu Mitsui
+        location: "​"
+        position: Full Stack Web Developer
+        start_date: 2023-05
+        end_date: 2023-12
+        highlights:
+          - Contributed to migrating an activity-planning application from ASP.NET MVC to React and a .NET REST API.
+          - Migrated a time-tracking application from Power Apps to a custom .NET and SQL Server solution.
+          - Optimized SQL Server schemas to improve data integrity and internal reporting performance.
+      - company: Importación de Maquinarias Glory
+        location: "​"
+        position: Web Developer
+        start_date: 2022-08
+        end_date: 2023-01
+        highlights:
+          - Developed React functionality for automated quotation generation and maintained the company website using WordPress.
+    PERSONAL PROJECT:
+      - name: Personal Finance Application
+        summary: Next.js · React · TypeScript · SQLite · Gemini
+        highlights:
+          - Built and deployed a PWA for personal use with transaction tracking, multiple currencies, credit-card billing cycles and category-based spending goals.
+          - Integrated Gemini to convert natural-language or voice input into structured transactions using the user's configured categories and payment methods.
+          - Implemented a local-first mode with browser-based SQLite, data import/export and subsequent linking to a cloud account.
+          - Applied specification-driven, AI-assisted development with automated tests, architecture-boundary checks, Google authentication and rate limiting.
+    EDUCATION:
+      - institution: Universidad Nacional Mayor de San Marcos
+        area: Bachelor’s Degree in Software Engineering
+        location: Lima, Peru
+        date: 2020 - 2024
+        highlights:
+          - Ranked in the top 10 in the Faculty of Systems Engineering and Informatics.
+          - Second place in the Eneisoft Hackathon for an educational platform.
+          - PRONABEC Higher Education Continuity Scholarship recipient.
+    TECHNOLOGIES AND SKILLS:
+      - label: Backend
+        details: C#, .NET, ASP.NET Core, Entity Framework Core, REST APIs and integrations.
+      - label: Frontend
+        details: React, Next.js, Angular, TypeScript, JavaScript, HTML and CSS.
+      - label: Data
+        details: SQL Server, PostgreSQL, SQLite and relational data modeling.
+      - label: Cloud and delivery
+        details: Azure, Bicep, Docker, Git, Azure DevOps, GitHub Actions and CI/CD.
+      - label: Quality
+        details: xUnit, Vitest, Playwright, Testcontainers, code reviews and Clean Architecture.
+      - label: AI-assisted development
+        details: Claude Code, Codex, agent workflows and specification-driven development.
+      - label: Languages
+        details: Spanish - Native · English - B2.
+design:
+  theme: engineeringresumes
+  page:
+    size: us-letter
+    top_margin: 0.6in
+    bottom_margin: 0.6in
+    left_margin: 0.5in
+    right_margin: 0.5in
+    show_top_note: false
+    show_footer: false
+  typography:
+    font_family: XCharter
+    alignment: left
+    line_spacing: 0.5em
+    font_size:
+      body: 10.25pt
+      name: 25pt
+      headline: 10pt
+      connections: 10pt
+    bold:
+      name: true
+      headline: true
+  links:
+    underline: false
+  header:
+    space_below_name: 0.3cm
+    space_below_headline: 0.1cm
+    space_below_connections: 0.25cm
+    connections:
+      space_between_connections: 0.3cm
+      show_icons: false
+      separator: "·"
+      phone_number_format: international
+      display_urls_instead_of_usernames: true
+  section_titles:
+    space_above: 0.45cm
+    space_below: 0.25cm
+  sections:
+    space_between_regular_entries: 0.3cm
+    space_between_text_based_entries: 0cm
+  entries:
+    highlights:
+      bullet: ●
+      space_left: 0.4cm
+      space_above: 0cm
+      space_between_items: 0cm
+      space_between_bullet_and_text: 0.45cm
+  templates:
+    date_range: START_DATE - END_DATE
+    experience_entry:
+      main_column: "**COMPANY**\nPOSITION\nSUMMARY\nHIGHLIGHTS"
+      date_and_location_column: "*LOCATION*\n***DATE***"
+    education_entry:
+      main_column: "**INSTITUTION**\nAREA\nHIGHLIGHTS"
+      date_and_location_column: "*LOCATION*\n***DATE***"
+      degree_column: null
+    normal_entry:
+      main_column: "**NAME**\nSUMMARY\nHIGHLIGHTS"
+      date_and_location_column: "*LOCATION*\n***DATE***"
+locale:
+  language: english
+  present: Present
