@@ -126,16 +126,29 @@ export function dateLabel(iso: string | null): string {
 }
 
 /**
- * Hand-drawn discard strike in an 800x14 box (close to a row's real aspect, so round caps stay round): a slightly bowed line whose ends and bow vary per id,
- * so no two struck frames share the same stroke.
+ * Grease-pencil cross-out in an 800x40 box laid over a row: it starts at the title's x-height (y≈17),
+ * wobbles through three curves while drifting down toward the score, overshoots both ends and ends in a
+ * small flick. Every bend comes from the id, so no two struck frames share the same stroke.
  */
 export function strikePath(id: string): string {
-  let h = 7;
-  for (const ch of id) h = (h * 131 + ch.charCodeAt(0)) >>> 0;
-  const pick = (shift: number, span: number) => ((h >>> shift) % (span * 2 + 1)) - span;
-  const r = (n: number) => Math.round(n * 10) / 10;
-  const y0 = r(7 + pick(0, 3) * 0.9);
-  const y1 = r(7 + pick(5, 3) * 0.9);
-  const bow = r(7 + pick(10, 4) * 0.8);
-  return `M8 ${y0}C240 ${bow} 528 ${r((bow + y1) / 2)} 792 ${y1}`;
+  let h = 2166136261;
+  for (const ch of id) h = Math.imul(h ^ ch.charCodeAt(0), 16777619) >>> 0;
+  const rnd = (k: number, span: number) => {
+    let x = Math.imul(h ^ (k * 0x9e3779b1), 0x85ebca6b) >>> 0;
+    x = Math.imul(x ^ (x >>> 13), 0xc2b2ae35) >>> 0;
+    return ((x >>> 8) / 0xffffff) * 2 * span - span;
+  };
+  const r = (n: number) => Math.round(Math.min(40, Math.max(0, n)) * 10) / 10;
+  const y0 = r(17 + rnd(1, 2));
+  const y1 = r(20 + rnd(2, 3));
+  const y2 = r(24 + rnd(3, 3));
+  const y3 = r(28 + rnd(4, 3));
+  const lift = r(y3 - 4 - rnd(5, 1.5));
+  return (
+    `M4 ${y0}` +
+    `C110 ${r(y0 - 6 + rnd(6, 2))} 200 ${r(y1 + 7 + rnd(7, 2))} 300 ${y1}` +
+    `C390 ${r(y1 - 6 + rnd(8, 2))} 470 ${r(y2 + 6 + rnd(9, 2))} 560 ${y2}` +
+    `C640 ${r(y2 - 5 + rnd(10, 2))} 720 ${r(y3 + 4 + rnd(11, 2))} 784 ${y3}` +
+    `Q794 ${r(y3 + 1)} 798 ${lift}`
+  );
 }

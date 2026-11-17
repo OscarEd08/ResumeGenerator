@@ -11,6 +11,8 @@ const { title, current = null } = Astro.props;
 const { file, jobs } = loadJobs();
 const roll = latestRoll(file);
 const fresh = jobs.filter((j) => j.first_seen === roll).length;
+/* Minimal roll index for the client-side NUEVOS count: [id, first_seen] per job, same on every page. */
+const rollIndex = JSON.stringify(jobs.map((j) => [j.id, String(j.first_seen)]));
 
 const nav = [
   { key: 'ofertas', label: 'Ofertas', to: href() },
@@ -57,6 +59,7 @@ const nav = [
       </p>
     </header>
     <slot />
+    <script is:inline type="application/json" id="roll-jobs" set:html={rollIndex} />
     <script>
       import '../scripts/cockpit';
     </script>

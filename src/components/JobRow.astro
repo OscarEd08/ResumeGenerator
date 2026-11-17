@@ -36,7 +36,7 @@ const search = [job.title, job.company, job.location, ...job.matched.map(keyword
   <p class="stack">{stack || 'Sin palabras clave'}</p>
   <div class="bar" aria-hidden="true"><i style={`width:${job.score}%`}></i></div>
   <div class="pts"><Score id={job.id} score={job.score} /></div>
-  <svg class="strike" viewBox="0 0 800 14" preserveAspectRatio="none" aria-hidden="true">
+  <svg class="strike" viewBox="0 0 800 40" preserveAspectRatio="none" aria-hidden="true">
     <path pathLength="1" d={strikePath(job.id)}></path>
   </svg>
 </li>
@@ -145,15 +145,18 @@ const search = [job.title, job.company, job.location, ...job.matched.map(keyword
   .pcode {
     display: none;
   }
-  /* Discard strike: hand-drawn like the shortlist ring (same stroke, round caps), varied per id. */
+  /*
+   * Discard strike: a grease-pencil cross-out like the shortlist ring (same stroke, round caps), varied
+   * per id. The 40px box starts at the title line so the stroke crosses the title at its x-height and
+   * drifts down toward the score, overshooting the text at both ends.
+   */
   .strike {
     position: absolute;
-    left: 56px;
-    top: 50%;
-    width: calc(100% - 128px);
-    height: 14px;
+    left: 50px;
+    top: var(--strike-top, 8px);
+    width: calc(100% - 112px);
+    height: 40px;
     overflow: visible;
-    transform: translateY(-50%);
     fill: none;
     stroke: var(--mark);
     stroke-width: 1.75;
@@ -230,8 +233,8 @@ const search = [job.title, job.company, job.location, ...job.matched.map(keyword
       vertical-align: 2px;
     }
     .strike {
-      left: var(--gutter);
-      width: calc(100% - var(--gutter) - 76px);
+      left: calc(var(--gutter) - 8px);
+      width: calc(100% - var(--gutter) - 56px);
     }
   }
 </style>

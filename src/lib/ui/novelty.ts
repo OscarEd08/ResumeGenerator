@@ -1,4 +1,6 @@
-/** NUEVA mark: a job stays new from its roll until the owner opens it. Dates are `YYYY-MM-DD`. */
+/** NUEVA mark: a job stays new from its roll until the owner opens or decides on it. Dates are `YYYY-MM-DD`. */
+import { statusOf, type Status, type StatusMap } from './status';
+
 export interface Visit {
   current: string;
   previous: string | null;
@@ -26,14 +28,29 @@ export function parseVisit(raw: string | null): Visit | null {
   return null;
 }
 
-export function isNew(
-  job: { id: string; first_seen: string },
-  ctx: { today: string; visit: Visit | null; opened: Set<string>; latestRoll?: string },
-): boolean {
+export interface NoveltyContext {
+  today: string;
+  visit: Visit | null;
+  opened: ReadonlySet<string>;
+  latestRoll?: string;
+  /** The frame's status; any decision (not `nueva`) counts as having opened it. */
+  status?: Status;
+}
+
+export function isNew(job: { id: string; first_seen: string }, ctx: NoveltyContext): boolean {
+  if (ctx.status && ctx.status !== 'nueva') return false;
   if (ctx.opened.has(job.id)) return false;
   if (job.first_seen >= ctx.today) return true;
   const since = ctx.visit?.previous ?? ctx.latestRoll ?? null;
   return since !== null && job.first_seen >= since;
+}
+
+/** NUEVOS in the roll meta: the same rule as the per-frame mark, so every page shows the same number. */
+export function countNew(
+  jobs: readonly { id: string; first_seen: string }[],
+  ctx: Omit<NoveltyContext, 'status'> & { statuses: StatusMap },
+): number {
+  return jobs.filter((job) => isNew(job, { ...ctx, status: statusOf(ctx.statuses, job.id) })).length;
 }
 
 /** Local calendar date as `YYYY-MM-DD`. */

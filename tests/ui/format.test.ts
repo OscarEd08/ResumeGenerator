@@ -38,15 +38,32 @@ describe('salaryLabel', () => {
 });
 
 describe('strikePath', () => {
-  it('is deterministic per id and stays inside its box', () => {
-    const ids = ['job-0fff297c', 'job-7e3bdcf5', 'job-049a58de', 'job-17cb282e'];
+  const ids = ['job-0fff297c', 'job-7e3bdcf5', 'job-049a58de', 'job-17cb282e', 'job-a874f990'];
+  const numbers = (d: string) => d.match(/-?[\d.]+/g)!.map(Number);
+  const ys = (d: string) => numbers(d).filter((_, i) => i % 2 === 1);
+
+  it('is deterministic per id and varies between ids', () => {
+    for (const id of ids) expect(strikePath(id)).toBe(strikePath(id));
+    expect(new Set(ids.map(strikePath)).size).toBe(ids.length);
+  });
+
+  it('is a wobbling hand stroke, not a ruled line: three curves and a visible bend', () => {
     for (const id of ids) {
       const d = strikePath(id);
-      expect(strikePath(id)).toBe(d);
-      const m = d.match(/^M8 ([\d.]+)C240 ([\d.]+) 528 ([\d.]+) 792 ([\d.]+)$/);
-      expect(m).not.toBeNull();
-      for (const y of m!.slice(1).map(Number)) expect(y >= 0 && y <= 14).toBe(true);
+      expect(d.match(/C/g)?.length).toBeGreaterThanOrEqual(3);
+      const y = ys(d);
+      expect(Math.max(...y) - Math.min(...y)).toBeGreaterThanOrEqual(8);
     }
-    expect(new Set(ids.map(strikePath)).size).toBeGreaterThan(1);
+  });
+
+  it('overshoots both ends of its 800x40 box margin and starts at title x-height', () => {
+    for (const id of ids) {
+      const n = numbers(strikePath(id));
+      expect(n[0]).toBeLessThanOrEqual(6);
+      expect(Math.max(...n.filter((_, i) => i % 2 === 0))).toBeGreaterThanOrEqual(794);
+      for (const y of ys(strikePath(id))) expect(y >= 0 && y <= 40).toBe(true);
+      expect(n[1]).toBeGreaterThanOrEqual(13);
+      expect(n[1]).toBeLessThanOrEqual(21);
+    }
   });
 });

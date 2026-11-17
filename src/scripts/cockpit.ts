@@ -5,6 +5,7 @@
  */
 import { matchesFilter, normalize, parseFilter, serializeFilter, type Filter } from '../lib/ui/filter';
 import {
+  countNew,
   isNew,
   localToday,
   OPENED_KEY,
@@ -41,11 +42,29 @@ let opened = parseOpened(load(OPENED_KEY));
 const visit: Visit = rollVisit(parseVisit(load(VISIT_KEY)), today);
 save(VISIT_KEY, JSON.stringify(visit));
 
+/** Every job id and first_seen of the roll, embedded by the layout so the NUEVOS count agrees on every page. */
+function readRoll(): { id: string; first_seen: string }[] {
+  try {
+    const rows = JSON.parse(document.getElementById('roll-jobs')?.textContent ?? '[]');
+    return Array.isArray(rows)
+      ? rows
+          .filter((r) => Array.isArray(r) && typeof r[0] === 'string' && typeof r[1] === 'string')
+          .map(([id, first_seen]) => ({ id, first_seen }))
+      : [];
+  } catch {
+    return [];
+  }
+}
+const rollJobs = readRoll();
+
 const jobNodes = () => document.querySelectorAll<HTMLElement>('[data-job]');
 
 function jobIsNew(el: HTMLElement): boolean {
   const id = el.dataset.job!;
-  return isNew({ id, first_seen: el.dataset.firstSeen ?? '' }, { today, visit, opened, latestRoll });
+  return isNew(
+    { id, first_seen: el.dataset.firstSeen ?? '' },
+    { today, visit, opened, latestRoll, status: statusOf(statuses, id) },
+  );
 }
 
 function paintStatus(): void {
@@ -57,14 +76,13 @@ function paintStatus(): void {
 }
 
 function paintNovelty(): void {
-  let count = 0;
   for (const el of document.querySelectorAll<HTMLElement>('[data-job][data-first-seen]')) {
-    const fresh = jobIsNew(el);
-    if (fresh && el.matches('.frame')) count++;
-    el.querySelector<HTMLElement>('[data-new-mark]')?.toggleAttribute('hidden', !fresh);
+    el.querySelector<HTMLElement>('[data-new-mark]')?.toggleAttribute('hidden', !jobIsNew(el));
   }
   const counter = document.querySelector<HTMLElement>('[data-new-count]');
-  if (counter && document.querySelector('.frame')) counter.textContent = String(count);
+  if (counter && rollJobs.length) {
+    counter.textContent = String(countNew(rollJobs, { today, visit, opened, latestRoll, statuses }));
+  }
 }
 
 /** Records that the owner met a frame; every event except seeing it in the strip clears NUEVA. */
@@ -86,6 +104,7 @@ document.addEventListener('click', (event) => {
   statuses = applyStatus(statuses, id, status);
   save(STATUS_KEY, JSON.stringify(statuses));
   paintStatus();
+  paintNovelty();
   markOpened(id, 'status');
   const after = statusOf(statuses, id);
   const mark = after === 'preseleccionada' ? '.ring' : after === 'descartada' ? '.strike' : null;

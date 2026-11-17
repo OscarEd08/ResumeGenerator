@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { isNew, opensFrame, parseOpened, rollVisit, withOpened } from '../../src/lib/ui/novelty';
+import { countNew, isNew, opensFrame, parseOpened, rollVisit, withOpened } from '../../src/lib/ui/novelty';
 
 describe('rollVisit', () => {
   it('starts a first visit with no previous date', () => {
@@ -70,5 +70,37 @@ describe('parseOpened', () => {
     expect(parseOpened(null).size).toBe(0);
     expect(parseOpened('{oops').size).toBe(0);
     expect(parseOpened('{"a":1}').size).toBe(0);
+  });
+});
+
+describe('decided frames', () => {
+  it('never marks a frame with a status other than nueva as new', () => {
+    const ctx = { today: '2026-11-18', visit: null, opened: new Set<string>() };
+    for (const status of ['preseleccionada', 'postulada', 'descartada'] as const) {
+      expect(isNew({ id: 'a', first_seen: '2026-11-18' }, { ...ctx, status })).toBe(false);
+    }
+    expect(isNew({ id: 'a', first_seen: '2026-11-18' }, { ...ctx, status: 'nueva' })).toBe(true);
+  });
+});
+
+describe('countNew', () => {
+  const jobs = [
+    { id: 'a', first_seen: '2026-11-16' },
+    { id: 'b', first_seen: '2026-11-16' },
+    { id: 'c', first_seen: '2026-11-16' },
+    { id: 'd', first_seen: '2026-11-10' },
+  ];
+  const base = { today: '2026-11-16', visit: null, opened: new Set<string>(), latestRoll: '2026-11-16', statuses: {} };
+
+  it('counts the frames still new', () => {
+    expect(countNew(jobs, base)).toBe(3);
+  });
+
+  it('leaves out opened and decided frames', () => {
+    expect(countNew(jobs, { ...base, opened: new Set(['a']), statuses: { b: 'descartada' as const } })).toBe(1);
+  });
+
+  it('counts nothing when there are no jobs', () => {
+    expect(countNew([], base)).toBe(0);
   });
 });
