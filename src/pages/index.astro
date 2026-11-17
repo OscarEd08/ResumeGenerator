@@ -1,33 +1,262 @@
 ---
-// Placeholder page: the real UI will be designed later.
-// Reads the profile bank at build time and validates it with the zod schema.
-import rawProfile from '../../data/profile.json';
-import { profileSchema } from '../lib/profile-schema';
+import JobDetail from '../components/JobDetail.astro';
+import JobRow from '../components/JobRow.astro';
+import SourcesNote from '../components/SourcesNote.astro';
+import Layout from '../layouts/Layout.astro';
+import { latestRoll, loadJobs } from '../lib/ui/data';
 
-const profile = profileSchema.parse(rawProfile);
-// BASE_URL has no trailing slash ("/ResumeGenerator"); normalize before joining asset paths.
-const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+const { file, jobs } = loadJobs();
+const roll = latestRoll(file);
+const first = jobs[0];
+const markets = [
+  { key: 'all', label: 'Todas' },
+  { key: 'abroad', label: 'Extranjero' },
+  { key: 'peru', label: 'Perú' },
+];
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
-    <meta name="viewport" content="width=device-width" />
-    <title>{profile.basics.name}</title>
-  </head>
-  <body>
-    <h1>{profile.basics.name}</h1>
-    <p>{profile.basics.headline}</p>
-    <h2>Experience</h2>
-    <ul>
+<Layout title="Ofertas" current="ofertas">
+  <div class="cockpit">
+    <main id="contenido">
+      <div class="heading">
+        <h1>Ofertas</h1>
+        <p class="count mono"><span data-shown>{jobs.length}</span> de {jobs.length}</p>
+      </div>
+
+      <form class="filters" data-filters role="search" aria-label="Filtrar ofertas">
+        <label class="search">
+          <span class="sr">Buscar</span>
+          <input type="search" name="q" placeholder="Buscar puesto, empresa o stack" autocomplete="off" />
+        </label>
+        <div class="chips">
+          <div role="group" aria-label="Mercado">
+            {
+              markets.map((m) => (
+                <button type="button" class="btn chip" data-market={m.key} aria-pressed={m.key === 'all' ? 'true' : 'false'}>
+                  {m.label}
+                </button>
+              ))
+            }
+          </div>
+          <div role="group" aria-label="Puntaje mínimo">
+            <button type="button" class="btn chip mono-chip" data-min="85" aria-pressed="false">≥ 85</button>
+            <button type="button" class="btn chip mono-chip" data-min="70" aria-pressed="false">≥ 70</button>
+          </div>
+          <button type="button" class="btn chip" data-only-new aria-pressed="false">Nuevas</button>
+          <label class="select">
+            <span class="sr">Estado</span>
+            <select name="estado" class="btn chip">
+              <option value="all">Todos los estados</option>
+              <option value="nueva">Sin marcar</option>
+              <option value="preseleccionada">Preseleccionadas</option>
+              <option value="postulada">Postuladas</option>
+              <option value="descartada">Descartadas</option>
+            </select>
+          </label>
+        </div>
+      </form>
+
       {
-        profile.experience.map((entry) => (
-          <li>
-            {entry.company} | {entry.position} ({entry.start_date} to {entry.end_date})
-          </li>
-        ))
+        jobs.length === 0 ? (
+          <div class="empty">
+            <p class="empty-title">El rollo de hoy está vacío.</p>
+            <p>Ninguna fuente devolvió ofertas en la última ejecución. Revisa las fuentes abajo o vuelve tras el próximo workflow.</p>
+          </div>
+        ) : (
+          <ol class="strip" data-strip>
+            {jobs.map((job, i) => (
+              <JobRow job={job} today={roll} selected={i === 0} />
+            ))}
+          </ol>
+        )
       }
-    </ul>
-  </body>
-</html>
+
+      <div class="empty" data-empty-filter hidden>
+        <p class="empty-title">Ninguna oferta coincide con estos filtros.</p>
+        <p>Prueba con otro mercado, baja el puntaje mínimo o borra la búsqueda.</p>
+        <button type="button" class="btn" data-clear-filters>Quitar filtros</button>
+      </div>
+
+      <SourcesNote sources={file.sources} generatedAt={file.generated_at} />
+    </main>
+
+    {
+      first && (
+        <aside class="panel" aria-label="Detalle de la oferta" data-panels>
+          {jobs.map((job, i) => (
+            <div data-panel={job.id} hidden={i !== 0}>
+              <JobDetail job={job} />
+            </div>
+          ))}
+        </aside>
+      )
+    }
+  </div>
+</Layout>
+
+<style>
+  .cockpit {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 440px;
+    align-items: start;
+  }
+  main {
+    padding: 24px var(--gutter) 40px;
+    min-width: 0;
+  }
+  .heading {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+  h1 {
+    font-size: 26px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  .count {
+    color: var(--muted);
+    font-size: 13px;
+  }
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 16px;
+    margin-bottom: 18px;
+  }
+  .search {
+    display: block;
+    flex: 1 1 220px;
+    max-width: 320px;
+  }
+  .search input {
+    width: 100%;
+    min-height: 36px;
+    padding: 7px 12px;
+    border: 1px solid var(--rule-strong);
+    border-radius: 6px;
+    background: transparent;
+  }
+  .search input::placeholder {
+    color: var(--muted);
+  }
+  .search input:focus-visible {
+    outline-offset: 0;
+    border-color: var(--mark);
+  }
+  .chips {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 16px;
+  }
+  .chips [role='group'] {
+    display: flex;
+    gap: 6px;
+  }
+  .chip {
+    min-height: 34px;
+    padding: 5px 12px;
+  }
+  .mono-chip {
+    font-family: var(--mono);
+    font-size: 13px;
+  }
+  select.chip {
+    appearance: none;
+    padding-right: 30px;
+    background: transparent
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='none' stroke='%238a8d93' stroke-width='1.5'%3E%3Cpath d='M1 1l4 4 4-4'/%3E%3C/svg%3E")
+      no-repeat right 12px center;
+  }
+  select option {
+    background: var(--panel);
+    color: var(--paper);
+  }
+  .strip {
+    border-top: 1px solid var(--rule);
+  }
+  .empty {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 40px 4px;
+    border-top: 1px solid var(--rule);
+    color: var(--muted);
+    max-width: 60ch;
+  }
+  .empty-title {
+    color: var(--paper);
+    font-size: 17px;
+    font-weight: 600;
+  }
+  .empty .btn {
+    margin-top: 8px;
+  }
+  .panel {
+    position: sticky;
+    top: 61px;
+    height: calc(100vh - 61px);
+    overflow-y: auto;
+    padding: 28px;
+    border-left: 1px solid var(--rule);
+    background: var(--panel);
+    scrollbar-width: thin;
+  }
+
+  @media (max-width: 1100px) {
+    .cockpit {
+      grid-template-columns: minmax(0, 1fr) 380px;
+    }
+  }
+  @media (max-width: 760px) {
+    .cockpit {
+      display: block;
+    }
+    .panel {
+      display: none;
+    }
+    main {
+      padding: 20px 0 32px;
+    }
+    .heading {
+      padding: 0 var(--gutter);
+    }
+    .filters {
+      flex-direction: column;
+      flex-wrap: nowrap;
+      align-items: stretch;
+      gap: 12px;
+    }
+    .search {
+      flex: none;
+      max-width: none;
+      padding: 0 var(--gutter);
+    }
+    .search input {
+      min-height: 44px;
+    }
+    .chips {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      padding: 0 var(--gutter) 4px;
+      scrollbar-width: none;
+    }
+    .chips [role='group'] {
+      flex: none;
+    }
+    .chip {
+      min-height: 44px;
+      flex: none;
+      white-space: nowrap;
+    }
+    .empty {
+      padding: 32px var(--gutter);
+    }
+  }
+</style>

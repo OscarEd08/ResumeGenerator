@@ -1,0 +1,132 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { href, loadCvs } from '../lib/ui/data';
+
+const cvs = loadCvs();
+const tailored = cvs.filter((cv) => !cv.isBase);
+const pageLink = (id: string, isBase: boolean) => (isBase ? href('cv-base/') : href(`cv/${id}/`));
+---
+
+<Layout title="CVs" current="cvs">
+  <main id="contenido" class="cvs">
+    <div class="heading">
+      <h1>CVs generados</h1>
+      <p class="count mono">{cvs.length} {cvs.length === 1 ? 'archivo' : 'archivos'}</p>
+    </div>
+
+    <ol class="list">
+      {
+        cvs.map((cv, i) => (
+          <li class="item">
+            <span class="code mono">{String(i + 1).padStart(3, '0')}</span>
+            <div class="who">
+              <a class="title" href={pageLink(cv.id, cv.isBase)}>{cv.title}</a>
+              <p class="meta">
+                {cv.isBase ? 'Perfil completo, sin adaptar' : (cv.company ?? 'Oferta ya no está en el rollo')} · {cv.pdf}
+              </p>
+            </div>
+            <span class="pages mono">{cv.pages.length ? `${cv.pages.length} pág.` : 'solo PDF'}</span>
+            <a class="btn" href={href(`cv/${cv.pdf}`)} download>Descargar</a>
+          </li>
+        ))
+      }
+    </ol>
+
+    {
+      tailored.length === 0 && (
+        <div class="empty">
+          <p class="empty-title">Aún no hay CVs adaptados.</p>
+          <p>
+            Abre una oferta, copia su comando <code>/tailor &lt;id&gt;</code> y ejecútalo en Claude Code. El PDF aparecerá aquí con el
+            título de la oferta.
+          </p>
+        </div>
+      )
+    }
+  </main>
+</Layout>
+
+<style>
+  .cvs {
+    padding: 24px var(--gutter) 48px;
+    max-width: 1100px;
+  }
+  .heading {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 16px;
+  }
+  h1 {
+    font-size: 26px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  .count,
+  .code,
+  .pages {
+    color: var(--muted);
+    font-size: 12px;
+  }
+  .list {
+    border-top: 1px solid var(--rule);
+  }
+  .item {
+    position: relative;
+    display: grid;
+    grid-template-columns: 44px minmax(0, 1fr) 90px auto;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 4px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .item:hover {
+    background: #17181b;
+  }
+  .title {
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .title::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+  }
+  .item .btn {
+    position: relative;
+    z-index: 1;
+  }
+  .meta {
+    color: var(--muted);
+    font-size: 13px;
+    overflow-wrap: anywhere;
+  }
+  .empty {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 32px 4px;
+    max-width: 60ch;
+    color: var(--muted);
+  }
+  .empty-title {
+    color: var(--paper);
+    font-size: 17px;
+    font-weight: 600;
+  }
+  code {
+    font: 500 13px var(--mono);
+    color: var(--paper);
+  }
+  @media (max-width: 760px) {
+    .item {
+      grid-template-columns: minmax(0, 1fr) auto;
+      padding: 14px 0;
+    }
+    .code,
+    .pages {
+      display: none;
+    }
+  }
+</style>

@@ -1,0 +1,13 @@
+---
+import CvPreview from '../components/CvPreview.astro';
+import Layout from '../layouts/Layout.astro';
+import { BASE_CV_ID } from '../lib/ui/cvs';
+import { loadCvs } from '../lib/ui/data';
+
+const base = loadCvs().find((cv) => cv.id === BASE_CV_ID);
+if (!base) throw new Error('public/cv/base.pdf is missing; render the base CV before building the site.');
+---
+
+<Layout title="CV base" current="cv-base">
+  <CvPreview cv={base} />
+</Layout>

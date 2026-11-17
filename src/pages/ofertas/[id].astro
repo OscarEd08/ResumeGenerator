@@ -1,0 +1,46 @@
+---
+import JobDetail from '../../components/JobDetail.astro';
+import Layout from '../../layouts/Layout.astro';
+import { href, loadJobs, type FramedJob } from '../../lib/ui/data';
+
+export function getStaticPaths() {
+  return loadJobs().jobs.map((job) => ({ params: { id: job.id }, props: { job } }));
+}
+
+interface Props {
+  job: FramedJob;
+}
+const { job } = Astro.props;
+---
+
+<Layout title={job.title} current="ofertas">
+  <main id="contenido" class="page" data-detail-page data-job={job.id}>
+    <a class="back" href={href(`#${job.id}`)}>
+      <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3 5 8l5 5" fill="none" stroke="currentColor" stroke-width="1.5"></path></svg>
+      Ofertas
+    </a>
+    <JobDetail job={job} full headingLevel="h1" />
+  </main>
+</Layout>
+
+<style>
+  .page {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    max-width: 880px;
+    padding: 24px var(--gutter) 56px;
+  }
+  .back {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    align-self: flex-start;
+    min-height: 44px;
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .back:hover {
+    color: var(--paper);
+  }
+</style>

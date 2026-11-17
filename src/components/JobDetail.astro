@@ -1,0 +1,236 @@
+---
+/** Job detail: compact in the desktop panel, full (with description) on its own page. */
+import type { FramedJob } from '../lib/ui/data';
+import { href } from '../lib/ui/data';
+import { dateLabel, keywordLabel, salaryLabel } from '../lib/ui/format';
+import Score from './Score.astro';
+import StatusControls from './StatusControls.astro';
+import TailorCommand from './TailorCommand.astro';
+
+interface Props {
+  job: FramedJob;
+  full?: boolean;
+  headingLevel?: 'h1' | 'h2';
+}
+const { job, full = false, headingLevel = 'h2' } = Astro.props;
+const Heading = headingLevel;
+const salary = salaryLabel(job.salary);
+const meta = [job.company, job.location, salary].filter(Boolean).join(' · ');
+const paragraphs = job.description
+  .split(/\n+/)
+  .map((p) => p.trim())
+  .filter(Boolean);
+---
+
+<article class:list={['detail', { full }]} data-job={job.id} data-first-seen={job.first_seen} data-status="nueva">
+  <p class="lbl">
+    Cuadro {job.frame}<span class="new-mark" data-new-mark hidden>NUEVA</span>
+  </p>
+  <div class="head">
+    <Heading class="title" tabindex="-1">{job.title}</Heading>
+    <p class="meta">{meta}</p>
+  </div>
+
+  <div class="score-row">
+    <Score id={job.id} score={job.score} size="big" />
+    <div class="bar" aria-hidden="true"><i style={`width:${job.score}%`}></i></div>
+  </div>
+
+  <StatusControls id={job.id} />
+
+  <section>
+    <h3 class="lbl">Keywords</h3>
+    {
+      job.matched.length + job.missing.length === 0 ? (
+        <p class="quiet">El análisis no encontró keywords del perfil en esta oferta.</p>
+      ) : (
+        <ul class="kw">
+          {job.matched.map((k) => (
+            <li>{keywordLabel(k)}</li>
+          ))}
+          {job.missing.map((k) => (
+            <li class="no">
+              <span class="sr">Falta: </span>
+              {keywordLabel(k)}
+            </li>
+          ))}
+        </ul>
+      )
+    }
+  </section>
+
+  <section>
+    <h3 class="lbl">Por qué encaja</h3>
+    {
+      job.reasons.length ? (
+        <ul class="reasons">
+          {job.reasons.map((r) => (
+            <li>{r}</li>
+          ))}
+        </ul>
+      ) : (
+        <p class="quiet">Sin motivos registrados para esta oferta.</p>
+      )
+    }
+  </section>
+
+  <section>
+    <h3 class="lbl">Adaptar CV</h3>
+    <TailorCommand id={job.id} />
+    <p class="hint">Ejecuta el comando en Claude Code; el CV aparecerá en CVs.</p>
+  </section>
+
+  <dl class="facts">
+    <div><dt>Publicada</dt><dd>{dateLabel(job.posted_at)}</dd></div>
+    {job.expires_at && <div><dt>Vence</dt><dd>{dateLabel(job.expires_at)}</dd></div>}
+    <div><dt>Detectada</dt><dd>{dateLabel(job.first_seen)}</dd></div>
+    <div><dt>Salario</dt><dd>{salary ?? 'No indicado'}</dd></div>
+  </dl>
+
+  <div class="links">
+    <a class="btn" href={job.url} target="_blank" rel="noopener">Ver oferta original</a>
+    {!full && <a class="btn" href={href(`ofertas/${job.id}/`)}>Detalle completo</a>}
+    {
+      job.attribution && (
+        <span class="via">
+          via <a href={job.attribution.url} target="_blank" rel="noopener">{job.attribution.name}</a>
+        </span>
+      )
+    }
+  </div>
+
+  {
+    full && (
+      <section class="desc">
+        <h3 class="lbl">Descripción</h3>
+        {paragraphs.length ? paragraphs.map((p) => <p>{p}</p>) : <p class="quiet">La fuente no incluyó descripción.</p>}
+      </section>
+    )
+  }
+</article>
+
+<style>
+  .detail {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+  .head {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-top: -12px;
+  }
+  .title {
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+  .full .title {
+    font-size: 28px;
+  }
+  .title:focus {
+    outline: none;
+  }
+  .meta {
+    color: var(--muted);
+  }
+  .new-mark {
+    margin-left: 10px;
+    padding: 2px 6px;
+    border-radius: 3px;
+    background: var(--mark);
+    color: var(--ink-on-mark);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+  .score-row {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 6px 0 6px 6px;
+  }
+  .bar {
+    flex: 1;
+    max-width: 200px;
+    height: 6px;
+    border-radius: 3px;
+    background: var(--rule);
+    overflow: hidden;
+  }
+  .bar i {
+    display: block;
+    height: 100%;
+    background: var(--paper);
+  }
+  section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .reasons {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    color: var(--soft);
+    max-width: 65ch;
+  }
+  .quiet,
+  .hint {
+    color: var(--muted);
+  }
+  .hint {
+    font-size: 13px;
+  }
+  .facts {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px 20px;
+    padding-top: 18px;
+    border-top: 1px solid var(--rule);
+  }
+  .facts dt {
+    font: 500 11px var(--mono);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .facts dd {
+    margin-top: 2px;
+  }
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 12px;
+  }
+  .via {
+    color: var(--muted);
+  }
+  .via a {
+    color: var(--soft);
+  }
+  .desc {
+    padding-top: 18px;
+    border-top: 1px solid var(--rule);
+  }
+  .desc p {
+    max-width: 70ch;
+    color: var(--soft);
+    line-height: 1.6;
+  }
+  .full .facts {
+    grid-template-columns: repeat(4, minmax(0, max-content));
+    column-gap: 40px;
+  }
+  @media (max-width: 760px) {
+    .full .facts {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .full .title {
+      font-size: 24px;
+    }
+  }
+</style>

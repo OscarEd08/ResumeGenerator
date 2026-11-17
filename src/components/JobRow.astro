@@ -1,0 +1,206 @@
+---
+import type { FramedJob } from '../lib/ui/data';
+import { href } from '../lib/ui/data';
+import { ageLabel, keywordLabel, tilt } from '../lib/ui/format';
+import Score from './Score.astro';
+
+interface Props {
+  job: FramedJob;
+  /** Reference date for the static age label (the roll date). */
+  today: string;
+  selected?: boolean;
+}
+const { job, today, selected = false } = Astro.props;
+const stack = job.matched.slice(0, 3).map(keywordLabel).join(' · ');
+const search = [job.title, job.company, job.location, ...job.matched.map(keywordLabel), ...job.matched].join(' ');
+---
+
+<li
+  class:list={['frame', { sel: selected }]}
+  data-job={job.id}
+  data-market={job.market}
+  data-score={job.score}
+  data-first-seen={job.first_seen}
+  data-search={search}
+  data-status="nueva"
+  style={`--t:${tilt(job.id)}`}
+>
+  <span class="code mono">{job.frame}</span>
+  <div class="who">
+    <p class="line">
+      <a class="title" href={href(`ofertas/${job.id}/`)} data-select aria-current={selected ? 'true' : undefined}
+        >{job.title}</a
+      ><span class="tag new" data-new-mark hidden>NUEVA</span><span class="tag applied">POSTULADA</span>
+    </p>
+    <p class="meta">{job.company} · {job.location} · {ageLabel(job.posted_at, today)}</p>
+  </div>
+  <p class="stack">{stack || 'Sin keywords'}</p>
+  <div class="bar" aria-hidden="true"><i style={`width:${job.score}%`}></i></div>
+  <div class="pts"><Score id={job.id} score={job.score} /></div>
+</li>
+
+<style>
+  .frame {
+    position: relative;
+    display: grid;
+    grid-template-columns: 44px minmax(0, 1fr) 170px 160px 64px;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 12px 14px 4px;
+    border-bottom: 1px solid var(--rule);
+    transition: background-color 160ms var(--ease);
+  }
+  .frame:hover {
+    background: #17181b;
+  }
+  .frame.sel {
+    background: var(--panel);
+  }
+  .code {
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .who {
+    min-width: 0;
+  }
+  .line {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    min-width: 0;
+  }
+  .title {
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  /* The whole frame is the link target. */
+  .title::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+  }
+  .title:focus-visible {
+    outline: none;
+  }
+  .title:focus-visible::after {
+    outline: 2px solid var(--mark);
+    outline-offset: -2px;
+  }
+  .meta,
+  .stack {
+    color: var(--muted);
+    font-size: 13px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .tag {
+    flex: none;
+    font: 600 11px var(--mono);
+    letter-spacing: 0.04em;
+    padding: 2px 6px;
+    border-radius: 3px;
+  }
+  .new {
+    background: var(--mark);
+    color: var(--ink-on-mark);
+  }
+  .applied {
+    display: none;
+    border: 1px solid var(--paper);
+    color: var(--paper);
+  }
+  .frame[data-status='postulada'] .applied {
+    display: inline;
+  }
+  .bar {
+    height: 6px;
+    border-radius: 3px;
+    background: var(--rule);
+    overflow: hidden;
+  }
+  .bar i {
+    display: block;
+    height: 100%;
+    background: var(--paper);
+  }
+  .pts {
+    text-align: right;
+    padding-right: 6px;
+  }
+
+  /* Discarded rows stay visible, struck through. */
+  .frame[data-status='descartada'] :is(.title, .meta, .stack, .pts, .code) {
+    color: var(--dim);
+  }
+  .frame[data-status='descartada'] .bar i {
+    background: var(--rule-strong);
+  }
+  .frame[data-status='descartada']::before {
+    content: '';
+    position: absolute;
+    left: 56px;
+    right: 72px;
+    top: 50%;
+    height: 2px;
+    background: var(--mark);
+    opacity: 0.85;
+    transform: rotate(calc(var(--t) * 0.15deg));
+    pointer-events: none;
+  }
+
+  @media (max-width: 1280px) {
+    .frame {
+      grid-template-columns: 40px minmax(0, 1fr) 120px 60px;
+    }
+    .stack {
+      display: none;
+    }
+  }
+  @media (max-width: 760px) {
+    .frame {
+      grid-template-columns: minmax(0, 1fr) 56px;
+      grid-template-areas:
+        'who pts'
+        'bar pts';
+      row-gap: 10px;
+      column-gap: 12px;
+      padding: 14px var(--gutter);
+      min-height: 72px;
+    }
+    .code {
+      display: none;
+    }
+    .who {
+      grid-area: who;
+    }
+    .bar {
+      grid-area: bar;
+      height: 4px;
+    }
+    .pts {
+      grid-area: pts;
+    }
+    .title {
+      white-space: normal;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+    .line {
+      display: block;
+    }
+    .tag {
+      margin-left: 6px;
+      vertical-align: 2px;
+    }
+    .frame[data-status='descartada']::before {
+      left: var(--gutter);
+      right: 76px;
+    }
+  }
+</style>

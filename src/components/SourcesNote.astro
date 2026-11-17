@@ -1,0 +1,42 @@
+---
+import type { SourceSummary } from '../lib/jobs-schema';
+
+interface Props {
+  sources: SourceSummary[];
+  generatedAt: string;
+}
+const { sources, generatedAt } = Astro.props;
+const failed = sources.filter((s) => s.error);
+const stamp = generatedAt.replace('T', ' ').slice(0, 16) + ' UTC';
+---
+
+<footer class="sources mono">
+  <p>
+    Fuentes: {sources.length ? sources.map((s) => `${s.name} ${s.count}`).join(' · ') : 'ninguna registrada'} · actualizado {stamp}
+  </p>
+  {
+    failed.length > 0 && (
+      <p>
+        Con errores: {failed.map((s) => `${s.name} (${s.error})`).join(' · ')}
+      </p>
+    )
+  }
+</footer>
+
+<style>
+  .sources {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-top: 28px;
+    font-size: 11px;
+    line-height: 1.6;
+    color: var(--muted);
+    overflow-wrap: anywhere;
+  }
+  @media (max-width: 760px) {
+    .sources {
+      padding: 0 var(--gutter);
+    }
+  }
+</style>

@@ -1,0 +1,75 @@
+---
+/** Score figure with the hand-drawn ring shown when the job is shortlisted. */
+import { tilt } from '../lib/ui/format';
+
+interface Props {
+  id: string;
+  score: number;
+  size?: 'row' | 'big';
+}
+const { id, score, size = 'row' } = Astro.props;
+const angle = tilt(id);
+---
+
+<span class:list={['score', size]}>
+  <span class="sr">Puntaje</span>
+  <span class="num">{score}</span>
+  <svg class="ring" viewBox="0 0 80 56" aria-hidden="true" style={`--rot:${angle}deg`}>
+    <path
+      pathLength="1"
+      d="M62 9C48 1 18 3 8 19C-1 34 20 51 45 49C66 47 79 34 74 21C71 13 63 8 52 6"
+    ></path>
+  </svg>
+</span>
+
+<style>
+  .score {
+    position: relative;
+    display: inline-block;
+    font-family: var(--mono);
+    font-weight: 600;
+    line-height: 1;
+  }
+  .row {
+    font-size: 22px;
+  }
+  .big {
+    font-size: 72px;
+  }
+  .ring {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 2.6em;
+    height: 1.9em;
+    overflow: visible;
+    transform: translate(-50%, -50%) rotate(var(--rot));
+    fill: none;
+    stroke: var(--mark);
+    stroke-width: 2.4;
+    stroke-linecap: round;
+    stroke-dasharray: 1;
+    stroke-dashoffset: 0;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .big .ring {
+    width: 2.05em;
+    height: 1.4em;
+    stroke-width: 1.3;
+  }
+  :global([data-status='preseleccionada']) .ring {
+    opacity: 1;
+  }
+  .ring:global(.draw) {
+    animation: draw 420ms var(--ease) both;
+  }
+  @keyframes draw {
+    from {
+      stroke-dashoffset: 1;
+    }
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+</style>

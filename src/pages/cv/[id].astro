@@ -1,0 +1,21 @@
+---
+import CvPreview from '../../components/CvPreview.astro';
+import Layout from '../../layouts/Layout.astro';
+import type { CvEntry } from '../../lib/ui/cvs';
+import { loadCvs } from '../../lib/ui/data';
+
+export function getStaticPaths() {
+  return loadCvs()
+    .filter((cv) => !cv.isBase)
+    .map((cv) => ({ params: { id: cv.id }, props: { cv } }));
+}
+
+interface Props {
+  cv: CvEntry;
+}
+const { cv } = Astro.props;
+---
+
+<Layout title={cv.title} current="cvs">
+  <CvPreview cv={cv} />
+</Layout>

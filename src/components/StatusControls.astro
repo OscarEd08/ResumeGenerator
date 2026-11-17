@@ -1,0 +1,29 @@
+---
+interface Props {
+  id: string;
+}
+const { id } = Astro.props;
+const actions = [
+  { status: 'preseleccionada', label: 'Preseleccionar' },
+  { status: 'postulada', label: 'Postulada' },
+  { status: 'descartada', label: 'Descartar' },
+];
+---
+
+<div class="status" role="group" aria-label="Estado de la oferta" data-status-for={id}>
+  {
+    actions.map((a) => (
+      <button type="button" class="btn" data-set-status={a.status} aria-pressed="false">
+        {a.label}
+      </button>
+    ))
+  }
+</div>
+
+<style>
+  .status {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+</style>
