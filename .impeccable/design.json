@@ -1,0 +1,142 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-16T00:00:00Z",
+  "title": "Design System: OP / Empleos",
+  "extensions": {
+    "colorMeta": {
+      "ground": { "role": "neutral", "displayName": "Darkroom Ground", "canonical": "#111214", "tonalRamp": ["#0a0b0c", "#111214", "#1c1d20", "#2a2c30", "#3a3d42", "#6f7278", "#a9acb1", "#e4e5e7"] },
+      "panel": { "role": "neutral", "displayName": "Contact Panel", "canonical": "#1c1d20", "tonalRamp": ["#0e0f10", "#17181b", "#1c1d20", "#26282b", "#33353a", "#5c5f64", "#9a9da2", "#e0e1e3"] },
+      "frame-hover": { "role": "neutral", "displayName": "Frame Hover", "canonical": "#17181b", "tonalRamp": ["#0c0d0e", "#111214", "#17181b", "#1c1d20", "#2a2c30", "#565a5f", "#989ba0", "#e0e1e3"] },
+      "rule": { "role": "neutral", "displayName": "Hairline", "canonical": "#2a2c30", "tonalRamp": ["#141517", "#1e2023", "#2a2c30", "#3a3d42", "#50535a", "#70737a", "#a6a9ae", "#e2e3e5"] },
+      "rule-strong": { "role": "neutral", "displayName": "Strong Hairline", "canonical": "#3a3d42", "tonalRamp": ["#17181b", "#2a2c30", "#3a3d42", "#4c4f55", "#62656b", "#808389", "#b4b6ba", "#e6e7e9"] },
+      "paper": { "role": "neutral", "displayName": "Paper", "canonical": "#f2f2ee", "tonalRamp": ["#262624", "#45453f", "#6a6a64", "#909089", "#b5b5ae", "#d3d3cd", "#e6e6e1", "#f2f2ee"] },
+      "soft": { "role": "neutral", "displayName": "Soft Paper", "canonical": "#c9cbcf", "tonalRamp": ["#232426", "#3e4043", "#5f6165", "#818388", "#a5a7ab", "#c9cbcf", "#dddee1", "#f0f1f2"] },
+      "muted": { "role": "neutral", "displayName": "Muted Graphite", "canonical": "#8a8d93", "tonalRamp": ["#1d1e20", "#33353a", "#4f5257", "#6f7278", "#8a8d93", "#a9abb0", "#c9cbcf", "#e8e9eb"] },
+      "dim": { "role": "neutral", "displayName": "Dim Graphite", "canonical": "#6f7278", "tonalRamp": ["#18191b", "#2c2e31", "#45474b", "#5c5f64", "#6f7278", "#93959a", "#babcc0", "#e3e4e6"] },
+      "mark": { "role": "primary", "displayName": "Grease-Pencil Yellow", "canonical": "#e8d44d", "tonalRamp": ["#2e2a0c", "#4f4815", "#7a6e1f", "#a6962a", "#cfbb37", "#e8d44d", "#f0df6a", "#faf3c4"] },
+      "mark-hover": { "role": "primary", "displayName": "Pencil Highlight", "canonical": "#f0df6a", "tonalRamp": ["#302c0f", "#544c1a", "#807325", "#ad9c32", "#d5c041", "#e8d44d", "#f0df6a", "#fbf5cc"] },
+      "ink-on-mark": { "role": "neutral", "displayName": "Ink on Mark", "canonical": "#111214", "tonalRamp": ["#0a0b0c", "#111214", "#1c1d20", "#2a2c30", "#3a3d42", "#6f7278", "#a9acb1", "#e4e5e7"] }
+    },
+    "typographyMeta": {
+      "display-figure": { "displayName": "Display figure", "purpose": "Big score in the detail panel and job page; the only oversized element." },
+      "headline": { "displayName": "Headline", "purpose": "Page titles (Ofertas, CVs, CV page); job page title is 28px (24px on phone)." },
+      "title": { "displayName": "Title", "purpose": "Job title in the detail panel, balanced wrap." },
+      "row-title": { "displayName": "Row title", "purpose": "Frame and CV list titles; one line with ellipsis on desktop, two-line clamp on phone." },
+      "body": { "displayName": "Body", "purpose": "Default UI text with tabular numerals; reading text capped at 65-70ch." },
+      "section-label": { "displayName": "Section label", "purpose": "Sentence-case headings inside the detail, in soft paper." },
+      "meta": { "displayName": "Meta", "purpose": "Company, location, age lines, stack column, hints; muted." },
+      "row-figure": { "displayName": "Row figure", "purpose": "Score in each frame row." },
+      "frame-code": { "displayName": "Frame code", "purpose": "Frame numbers, CV ids, page counts, folios; muted." },
+      "mark-tag": { "displayName": "Mark tag", "purpose": "NUEVA and POSTULADA tags only; uppercase." }
+    },
+    "shadows": [],
+    "motion": [
+      { "name": "ease", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "The single easing for every transition and mark draw." },
+      { "name": "state-transition", "value": "160ms", "purpose": "Hover and color transitions on buttons, rows, nav." },
+      { "name": "mark-draw", "value": "420ms stroke-dashoffset 1 -> 0", "purpose": "Ring and strike draw in once when applied; already drawn on load." },
+      { "name": "reduced-motion", "value": "0.01ms", "purpose": "prefers-reduced-motion collapses all transitions and animations; marks appear drawn." }
+    ],
+    "breakpoints": [
+      { "name": "phone", "value": "760px" },
+      { "name": "narrow-desktop", "value": "1100px" },
+      { "name": "no-stack-column", "value": "1280px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Button",
+      "kind": "button",
+      "refersTo": "button",
+      "description": "Quiet outline button; inverts to paper when pressed (status controls, filter chips).",
+      "html": "<div style=\"display:flex;gap:8px\"><button class=\"ds-btn\">Postulada</button><button class=\"ds-btn\" aria-pressed=\"true\">Preseleccionar</button></div>",
+      "css": ".ds-btn { display:inline-flex; align-items:center; justify-content:center; min-height:36px; padding:7px 14px; border:1px solid var(--rule-strong, #3a3d42); border-radius:6px; background:transparent; color:var(--soft, #c9cbcf); font:500 14px/1.45 'Familjen Grotesk', system-ui, sans-serif; cursor:pointer; transition:border-color 160ms cubic-bezier(0.16,1,0.3,1), color 160ms cubic-bezier(0.16,1,0.3,1), background-color 160ms cubic-bezier(0.16,1,0.3,1); } .ds-btn:hover { border-color:var(--muted, #8a8d93); color:var(--paper, #f2f2ee); } .ds-btn[aria-pressed='true'] { border-color:var(--paper, #f2f2ee); background:var(--paper, #f2f2ee); color:var(--ink-on-mark, #111214); } .ds-btn:focus-visible { outline:2px solid var(--mark, #e8d44d); outline-offset:2px; }"
+    },
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The one yellow action per view (Copiar, Descargar PDF).",
+      "html": "<button class=\"ds-btn-primary\">Descargar PDF</button>",
+      "css": ".ds-btn-primary { display:inline-flex; align-items:center; justify-content:center; min-height:36px; padding:7px 14px; border:1px solid var(--mark, #e8d44d); border-radius:6px; background:var(--mark, #e8d44d); color:var(--ink-on-mark, #111214); font:600 14px/1.45 'Familjen Grotesk', system-ui, sans-serif; cursor:pointer; transition:background-color 160ms cubic-bezier(0.16,1,0.3,1); } .ds-btn-primary:hover { background:#f0df6a; } .ds-btn-primary:focus-visible { outline:2px solid var(--paper, #f2f2ee); outline-offset:2px; }"
+    },
+    {
+      "name": "Search Input",
+      "kind": "input",
+      "refersTo": "search-input",
+      "description": "Filter search; border turns yellow on focus.",
+      "html": "<input class=\"ds-search\" type=\"search\" placeholder=\"Buscar puesto, empresa o stack\">",
+      "css": ".ds-search { width:280px; min-height:36px; padding:7px 12px; border:1px solid var(--rule-strong, #3a3d42); border-radius:6px; background:transparent; color:var(--paper, #f2f2ee); font:400 14px/1.45 'Familjen Grotesk', system-ui, sans-serif; } .ds-search::placeholder { color:var(--muted, #8a8d93); } .ds-search:focus-visible { outline:2px solid var(--mark, #e8d44d); outline-offset:0; border-color:var(--mark, #e8d44d); }"
+    },
+    {
+      "name": "Top Navigation",
+      "kind": "nav",
+      "refersTo": "nav",
+      "description": "Sticky 60px bar: mono brand, grotesk links with a paper underline on the current page, mono roll line.",
+      "html": "<header class=\"ds-top\"><a class=\"ds-brand\" href=\"#\">OP / EMPLEOS</a><nav><a href=\"#\" aria-current=\"page\">Ofertas</a><a href=\"#\">Preseleccionadas</a><a href=\"#\">CVs</a><a href=\"#\">CV base</a></nav><p class=\"ds-roll\">ROLLO 2026-11-16 · 212 CUADROS · 14 NUEVOS</p></header>",
+      "css": ".ds-top { display:flex; align-items:center; gap:32px; padding:0 36px; min-height:60px; border-bottom:1px solid var(--rule, #2a2c30); background:var(--ground, #111214); color:var(--paper, #f2f2ee); } .ds-brand { font:600 15px 'Azeret Mono', ui-monospace, monospace; letter-spacing:0.08em; text-decoration:none; color:inherit; } .ds-top nav { display:flex; gap:22px; } .ds-top nav a { display:inline-flex; align-items:center; min-height:60px; color:var(--muted, #8a8d93); font:500 14px 'Familjen Grotesk', system-ui, sans-serif; text-decoration:none; border-bottom:2px solid transparent; transition:color 160ms cubic-bezier(0.16,1,0.3,1); } .ds-top nav a:hover { color:var(--paper, #f2f2ee); } .ds-top nav a[aria-current] { color:var(--paper, #f2f2ee); border-bottom-color:var(--paper, #f2f2ee); } .ds-roll { margin:0 0 0 auto; font:500 13px 'Azeret Mono', ui-monospace, monospace; color:var(--muted, #8a8d93); }"
+    },
+    {
+      "name": "Keyword Chips",
+      "kind": "chip",
+      "refersTo": "keyword-chip",
+      "description": "Matched keywords solid, missing keywords dashed and muted.",
+      "html": "<ul class=\"ds-kw\"><li>Angular</li><li>.NET</li><li>Azure</li><li class=\"ds-no\">Kubernetes</li></ul>",
+      "css": ".ds-kw { display:flex; flex-wrap:wrap; gap:6px; list-style:none; margin:0; padding:0; font:400 14px/1.45 'Familjen Grotesk', system-ui, sans-serif; } .ds-kw li { border:1px solid var(--rule-strong, #3a3d42); border-radius:5px; padding:3px 9px; color:var(--paper, #f2f2ee); } .ds-kw li.ds-no { border-style:dashed; color:var(--muted, #8a8d93); }"
+    },
+    {
+      "name": "Frame Row with Ring",
+      "kind": "custom",
+      "refersTo": "frame-row",
+      "description": "Signature strip row: frame code, title + NUEVA tag + meta, exact-length score bar, mono score circled in grease pencil when shortlisted.",
+      "html": "<div class=\"ds-frame\"><span class=\"ds-code\">001</span><div class=\"ds-who\"><p class=\"ds-line\"><a class=\"ds-title\" href=\"#\">Senior Full-Stack Developer (Angular / .NET Core)</a><span class=\"ds-tag\">NUEVA</span></p><p class=\"ds-meta\">Acme · Remoto (LatAm) · hace 2 d</p></div><div class=\"ds-bar\"><i style=\"width:93%\"></i></div><span class=\"ds-score\">93<svg class=\"ds-ring\" viewBox=\"0 0 80 56\" style=\"transform:translate(-50%,-50%) rotate(-4deg)\"><path pathLength=\"1\" d=\"M62 9C48 1 18 3 8 19C-1 34 20 51 45 49C66 47 79 34 74 21C71 13 63 8 52 6\"/></svg></span></div>",
+      "css": ".ds-frame { position:relative; display:grid; grid-template-columns:44px minmax(0,1fr) 160px 64px; align-items:center; gap:16px; padding:14px 12px 14px 4px; border-top:1px solid var(--rule, #2a2c30); border-bottom:1px solid var(--rule, #2a2c30); background:var(--ground, #111214); color:var(--paper, #f2f2ee); font:400 14px/1.45 'Familjen Grotesk', system-ui, sans-serif; transition:background-color 160ms cubic-bezier(0.16,1,0.3,1); } .ds-frame:hover { background:#17181b; } .ds-code { font:500 12px 'Azeret Mono', ui-monospace, monospace; color:var(--muted, #8a8d93); } .ds-who { min-width:0; } .ds-line { display:flex; align-items:baseline; gap:8px; margin:0; } .ds-title { font-size:15px; font-weight:600; color:inherit; text-decoration:none; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; } .ds-title:focus-visible { outline:2px solid var(--mark, #e8d44d); outline-offset:2px; } .ds-tag { flex:none; font:600 11px 'Azeret Mono', ui-monospace, monospace; letter-spacing:0.04em; padding:2px 6px; border-radius:3px; background:var(--mark, #e8d44d); color:var(--ink-on-mark, #111214); } .ds-meta { margin:0; font-size:13px; color:var(--muted, #8a8d93); } .ds-bar { height:6px; border-radius:3px; background:var(--rule, #2a2c30); overflow:hidden; } .ds-bar i { display:block; height:100%; background:var(--paper, #f2f2ee); } .ds-score { position:relative; justify-self:end; margin-right:6px; font:600 22px/1 'Azeret Mono', ui-monospace, monospace; } .ds-ring { position:absolute; left:50%; top:50%; width:2.6em; height:1.9em; overflow:visible; fill:none; stroke:var(--mark, #e8d44d); stroke-width:2.4; stroke-linecap:round; stroke-dasharray:1; stroke-dashoffset:0; pointer-events:none; animation:ds-draw 420ms cubic-bezier(0.16,1,0.3,1) both; } @keyframes ds-draw { from { stroke-dashoffset:1; } to { stroke-dashoffset:0; } } @media (prefers-reduced-motion: reduce) { .ds-ring { animation-duration:0.01ms; } }"
+    },
+    {
+      "name": "Tailor Command",
+      "kind": "custom",
+      "refersTo": "tailor-command",
+      "description": "Mono command in a hairline box with the yellow Copiar button.",
+      "html": "<div class=\"ds-cmd\"><code>/tailor job-abc123</code><button class=\"ds-cmd-btn\">Copiar</button></div>",
+      "css": ".ds-cmd { display:flex; align-items:center; justify-content:space-between; gap:12px; width:360px; border:1px solid var(--rule-strong, #3a3d42); border-radius:8px; padding:8px 8px 8px 14px; background:var(--panel, #1c1d20); color:var(--paper, #f2f2ee); } .ds-cmd code { font:500 14px 'Azeret Mono', ui-monospace, monospace; user-select:all; } .ds-cmd-btn { flex:none; min-width:92px; min-height:36px; padding:7px 14px; border:1px solid var(--mark, #e8d44d); border-radius:6px; background:var(--mark, #e8d44d); color:var(--ink-on-mark, #111214); font:600 14px 'Familjen Grotesk', system-ui, sans-serif; cursor:pointer; } .ds-cmd-btn:hover { background:#f0df6a; } .ds-cmd-btn:focus-visible { outline:2px solid var(--paper, #f2f2ee); outline-offset:2px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Contact Sheet",
+    "overview": "Choosing jobs is editing a roll of film. Every frame of today's roll is visible at once as a dense numbered strip on a near-black ground; nothing is hidden behind cards or KPI tiles. The editor's only instrument is a grease pencil: one yellow that circles the keepers, crosses out the rejects, and marks the frames not yet looked at. Everything else is neutral gray so those marks carry all the signal.\n\nDensity is high and calm: 1px rules separate rows, figures sit in a monospaced face so columns line up, and the layout never reflows when state changes. Marks are drawn, not stamped: each ring and strike is tilted or bent by a deterministic per-job seed, so no two look identical, and both draw themselves in once when applied. The interface is flat: depth is a single tonal step from ground to panel, never a shadow.",
+    "keyCharacteristics": [
+      "Near-black ground, one raised panel tone, 1px hairline rules.",
+      "One grease-pencil yellow for marks, focus, and the single primary action per view.",
+      "Familjen Grotesk for words, Azeret Mono for frame codes, scores, counts, and commands.",
+      "Hand-drawn SVG ring (shortlist) and strike (discard), seeded per job.",
+      "Score bars whose filled length equals the score exactly.",
+      "Columns fixed; status changes repaint, never reflow."
+    ],
+    "rules": [
+      { "name": "The Grease Pencil Rule", "body": "Yellow is a mark, never a surface or decoration. It appears only where the editor has marked something (ring, strike, NUEVA), where focus is, or on the one primary action of a view.", "section": "colors" },
+      { "name": "The No Status Color Rule", "body": "Job states are never color-coded with hues. Shortlisted is a ring, discarded is a strike plus dimming, applied is a paper-outlined tag. No green/red/amber semantics.", "section": "colors" },
+      { "name": "The Edge Print Rule", "body": "Numbers and identifiers (scores, frame codes, counts, commands, the roll line, source footer) are Azeret Mono; words are Familjen Grotesk. Never set a sentence in mono or a score in the grotesk.", "section": "typography" },
+      { "name": "The Sentence Case Rule", "body": "Section labels and buttons are sentence case. Uppercase is reserved for the mark tags and the edge-print roll line in the top bar.", "section": "typography" },
+      { "name": "The Fixed Columns Rule", "body": "Columns never move. Status, filtering, and selection change color and marks only; no row changes height or column widths on interaction.", "section": "layout" },
+      { "name": "The Exact Bar Rule", "body": "A score bar's fill width is exactly the score in percent of its track. No scaling, no minimum width, no gradient.", "section": "layout" },
+      { "name": "The Hairline Rule", "body": "Separation is a 1px rule (hairline or strong hairline) or a tone step. No shadows, no gradients, no glows.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do keep yellow (#e8d44d) to marks, focus, selection, and one primary action per view.",
+      "Do express job state with marks: ring for shortlisted, strike plus dimming for discarded, paper-outlined tag for applied, yellow NUEVA tag for unseen.",
+      "Do seed every hand-drawn mark from the job id so no two look stamped.",
+      "Do set scores, frame codes, counts, and commands in Azeret Mono; everything else in Familjen Grotesk.",
+      "Do separate with 1px rules and a single tonal step; keep radii at 8px or less.",
+      "Do give every control a 44px minimum height at ≤760px.",
+      "Do keep score-bar fill length equal to the score."
+    ],
+    "donts": [
+      "Don't use blue, red, terracotta/coral orange, or warm cream anywhere in the interface.",
+      "Don't add shadows, gradients, or glows, including on CV page images.",
+      "Don't turn the strip into a card grid or add KPI tiles; the strip is the overview.",
+      "Don't color-code job states with hue (no green/amber/red pills).",
+      "Don't use yellow as a fill for panels, section backgrounds, or decoration.",
+      "Don't reflow columns or change row height when status or filters change.",
+      "Don't use dim graphite for live reading text; it belongs only to discarded frames."
+    ]
+  }
+}

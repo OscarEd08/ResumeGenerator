@@ -15,9 +15,10 @@ Branch: `feat/ui` (from `feat/job-search`) · Delivery: ask-on-risk · Runners: 
 
 | ID | Specs | Route | Status | Commit |
 |---|---|---|---|---|
-| T1 | S1–S5 | delegated (context backstop: parent context is long) | pending | |
-| T2 | S2 | finish review (impeccable-finish-reviewer) + DESIGN.md (impeccable-documenter) | pending | |
+| T1 | S1–S5 | delegated (context backstop) | done (60 vitest, build ok) | e3d0059, 0a4242a, 57edc00 |
+| T2 | S2 | finish review + documenter | done (ship after 2 fix rounds) | see L2 |
 
 ## Log
 
 - **L1** (2026-11-16) Plan approved earlier: steps 1 repo/profile, 2 base CV, 3 /tailor, 4 job search, 5 UI with impeccable. User chose the contact-sheet card on the decision page; user constraints: "no me gusta el azul en los diseños, ni tampoco los colores de Claude o rojos".
+- **L2** Finish review: fix → fix → ship (scoped to scored fixes). DESIGN.md + .impeccable/design.json written by documenter. Known, not fixed: rejected-row grey #6f7278 ~3.9:1 contrast; NUEVA floods the list on a first roll.
