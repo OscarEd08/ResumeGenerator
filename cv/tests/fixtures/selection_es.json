@@ -1,0 +1,64 @@
+{
+  "summary": "Desarrollador de software que entrega proyectos para clientes con C#/.NET, ASP.NET Core y Azure, y construye frontends con Angular y React. Experiencia en funcionalidades SaaS multi-tenant, integraciones empresariales con APIs REST, SQL Server y entrega automatizada con Azure DevOps.",
+  "experience": {
+    "bertoni-solutions": [
+      {
+        "ids": ["globalcertifica-oauth-onboarding", "globalcertifica-multitenant-billing"],
+        "text": "Desarrollé funcionalidades en Angular y .NET para una plataforma SaaS multi-tenant de credenciales digitales: login con OAuth de Microsoft y Google, gestión de organizaciones y roles, y suscripciones."
+      },
+      {
+        "ids": ["proquinorte-search-microservice"],
+        "text": "Construí un microservicio de búsqueda en .NET sobre Meilisearch, con estrategias de coincidencia, reglas de ranking, autocompletado y autenticación mTLS entre la tienda y la API de búsqueda."
+      },
+      { "ids": ["nexo-b2b-platform"] },
+      { "ids": ["nexo-strict-tdd"] },
+      { "ids": ["boyles-invoice-reader"] },
+      { "ids": ["ai-standards-sdlc-plugin"] }
+    ],
+    "freelance-ecommerce": [
+      { "ids": ["pulso-vendure-backend"] },
+      { "ids": ["pulso-infra-cicd"] }
+    ],
+    "cloud-store": [
+      {
+        "ids": ["cloudstore-invoicing-app"],
+        "text": "Mantuve y amplié una aplicación de facturación construida con ASP.NET MVC y VB.NET."
+      }
+    ],
+    "komatsu-mitsui": [
+      {
+        "ids": ["komatsu-react-migration"],
+        "text": "Participé en la migración de una aplicación de planificación de actividades de ASP.NET MVC a React y una API REST en .NET."
+      },
+      {
+        "ids": ["komatsu-sql-optimization"],
+        "text": "Optimicé esquemas de SQL Server para mejorar la integridad de datos y el rendimiento de los reportes internos."
+      }
+    ],
+    "maquinarias-glory": [
+      {
+        "ids": ["glory-react-quotations"],
+        "text": "Desarrollé funcionalidades en React para la generación automática de cotizaciones y mantuve el sitio web de la empresa en WordPress."
+      }
+    ]
+  },
+  "projects": {
+    "personal-finance-app": [
+      { "ids": ["pfa-natural-language-expenses"] },
+      { "ids": ["pfa-strict-tdd"] }
+    ]
+  },
+  "education": {
+    "unmsm": [
+      { "ids": ["unmsm-top-10"], "text": "Top 10 de la Facultad de Ingeniería de Sistemas e Informática." },
+      { "ids": ["unmsm-pronabec-scholarship"], "text": "Becario de la Beca de Continuidad de Estudios de Educación Superior de PRONABEC." }
+    ]
+  },
+  "skills": [
+    { "label": "Backend", "details": ["C#", ".NET", "ASP.NET Core", "Entity Framework Core", "REST APIs and integrations"] },
+    { "label": "Frontend", "details": ["Angular", "React", "TypeScript"] },
+    { "label": "Data", "details": ["SQL Server", "PostgreSQL"] },
+    { "label": "Cloud and delivery", "details": ["Azure", "Azure DevOps", "Docker", "CI/CD"] },
+    { "label": "Languages", "details": ["Spanish - Native", "English - B2"] }
+  ]
+}

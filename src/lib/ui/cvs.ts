@@ -1,3 +1,6 @@
+import { readFileSync } from 'node:fs';
+import { join, resolve } from 'node:path';
+
 /** Generated CVs found in `public/cv/`: `<stem>.pdf` plus optional `<stem>_<n>.png` page renders. */
 export interface CvEntry {
   id: string;
@@ -8,19 +11,43 @@ export interface CvEntry {
   isBase: boolean;
 }
 
+/** Title and company that `cv/tailor.py build` stores next to a tailored CV, so it outlives its job. */
+export interface CvMeta {
+  title: string;
+  company: string | null;
+}
+
 export const BASE_CV_ID = 'base';
 
-export function listCvs(files: string[], jobs: { id: string; title: string; company: string }[]): CvEntry[] {
+const TAILORED_DIR = resolve(process.cwd(), 'cv/tailored');
+
+/** Reads `cv/tailored/<id>.meta.json`; null when it is missing or has no title. */
+export function readTailoredMeta(id: string, dir: string = TAILORED_DIR): CvMeta | null {
+  try {
+    const meta = JSON.parse(readFileSync(join(dir, `${id}.meta.json`), 'utf-8')) as { title?: unknown; company?: unknown };
+    if (typeof meta.title !== 'string' || meta.title === '') return null;
+    return { title: meta.title, company: typeof meta.company === 'string' && meta.company ? meta.company : null };
+  } catch {
+    return null;
+  }
+}
+
+export function listCvs(
+  files: string[],
+  jobs: { id: string; title: string; company: string }[],
+  readMeta: (id: string) => CvMeta | null = readTailoredMeta,
+): CvEntry[] {
   const byId = new Map(jobs.map((job) => [job.id, job]));
   const stems = files.filter((f) => f.endsWith('.pdf')).map((f) => f.slice(0, -4));
   const entries = stems.map((stem): CvEntry => {
-    const job = byId.get(stem);
+    const isBase = stem === BASE_CV_ID;
+    // Jobs are pruned from jobs.json after 30 days; the sidecar keeps the CV titled after that.
+    const job = byId.get(stem) ?? (isBase ? null : readMeta(stem));
     const pages = files
       .map((f) => ({ f, m: f.match(/^(.+)_(\d+)\.png$/) }))
       .filter(({ m }) => m?.[1] === stem)
       .sort((a, b) => Number(a.m![2]) - Number(b.m![2]))
       .map(({ f }) => f);
-    const isBase = stem === BASE_CV_ID;
     return {
       id: stem,
       title: isBase ? 'CV base' : (job?.title ?? stem),

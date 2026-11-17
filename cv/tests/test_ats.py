@@ -1,57 +1,39 @@
 """ATS checks: build cv/base.yaml and verify the PDF text layer reads in a logical order.
 
-The text is extracted with pypdf (a reasonable proxy for what ATS parsers see) and
-compared against the YAML source, so the test follows the content automatically.
+The checks themselves live in cv/build.py (`check_*`, `ats_problems`) so cv/tailor.py runs the
+same ones on every tailored CV. The text is extracted with pypdf (a reasonable proxy for what ATS
+parsers see) and compared against the YAML source, so the test follows the content automatically.
 """
 
 from __future__ import annotations
 
-import re
 import subprocess
 import sys
-from datetime import date
 from pathlib import Path
 
-import pypdf
 import pytest
 from ruamel.yaml import YAML
+
+import build
 
 CV_DIR = Path(__file__).resolve().parents[1]
 BUILD_SCRIPT = CV_DIR / "build.py"
 BASE_YAML = CV_DIR / "base.yaml"
 
-INVISIBLE = dict.fromkeys(map(ord, "​‌‍﻿"), None)
-QUOTES = str.maketrans({"’": "'", "‘": "'", "“": '"', "”": '"'})
 
-
-def normalize(text: str) -> str:
-    """Collapse whitespace/line breaks, unify quotes and drop markdown markers."""
-    text = str(text).translate(INVISIBLE).translate(QUOTES)
-    text = text.replace("**", "").replace("*", "")
-    return re.sub(r"\s+", " ", text).strip()
-
-
-def format_date(value) -> str:
-    if value is None:
-        return ""
-    if str(value).lower() == "present":
-        return "Present"
-    text = str(value)
-    if re.fullmatch(r"\d{4}", text):
-        return text
-    parsed = date.fromisoformat(text if len(text) > 7 else f"{text}-01")
-    return parsed.strftime("%b %Y")
-
-
-def entry_date(entry) -> str:
-    if entry.get("date"):
-        return str(entry["date"])
-    return f"{format_date(entry.get('start_date'))} - {format_date(entry.get('end_date'))}"
+@pytest.fixture(scope="module")
+def base_source() -> dict:
+    return YAML(typ="safe").load(BASE_YAML.read_text(encoding="utf-8"))
 
 
 @pytest.fixture(scope="module")
-def cv_source():
-    return YAML(typ="safe").load(BASE_YAML.read_text(encoding="utf-8"))["cv"]
+def cv_source(base_source):
+    return base_source["cv"]
+
+
+@pytest.fixture(scope="module")
+def locale(base_source):
+    return base_source.get("locale")
 
 
 @pytest.fixture(scope="module")
@@ -72,13 +54,12 @@ def pdf_path(tmp_path_factory) -> Path:
 
 @pytest.fixture(scope="module")
 def raw_text(pdf_path) -> str:
-    reader = pypdf.PdfReader(pdf_path)
-    return "\n".join(page.extract_text() or "" for page in reader.pages)
+    return build.pdf_text(pdf_path)
 
 
 @pytest.fixture(scope="module")
 def text(raw_text) -> str:
-    return normalize(raw_text)
+    return build.normalize(raw_text)
 
 
 def test_build_outputs_only_pdf_and_png(pdf_path):
@@ -87,60 +68,44 @@ def test_build_outputs_only_pdf_and_png(pdf_path):
 
 
 def test_name_is_first_line(raw_text, cv_source):
-    first_line = next(line for line in raw_text.splitlines() if line.strip())
-    assert normalize(first_line) == cv_source["name"]
+    assert build.check_name_is_first_line(raw_text, cv_source) == []
 
 
 def test_headline_and_email_present(text, cv_source):
-    assert normalize(cv_source["headline"]) in text
-    assert cv_source["email"] in text
+    assert cv_source["email"]
+    assert build.check_headline_and_email(text, cv_source) == []
 
 
 def test_section_headings_in_order(text, cv_source):
-    titles = [t for t in cv_source["sections"] if normalize(t)]
-    positions = [text.find(normalize(t)) for t in titles]
-    assert all(p >= 0 for p in positions), dict(zip(titles, positions))
-    assert positions == sorted(positions), dict(zip(titles, positions))
+    assert build.check_section_headings_in_order(text, cv_source) == []
 
 
-def test_experience_entries_read_company_position_dates(text, cv_source):
-    cursor = 0
-    for section in cv_source["sections"].values():
-        for entry in section:
-            if not isinstance(entry, dict) or "company" not in entry:
-                continue
-            company = text.find(normalize(entry["company"]), cursor)
-            position = text.find(normalize(entry["position"]), company)
-            dates = text.find(entry_date(entry), position)
-            assert -1 < company < position < dates, (entry["company"], company, position, dates)
-            cursor = dates
+def test_experience_entries_read_company_position_dates(text, cv_source, locale):
+    assert build.check_entries_read_company_position_dates(text, cv_source, locale) == []
 
 
 def test_every_highlight_present(text, cv_source):
-    missing = [
-        highlight
-        for section in cv_source["sections"].values()
-        for entry in section
-        if isinstance(entry, dict)
-        for highlight in entry.get("highlights") or []
-        if normalize(highlight) not in text
-    ]
-    assert not missing
+    assert build.check_every_highlight_present(text, cv_source) == []
 
 
 def test_text_entries_and_skills_present(text, cv_source):
-    for section in cv_source["sections"].values():
-        for entry in section:
-            if isinstance(entry, str):
-                assert normalize(entry) in text
-            elif "label" in entry:
-                assert normalize(f"{entry['label']}: {entry['details']}") in text
+    assert build.check_text_entries_and_skills_present(text, cv_source) == []
 
 
 def test_no_last_updated_note(text):
-    assert "last updated" not in text.lower()
+    assert build.check_no_last_updated_note(text) == []
 
 
 def test_text_uses_real_characters(raw_text):
-    assert "�" not in raw_text
-    assert "(cid:" not in raw_text
+    assert build.check_real_characters(raw_text) == []
+
+
+def test_ats_problems_aggregates_every_check(pdf_path, cv_source, locale):
+    assert build.ats_problems(pdf_path, cv_source, locale) == []
+
+
+def test_date_formatting_follows_the_locale():
+    assert build.entry_date({"start_date": "2024-06", "end_date": "present"}, {"present": "Present"}) == "June 2024 - Present"
+    spanish = {"language": "spanish", "present": "Presente"}
+    assert build.entry_date({"start_date": "2024-01", "end_date": "2024-12"}, spanish) == "Ene 2024 - Dic 2024"
+    assert build.entry_date({"date": "2020 - 2024"}) == "2020 - 2024"

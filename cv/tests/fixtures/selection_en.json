@@ -1,0 +1,50 @@
+{
+  "summary": "Software developer delivering client projects with C#/.NET, ASP.NET Core and Azure, and building Angular and React frontends. Experience spans multi-tenant SaaS features, enterprise integrations through REST APIs, SQL Server data work and automated delivery with Azure DevOps.",
+  "experience": {
+    "bertoni-solutions": [
+      {
+        "ids": ["globalcertifica-oauth-onboarding", "globalcertifica-multitenant-billing", "globalcertifica-gdpr"],
+        "text": "Built Angular and .NET features for a multi-tenant digital credentials SaaS platform: Microsoft and Google OAuth login, organization and role management, subscriptions, data retention policies and self-service account deletion."
+      },
+      {
+        "ids": ["proquinorte-punchout-cxml", "proquinorte-durable-indexation"],
+        "text": "Implemented cXML PunchOut integration with corporate e-procurement systems and Business Central, and nightly search-index generation with Azure Durable Functions orchestrations."
+      },
+      { "ids": ["proquinorte-search-microservice"] },
+      { "ids": ["proquinorte-azure-pipelines"] },
+      { "ids": ["proquinorte-circuit-breakers"] },
+      { "ids": ["boyles-invoice-reader"] },
+      { "ids": ["ai-standards-sdlc-plugin"] }
+    ],
+    "freelance-ecommerce": [
+      { "ids": ["pulso-vendure-backend"] },
+      { "ids": ["pulso-quality-gates"] }
+    ],
+    "cloud-store": [
+      { "ids": ["cloudstore-invoicing-app"] },
+      { "ids": ["cloudstore-bsale-integration"] }
+    ],
+    "komatsu-mitsui": [
+      { "ids": ["komatsu-react-migration"] },
+      { "ids": ["komatsu-power-apps-migration"] },
+      { "ids": ["komatsu-sql-optimization"] }
+    ],
+    "maquinarias-glory": [
+      { "ids": ["glory-react-quotations"] }
+    ]
+  },
+  "projects": {
+    "personal-finance-app": [
+      { "ids": ["pfa-natural-language-expenses"] },
+      { "ids": ["pfa-strict-tdd"] }
+    ]
+  },
+  "skills": [
+    { "label": "Backend", "details": ["C#", ".NET", "ASP.NET Core", "Entity Framework Core", "REST APIs and integrations"] },
+    { "label": "Frontend", "details": ["Angular", "React", "TypeScript", "JavaScript", "HTML", "CSS"] },
+    { "label": "Data", "details": ["SQL Server", "PostgreSQL", "relational data modeling"] },
+    { "label": "Cloud and delivery", "details": ["Azure", "Azure DevOps", "Bicep", "Docker", "Git", "CI/CD"] },
+    { "label": "Quality", "details": ["xUnit", "Playwright", "Vitest", "code reviews", "Clean Architecture"] },
+    { "label": "Languages", "details": ["Spanish - Native", "English - B2"] }
+  ]
+}
