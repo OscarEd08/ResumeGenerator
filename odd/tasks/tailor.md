@@ -16,7 +16,7 @@ Branch: `feat/tailor` (stacked on `feat/ui`). Delivery: ask-on-risk. Test runner
 
 ## Tasks
 
-- [x] T1 — S1–S8 — delegated (user asked: "manda a un agente a avanzarlo") — commit: pending-parent
+- [x] T1 — S1–S8 — delegated (user asked: "manda a un agente a avanzarlo") — commit: 9417cab
 
 ## Log
 
