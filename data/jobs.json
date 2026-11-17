@@ -146,6 +146,78 @@
       "market": "peru"
     },
     {
+      "id": "job-a874f990",
+      "title": "Fullstack Junior Developer",
+      "company": "EY",
+      "location": "Lima Metropolitan Area",
+      "remote": false,
+      "work_mode": "unknown",
+      "relocation": false,
+      "country": "PE",
+      "salary": null,
+      "url": "https://www.linkedin.com/jobs/view/4464820496",
+      "source": "linkedin",
+      "attribution": null,
+      "posted_at": "2026-11-15",
+      "expires_at": null,
+      "first_seen": "2026-11-16",
+      "last_seen": "2026-11-17",
+      "description": "Fullstack Jr Developer:\nEn EY nos encontramos en búsqueda de nuevos profesionales que deseen construir un mejor mundo de negocios, desarrollar su talento y crecer con nosotros. Somos una Firma global con experiencia en más de 150 países y un equipo de más de 212,000 profesionales alrededor del mundo, brindando servicio a las empresas Top de diversas industrias.\nFormación Académica\n: Estudiantes a partir de 8vo ciclo o egresados de las carreras de Ingeniería de la Información, Ingeniería de Sistemas, Ingeniería Informática, Ingeniería de Software, Ingeniería Mecatrónica, Ciencias de la Computación o afines.\nRequisitos:\nExperiencia de 6 meses en desarrollo web.\nExperiencia laboral o académica utilizando C# y .NET para el Backend.\nExperiencia laboral o académica utilizando Angular y React para el Frontend.\nExperiencia utilizando Metodologías ágiles (Scrum)\nInglés Avanzado\nResponsabilidades:\nApoyar en la construcción de aplicaciones web usando .NET Framework (C#), y Angular.\nParticipar en el diseño, construcción e implementación de plataformas tecnológicas en la nube de Azure.\nParticipar en proyectos usando metodologías ágiles (Scrum).\nColaborar en proyectos internacionales de transformación digital con otras oficinas de EY.\nCompetencias:\nDisposición para el aprendizaje continuo\nMultitasking: capacidad de ejecutar varias tareas a la vez\nTrabajo con equipos locales e internacionales en inglés\nProactividad",
+      "score": 81,
+      "zone": "review",
+      "matched": [
+        "angular",
+        "azure",
+        "csharp",
+        "dotnet",
+        "react"
+      ],
+      "missing": [],
+      "reasons": [
+        "Coincidencia fuerte de stack: Azure, .NET, Angular, React",
+        "Puesto en Perú",
+        "Puesto junior, por debajo del nivel actual",
+        "La oferta trae pocos detalles técnicos"
+      ],
+      "market": "peru"
+    },
+    {
+      "id": "job-87c94737",
+      "title": "Analista Desarrollador OutSystems",
+      "company": "Indra Group",
+      "location": "San Isidro, Peru",
+      "remote": false,
+      "work_mode": "unknown",
+      "relocation": false,
+      "country": "PE",
+      "salary": null,
+      "url": "https://www.linkedin.com/jobs/view/4490462347",
+      "source": "linkedin",
+      "attribution": null,
+      "posted_at": "2026-11-17",
+      "expires_at": null,
+      "first_seen": "2026-11-17",
+      "last_seen": "2026-11-17",
+      "description": "¡Sé parte de nuestro equipo!\nEl futuro se construye con talento. Y en\nIndra Group\n, estamos en búsqueda del tuyo.\nEstamos en la búsqueda de un\nANALISTA DESARROLLADOR OUTSYSTEMS SENIOR\npara sumarse a un proyecto de alta complejidad y participar en el desarrollo de soluciones web y móviles sobre\nOutSystems.\nFunciones\n• Desarrollar soluciones web y móviles utilizando la plataforma\nOutSystems\n.\n• Interiorizar y aplicar las definiciones de arquitectura establecidas para el proyecto.\n• Implementar pruebas unitarias y atender observaciones provenientes de pruebas funcionales, de seguridad y performance.\n• Brindar soporte durante las etapas de pruebas, despliegue y estabilización en producción.\n• Elaborar documentación técnica y de soporte durante el refinamiento de historias.\n• Asegurar el cumplimiento de los criterios de aceptación definidos.\n• Participar en procesos de integración, despliegue continuo y gestión de configuración bajo una cultura\nDevSecOps\n.\n• Realizar la transferencia técnica y funcional de los desarrollos hacia los equipos de soporte y mantenimiento.\nRequisitos\n• Experiencia sólida desarrollando soluciones con\nOutSystems\n.\n• Certificación\nAssociate Reactive Developer\n.\n• Certificación\nFront-end Developer Specialist\n.\n•\nMobile Developer Specialist\n.\n• Conocimiento de\narquitectura OutSystems\n.\n• Experiencia desarrollando aplicaciones\nReactive Web y Mobile\n.\n• Conocimientos en\nHTML5, CSS, XHTML, JavaScript, jQuery, Ajax, Angular y .NET\n.\n• Experiencia integrando\nservicios REST\n.\n• Manejo avanzado de\nSQL Server\n.\n• Haber participado en más de un proyecto de alta complejidad y larga duración.\n• Experiencia con\nJIRA, BitBucket, Jenkins, SonarCloud, SonarLint y OWASP ZAP\n.\n• Conocimientos de\nDevSecOps, integración continua y despliegue continuo (CI/CD)\n.\n• Capacidad para trabajar con autonomía y coordinar con diferentes equipos técnicos y funcionales.\n• Experiencia en implementación de soluciones de\nmulticanalidad y omnicanalidad\n. (deseable)\n¿Qué ofrecemos?\n• Ingreso a planilla desde el primer día y todos los beneficios de ley.\n• EPS cubierta al 100%.\n• Acceso a cursos gratuitos y programas de certificación.\n• Descuentos corporativos.\n• Participación en un proyecto estratégico y de alta complejidad.\n• Oportunidades de desarrollo profesional y beneficios corporativos.",
+      "score": 80,
+      "zone": "review",
+      "matched": [
+        "angular",
+        "ci-cd",
+        "css",
+        "dotnet",
+        "html",
+        "javascript",
+        "sql-server"
+      ],
+      "missing": [],
+      "reasons": [
+        "Coincidencia fuerte de stack: .NET, CI/CD, Angular, SQL Server",
+        "Puesto en Perú"
+      ],
+      "market": "peru"
+    },
+    {
       "id": "job-7e3bdcf5",
       "title": "Backend Developer (.NET - C#)",
       "company": "DataKrew Pvt. Ltd.",
@@ -372,6 +444,39 @@
         "La oferta trae pocos detalles técnicos"
       ],
       "market": "abroad"
+    },
+    {
+      "id": "job-5cbd4304",
+      "title": "Data Engineer Sr. Azure",
+      "company": "Indra Group",
+      "location": "La Molina, Peru",
+      "remote": false,
+      "work_mode": "unknown",
+      "relocation": false,
+      "country": "PE",
+      "salary": null,
+      "url": "https://www.linkedin.com/jobs/view/4489700225",
+      "source": "linkedin",
+      "attribution": null,
+      "posted_at": "2026-11-15",
+      "expires_at": null,
+      "first_seen": "2026-11-16",
+      "last_seen": "2026-11-17",
+      "description": "More digital. More human. More Minsait.\nSomos una empresa líder global de tecnología y consultoría digital que conecta personas, tecnología y negocios para generar crecimiento, transformación e impacto positivo y sostenible.\nBuscamos\nData Engineer Azure\ncon ganas de trabajar en nuestros equipos multidisciplinares.\n¿Qué esperamos por tu parte?\nBachiller universitario de\nIngeniería de Sistemas, Ingeniería Informática, Ingeniería de Software, Ingeniería Industrial, Computación, Telecomunicaciones\no carreras afines.\nMínimo 5 años en integración de datos.\nMínimo 3 años trabajando con Azure Data Factory.\nMínimo 3 años trabajando con Databricks.\nExperiencia comprobada integrando Oracle y SQL Server.\nConocimientos obligatorios\nAzure Data Factory (Pipelines, Datasets, Linked Services, Triggers y Data Flows).\nOracle y SQL Server.\nDesarrollo de consultas SQL (T-SQL y/o PL/SQL).\nIntegraciones batch, intercambio de archivos y consumo de APIs.\nConocimiento de Azure Key Vault y manejo seguro de credenciales.\nFunciones\nConstrucción y mantenimiento de integraciones de datos en ADF.\nDesarrollo de pipelines de ingesta, movimiento y orquestación de datos.\nAnálisis y resolución de incidencias asociadas a procesos de integración.\nCoordinación con equipos funcionales y técnicos para la implementación de nuevas interfaces.\nElaboración de documentación técnica y soporte a despliegues productivos.\nMotivos por los que te encantará ser un #Minsaiter:\nPlanilla desde el día 1.\nCarrera profesional y acceso a plataforma de capacitación adaptada a tus necesidades y motivaciones.\nEPS cubierta al 100%.\nBeneficios corporativos.\nMinsait, technology for a more human future!\nNuestro compromiso es promover ambientes de trabajo en los que se trate con respeto y dignidad a las personas, procurando el desarrollo profesional de la plantilla y garantizando la igualdad de oportunidades en su selección, formación y promoción, ofreciendo un entorno de trabajo libre de cualquier discriminación por motivo de género, edad, discapacidad, orientación sexual, identidad o expresión de género, religión, etnia, estado civil o cualquier otra circunstancia personal o social.",
+      "score": 69,
+      "zone": "low",
+      "matched": [
+        "azure",
+        "key-vault",
+        "sql-server"
+      ],
+      "missing": [],
+      "reasons": [
+        "Coincidencia fuerte de stack: Azure, SQL Server, Key Vault",
+        "Puesto en Perú",
+        "La oferta trae pocos detalles técnicos"
+      ],
+      "market": "peru"
     },
     {
       "id": "job-13b8f398",
@@ -2633,6 +2738,47 @@
       "market": "abroad"
     },
     {
+      "id": "job-6ba6184e",
+      "title": "Desarrollador Full Stack",
+      "company": "Attach Consultores",
+      "location": "Lima, Peru",
+      "remote": false,
+      "work_mode": "unknown",
+      "relocation": false,
+      "country": "PE",
+      "salary": null,
+      "url": "https://www.linkedin.com/jobs/view/4489789355",
+      "source": "linkedin",
+      "attribution": null,
+      "posted_at": "2026-11-16",
+      "expires_at": null,
+      "first_seen": "2026-11-17",
+      "last_seen": "2026-11-17",
+      "description": "Attach Group:\ntecnología y estrategia para llevar los negocios al siguiente nivel.\nSomos un holding regional conformado por Attach Media, Athena Ads y Galileo AI, desde donde desarrollamos soluciones de marketing, medios, data e inteligencia artificial con impacto real. Atendemos a marcas líderes de Latinoamérica desde nuestras oficinas en Miami, Ciudad de México y Lima.\nNuestra misión es impulsar la evolución de negocio de nuestros clientes a través de la tecnología y la estrategia, potenciando su crecimiento en entornos dinámicos y desafiantes.\nNuestro propósito es generar oportunidades en las economías donde operamos, contribuyendo al desarrollo de talento y capacidades que fortalecen a la industria.\nEn esta oportunidad nos encontramos en la búsqueda de un\nDesarrollador Full Stack\nFunciones:\nIntegrar el sitio con servicios externos (APIs), formularios, tracking, etc.\nOptimizar performance (carga, assets, queries, caching, imágenes).\nAplicar prácticas de seguridad: validación, sanitización, control de permisos.\nAsegurar compatibilidad cross-browser y responsive; accesibilidad base.\nDesarrollo y despliegues en varios ambientes.\nAnalisis de Logs de errores\nColaboración y entrega\nTrabajar con UX/UI (cuando exista).\nParticipar en estimaciones, refinamientos técnicos, code reviews y mejoras continuas.\nDocumentar decisiones técnicas y guías de uso.\nRequisitos:\nBachiller o egresados de la carrera de Ing. Informatica, Ing. Sistemas o afines\nExperiencia mínima de 1 a 2 años como Full Stack\nExperiencia en JavaScript moderno (ES6+) y experiencia con React\nManejo en HTML5, CSS3 (idealmente Sass) y accesibilidad básica.\nManejo de build tools: npm/yarn, webpack/vite , bundling y assets.\nManejo en NodeJS y Typescript.\nExperiencia en la creación/consumo de APIs: REST API, Framework Express, Hono.\nManejo de base de datos PostgreSQL.\nManejo de bases de datos NoSQL: MongoDB, Firestore.\nGestión y depuración de contenedores Docker.\nBeneficios:\nPlanilla desde el primer día\nEPS cubierto al 70%\nAdelantos de sueldo inmediatos a través de Payflow\nLínea de carrera\nConoce un poco más de nosotros visitando nuestra página web: attachmedia.com",
+      "score": 54,
+      "zone": "low",
+      "matched": [
+        "css",
+        "docker",
+        "html",
+        "javascript",
+        "nodejs",
+        "postgresql",
+        "react",
+        "rest-api",
+        "typescript"
+      ],
+      "missing": [
+        "mongodb"
+      ],
+      "reasons": [
+        "Coincidencia fuerte de stack: TypeScript, React, CSS, Docker",
+        "Puesto en Perú",
+        "Falta: MongoDB"
+      ],
+      "market": "peru"
+    },
+    {
       "id": "job-cb402779",
       "title": "Senior .NET/Azure Engineer",
       "company": "Marathon TS",
@@ -3008,6 +3154,45 @@
       "market": "abroad"
     },
     {
+      "id": "job-fb44c779",
+      "title": "AI ENGINEER SENIOR -BANK",
+      "company": "KSR Global",
+      "location": "Lima, LIM, Peru",
+      "remote": false,
+      "work_mode": "unknown",
+      "relocation": false,
+      "country": "PE",
+      "salary": null,
+      "url": "https://pe.indeed.com/viewjob?jk=edfa023e0b2fad70",
+      "source": "indeed",
+      "attribution": null,
+      "posted_at": "2026-11-17",
+      "expires_at": null,
+      "first_seen": "2026-11-16",
+      "last_seen": "2026-11-17",
+      "description": "DESCRIPCIóN\nSúmate al desafío de construir la plataforma de Inteligencia Artificial que transformará la forma de desarrollar software\nImportante empresa del sector financiero se encuentra en búsqueda de un/a AI Engineer para ser el referente técnico de orquestación agéntica de la organización. Esta persona será responsable de construir y evolucionar componentes agénticos reutilizables sobre el andamiaje de IA corporativo, transformando los patrones y lineamientos del área en capacidades productivas de orquestación, RAG, memoria y tool-use, evaluadas, instrumentadas y documentadas, para que múltiples equipos de la organización las consuman de manera estandarizada, segura y escalable.\nFunciones\nDesarrollar componentes agénticos reutilizables sobre el andamiaje de IA corporativo, implementando orquestación single-agent y multi-agent, routing, planner/executor, subagentes, máquinas de estado y handoffs.\nDesarrollar componentes avanzados de RAG, tool-use, protocolos de contexto e ingesta, incluyendo chunking, embeddings, indexación vectorial, recuperación, re-ranking, grounding, integración de APIs corporativas, autenticación, permisos y contratos de servicio.\nImplementar memoria de corto y largo plazo, esquemas de personalización, caching y mecanismos de control del loop agéntico mediante criterios de parada, límites de iteración y circuit breakers.\nIntegrar y optimizar modelos de IA sobre plataformas cloud de IA generativa y tecnologías open source, ejecutando evaluaciones técnicas y comparativas entre frameworks agénticos, y aplicando fine-tuning, LoRA o cuantización cuando el caso lo requiera.\nPublicar componentes reutilizables listos para consumo por múltiples equipos: versionamiento de prompts, skills y plantillas de contexto, instrumentación de logging, trazas, latencia y costo, documentación funcional con ejemplos, configuración plug-and-play y remediación de hallazgos de evaluaciones antes de su liberación.\nProponer de forma proactiva nuevos patrones de orquestación, componentes y prácticas de construcción agéntica, y difundir los estándares técnicos a los equipos de la organización.\nREQUISITOS\nBachiller o titulado en Ingeniería de Software, Ingeniería de Sistemas, Ciencias de la Computación, Informática o carreras afines.\n5 o más años de experiencia en ingeniería de software en entornos productivos.\n3 o más años construyendo soluciones con LLMs, RAG o agentes en producción o cercanas a producción.\nExperiencia comprobable en servicios cloud de IA generativa, como Azure OpenAI Service, Azure AI Search, AWS Bedrock o GCP Vertex AI.\nConocimiento avanzado del andamiaje de IA: contexto, tools, loop agéntico, memoria, guardrails y evaluaciones.\nExperiencia en orquestación agéntica: routing, planificación, máquinas de estado, subagentes y handoffs.\nExperiencia en control del loop agéntico: criterios de parada, límites de iteración y circuit breakers.\nExperiencia en RAG avanzado e ingesta con trazabilidad: chunking, embeddings, indexación vectorial, recuperación, re-ranking y grounding.\nManejo de Python y FastAPI.\nExperiencia en Git, contenedores y buenas prácticas de ingeniería de software.\nConocimiento de vector stores como Azure AI Search, Cosmos DB, PostgreSQL, Pinecone o Qdrant.\nExperiencia en observabilidad con OpenTelemetry y herramientas de monitoreo cloud.\nUso cotidiano de herramientas de IA para productividad: Claude Code, Cursor, GitHub Copilot, spec-driven development.\nInglés intermedio para lectura y comprensión de documentación técnica especializada.\nDeseables\nHaber construido componentes reutilizables, SDKs o librerías internas consumidas por múltiples equipos.\nExperiencia en banca, seguros, fintech o industrias reguladas.\nExperiencia con frameworks agénticos: Microsoft Agent Framework, LangGraph, CrewAI, AutoGen.\nExperiencia con modelos open source de Hugging Face, fine-tuning, LoRA, cuantización y serving con vLLM o TGI.\nUso de GPUs para entrenamiento o inferencia optimizada.\nConocimiento de protocolos…",
+      "score": 51,
+      "zone": "low",
+      "matched": [
+        "azure",
+        "azure-openai",
+        "git",
+        "llm",
+        "postgresql",
+        "python"
+      ],
+      "missing": [
+        "aws",
+        "gcp"
+      ],
+      "reasons": [
+        "Coincidencia parcial de stack: Azure, LLMs, Python, git",
+        "Puesto en Perú",
+        "Falta: AWS, Google Cloud"
+      ],
+      "market": "peru"
+    },
+    {
       "id": "job-8b3f5b53",
       "title": "Software Engineer (Mid-level)",
       "company": "PDI Technologies",
@@ -3272,6 +3457,41 @@
         "Falta: Kubernetes, Service Bus, Terraform"
       ],
       "market": "abroad"
+    },
+    {
+      "id": "job-2930eff2",
+      "title": "Ingeniero de datos Azure para soporte 24 x 7",
+      "company": "FactorIT",
+      "location": "Lima, Peru",
+      "remote": false,
+      "work_mode": "unknown",
+      "relocation": false,
+      "country": "PE",
+      "salary": null,
+      "url": "https://www.linkedin.com/jobs/view/4491550366",
+      "source": "linkedin",
+      "attribution": null,
+      "posted_at": "2026-11-17",
+      "expires_at": null,
+      "first_seen": "2026-11-16",
+      "last_seen": "2026-11-16",
+      "description": "En FactorIT nos encontramos en búsqueda de un ingeniero de soporte y monitoreo para garantizar la continuidad operativa, disponibilidad y estabilidad de una plataforma de datos en Microsoft Azure, mediante actividades de monitoreo, soporte técnico de primer y segundo nivel, gestión de incidentes, análisis de procesos y seguimiento de cargas batch y flujos de datos en tiempo real, asegurando el cumplimiento de los SLA y la calidad de la información en ambientes productivos.\nFunciones principales\nMonitorear la ejecución de procesos batch, pipelines ETL y flujos de datos en tiempo real, identificando retrasos, errores y degradaciones.\nRealizar seguimiento y validación de la integridad y consistencia de los datos en las diferentes capas de procesamiento.\nEjecutar procedimientos operativos documentados, incluyendo reprocesamiento de jobs, ejecución de tareas bajo demanda y atención de errores conocidos.\nMonitorear plataformas y servicios de Azure mediante herramientas de observabilidad, análisis de logs y gestión de alertas.\nBrindar soporte técnico N1 y N2 a plataformas de datos, identificando incidentes, realizando diagnósticos y aplicando soluciones según los procedimientos establecidos.\nGestionar incidentes relacionados con servicios cloud, procesamiento de datos, conectividad, mensajería y bases de datos.\nRealizar análisis de causa raíz, documentar hallazgos y elaborar informes técnicos para el escalamiento a equipos especializados.\nEjecutar actividades operativas de optimización y control de costos en Azure, identificando recursos ociosos y oportunidades de mejora.\nApoyar la gestión de ambientes, reinicios de servicios, actualizaciones, certificados y recursos de infraestructura.\nElaborar reportes periódicos de ejecución, consumo de recursos, costos, alertas e indicadores operativos.\nMantener actualizada la documentación técnica, los registros de incidentes y los procedimientos de soporte.\nParticipar en reuniones de seguimiento, coordinación y planificación con equipos técnicos y de negocio.\nBrindar atención bajo esquema de turnos rotativos, garantizando la continuidad del servicio.\nRequisitos indispensables\nProfesional en Ingeniería de Sistemas, Informática, Software, Telecomunicaciones o carreras afines.\nMínimo 3 años de experiencia en soporte técnico, operación de plataformas de datos o servicios cloud.\nExperiencia en operación y soporte de soluciones de datos en ambientes productivos.\nConocimientos en Microsoft Azure y sus principales servicios de datos.\nExperiencia con Azure Data Factory, Azure Databricks, Azure Synapse Analytics y Azure Data Lake.\nManejo de SQL y bases de datos.\nExperiencia en monitoreo de pipelines, procesos ETL, jobs batch y workflows.\nConocimientos en análisis de incidentes, troubleshooting y gestión de problemas.\nFundamentos de integración y procesamiento de datos.\nInglés nivel B1.\nCompetencias\nPensamiento analítico y capacidad de resolución de problemas.\nComunicación asertiva y orientación al cliente.\nTrabajo colaborativo y coordinación con equipos multidisciplinarios.\nPlanificación y organización.\nAtención al detalle y orientación a la calidad.\nCapacidad de aprendizaje y adaptación.\nProactividad e iniciativa para identificar oportunidades de mejora.\nRequisitos deseables\nExperiencia en monitoreo con Azure Monitor, Log Analytics y consultas KQL.\nConocimientos de Grafana y herramientas de gestión de alertas e incidentes.\nExperiencia con Kubernetes (AKS), Kafka e IBM MQ.\nConocimientos de Cosmos DB.\nExperiencia en optimización y gestión de costos cloud (FinOps).\nConocimientos en automatización de procesos y scripting.\nFamiliaridad con prácticas DevOps y DataOps.\nConocimientos básicos de modelamiento de datos.\nExperiencia previa en el sector financiero o banca.\nCertificaciones deseables\nMicrosoft Azure Fundamentals (AZ-900).\nMicrosoft Azure Administrator Associate (AZ-104) o certificaciones equivalentes.\nDatabricks Certified Data Engineer Associate o certificaciones similares.\nMenciona…",
+      "score": 50,
+      "zone": "low",
+      "matched": [
+        "azure"
+      ],
+      "missing": [
+        "kafka",
+        "kubernetes"
+      ],
+      "reasons": [
+        "Coincidencia fuerte de stack: Azure",
+        "Puesto en Perú",
+        "La oferta trae pocos detalles técnicos",
+        "Falta: Kafka, Kubernetes"
+      ],
+      "market": "peru"
     },
     {
       "id": "job-dfefd48a",
@@ -4090,6 +4310,44 @@
       "market": "abroad"
     },
     {
+      "id": "job-90074918",
+      "title": "Backend Developer",
+      "company": "Inetum",
+      "location": "San Isidro, Peru",
+      "remote": false,
+      "work_mode": "unknown",
+      "relocation": false,
+      "country": "PE",
+      "salary": null,
+      "url": "https://www.linkedin.com/jobs/view/4481592371",
+      "source": "linkedin",
+      "attribution": null,
+      "posted_at": "2026-11-17",
+      "expires_at": null,
+      "first_seen": "2026-11-17",
+      "last_seen": "2026-11-17",
+      "description": "Descripción de la empresa\nSomos\nInetum\n, una compañía de servicios ágiles que proporciona soluciones digitales y un grupo global de tecnólogos que acompaña a sus clientes en el proceso de digitalización aprovechando al máximo el digital flow.\nOfrecemos a nuestros clientes una combinación única de proximidad, organización sectorial y soluciones de calidad. Presente en más de 26 países, el Grupo tiene cerca de 27.000 colaboradores y apunta a continuar creciendo.\n¡En Inetum acompañamos a nuestros clientes y colaboradores en su camino al éxito!\nSi te gusta reinventarte y resolver problemas con nuevas estrategias, trabajar en proyectos de IT y de negocios: ¡Postula ahora!\nDescripción del empleo\nActualmente nos encontramos en búsqueda de 01 Desarrollador Backend para que se integre a nuestro equipo.\nRequisitos\nProfesional en Ingeniería de Sistemas, Computación, Informática o carreras afines.\nExperiencia mínima de 2 años en desarrollo con tecnologías Java\nExperiencia en Java 1.8, Spring Boot y Spring Framework.\nExperiencia en NodeJS, NestJS Framework(deseable).\nExperiencia en creación y manejo de Web Services RESTful/SOAP.\nExperiencia en JBoss(deseable)\nExperiencia en DataPower(deseable)\nExperiencia en bases de datos SQL, Oracle.\nManejo de herramientas DevOps como GIT, Bitbucket o equivalentes.\nExperiencia en Maven.\nDominio en la realización de Pruebas Unitarias con JUnit.\nUso de IDE de desarrollo y herramientas como POSTMAN y MVC.\nConocimientos en servidores de aplicaciones.\nConocimientos en entornos cloud, especialmente con Azure\nCertificaciones en metodologías ágiles como Scrum Fundamentales y Kanban (deseable)\nCertificaciones como DevOps Foundation y Azure Foundation (deseable)\nInformación adicional\n¿Qué vamos a ofrecerte como parte del equipo?\nRemuneración en planilla con todas las condiciones de ley.\nTarjeta de Alimentos\nBeneficios corporativos a través de nuestra plataforma de descuentos.\nCapacitaciones constantes acorde a tu línea de carrera y otras de interés general (plataformas de e-learning).\nLa oportunidad de participar en retos altamente innovadores.\nLínea de carrera.\nConoce más de nosotros en www.inetum.com/es o visita nuestras redes sociales como Inetum Perú para conocer más de nuestra cultura corporativa y metodologías de trabajo. ¡Te esperamos!\n*En Inetum promovemos la diversidad de género, origen étnico, nacionalidad, la inclusión de personas con discapacidad y/o habilidades diferentes mediante la igualdad de oportunidades en todos los procesos, y buscamos ampliar las oportunidades de desarrollo profesional*\n.",
+      "score": 46,
+      "zone": "low",
+      "matched": [
+        "azure",
+        "nestjs",
+        "nodejs",
+        "rest-api",
+        "git"
+      ],
+      "missing": [
+        "java",
+        "spring"
+      ],
+      "reasons": [
+        "Coincidencia parcial de stack: Azure, REST APIs, nestjs, Node.js",
+        "Puesto en Perú",
+        "Falta: Java, Spring Boot"
+      ],
+      "market": "peru"
+    },
+    {
       "id": "job-1139dd1f",
       "title": "Research Engineer Privacy and Anonymization",
       "company": "Pragmatike",
@@ -4350,6 +4608,83 @@
         "Falta: AWS, Kubernetes, Terraform"
       ],
       "market": "abroad"
+    },
+    {
+      "id": "job-037008df",
+      "title": "Cloud Engineer JR",
+      "company": "Stefanini Group",
+      "location": "Lima, Peru",
+      "remote": false,
+      "work_mode": "unknown",
+      "relocation": false,
+      "country": "PE",
+      "salary": null,
+      "url": "https://www.linkedin.com/jobs/view/4490670010",
+      "source": "linkedin",
+      "attribution": null,
+      "posted_at": "2026-11-16",
+      "expires_at": null,
+      "first_seen": "2026-11-16",
+      "last_seen": "2026-11-17",
+      "description": "¡Sé parte de Stefanini!\nEn Stefanini somos más de 30.000 genios, conectados desde 41 países, haciendo lo que les apasiona y co-creando un futuro mejor.\nResponsabilidades y atribuciones:\nAdministrar y configurar recursos en\nMicrosoft Azure\n(redes, máquinas virtuales y almacenamiento).\nCrear, revisar y solucionar problemas en los registros (\nlogs\n) de las aplicaciones desplegadas.\nModificar scripts y archivos de configuración para desplegar infraestructura en la nube.\nGestionar ramas, confirmaciones (\ncommits\n) y solicitudes de extracción (\npull requests\n) en repositorios de código.\nApoyar en la seguridad básica de los recursos y el empaquetado de aplicaciones si se requiere.\nRequisitos y competencias:\nFundamentos Azure: Conocimientos teóricos y prácticos en servicios clave de Microsoft Azure (Virtual Networks, Virtual Machines, Azure Storage, gestión de identidades y accesos).\nCertificación básica de nube (ej. Microsoft Certified: Azure Fundamentals AZ-900).\nContenedores y Orquestación:\nManejo de Docker (creación y ejecución de contenedores).\nConocimientos básicos de Kubernetes: Capacidad para interactuar con clústeres (idealmente AKS), uso de comandos básicos de kubectl, revisión de logs y entendimiento de deployments.\nAutomatización e IaC: Nociones prácticas de Terraform O Ansible aplicados a entornos cloud. Capacidad para leer, entender y hacer modificaciones menores en código existente para desplegar o configurar recursos en Azure.\nControl de versiones: Manejo de Git (ramas, commits, pull requests), idealmente en entornos como Azure Repos o GitHub.\nScripting: Capacidad para leer y crear scripts básicos, con fuerte preferencia por PowerShell (o Bash/Python).\nConocimientos Deseables\nExperiencia práctica operando herramientas nativas como Azure DevOps (Pipelines, Boards, Artifacts).\nConceptos básicos de seguridad en nube (uso de Azure Key Vaults, permisos) y DevSecOps.\nFamiliaridad con GitOps (Argo CD) o uso de Helm para empaquetar aplicaciones en Kubernetes.",
+      "score": 44,
+      "zone": "low",
+      "matched": [
+        "azure",
+        "docker",
+        "git",
+        "python",
+        "azure-devops"
+      ],
+      "missing": [
+        "kubernetes",
+        "terraform"
+      ],
+      "reasons": [
+        "Coincidencia parcial de stack: Azure, Python, Docker, git",
+        "Puesto en Perú",
+        "Puesto junior, por debajo del nivel actual",
+        "Falta: Kubernetes, Terraform"
+      ],
+      "market": "peru"
+    },
+    {
+      "id": "job-3e8933db",
+      "title": "Fullstack Senior (Java /Angular/GCP) | Proyección a LT",
+      "company": "Synopsis S.A.",
+      "location": "San Borja, Peru",
+      "remote": false,
+      "work_mode": "unknown",
+      "relocation": false,
+      "country": "PE",
+      "salary": null,
+      "url": "https://www.linkedin.com/jobs/view/4490901146",
+      "source": "linkedin",
+      "attribution": null,
+      "posted_at": "2026-11-16",
+      "expires_at": null,
+      "first_seen": "2026-11-16",
+      "last_seen": "2026-11-16",
+      "description": "En\nSYNOPSIS\n, nos encontramos en búsqueda de un\nSolido Ingeniero de Software con\naltamente orientado al liderazgo técnico\n, gestión de requerimientos y coordinación de equipos de desarrollo, capaz de actuar como puente entre las áreas usuarias, equipos técnicos y proveedores para asegurar la correcta implementación de soluciones tecnológicas de alto impacto.\nBuscamos un profesional con sólida experiencia en diseño de soluciones, liderazgo de equipos de desarrollo y experiencia en entornos cloud sobre Google Cloud Platform (GCP).\nResponsabilidades principales\nGestionar y dar seguimiento a los requerimientos de negocio.\nAnalizar, refinar y elaborar propuestas de solución técnica.\nCoordinar con áreas de Arquitectura, Ciberseguridad, Infraestructura, QA y Proveedores.\nDiseñar la implementación de soluciones bajo arquitecturas de microservicios.\nAsegurar el entendimiento funcional y técnico del equipo de desarrollo.\nLiderar y supervisar el avance de las iniciativas tecnológicas.\nGestionar pruebas funcionales y técnicas junto con el equipo QA.\nCoordinar despliegues y pases a producción.\nElaborar y presentar reportes periódicos de avance a stakeholders.\nGarantizar la generación y mantenimiento de la documentación y entregables del proyecto.\nPromover el uso de herramientas y Agentes de IA para optimizar el ciclo de desarrollo.\nRequisitos\nExperiencia\nExperiencia comprobada liderando equipos de desarrollo.\nExperiencia gestionando requerimientos funcionales y técnicos.\nExperiencia interactuando con usuarios, áreas de TI y proveedores.\nExperiencia realizando análisis, diseño y seguimiento de soluciones tecnológicas.\nConocimientos técnicos\nAngular.\nJava y Arquitectura de Microservicios.\nPostgreSQL.\nGoogle Cloud Platform (GCP).\nAzure DevOps.\nGestión de ambientes de Desarrollo, QA y Producción.\nMetodologías ágiles y gestión de Historias de Usuario.\nValor agregado\nExperiencia promoviendo el uso de herramientas de Inteligencia Artificial aplicadas al desarrollo de software.\nConocimientos de automatización mediante asistentes o agentes de IA.\nCompetencias\nLiderazgo y gestión de equipos.\nComunicación efectiva con usuarios y equipos multidisciplinarios.\nCapacidad analítica y orientación a la solución de problemas.\nOrganización y seguimiento de entregables.\nAlto nivel de compromiso y orientación al cumplimiento de plazos.\nCapacidad de coordinación con múltiples stakeholders.\n¿Qué buscamos?\nUn profesional con visión técnica y capacidad de liderazgo, que pueda dirigir iniciativas de desarrollo desde el levantamiento del requerimiento hasta su puesta en producción, asegurando la calidad de la solución y la correcta coordinación entre todas las áreas involucradas.\nSi cuentas con experiencia liderando equipos de desarrollo en entornos Java Microservices y GCP, queremos conocerte.\n🚀",
+      "score": 44,
+      "zone": "low",
+      "matched": [
+        "angular",
+        "azure",
+        "azure-devops",
+        "microservices",
+        "postgresql"
+      ],
+      "missing": [
+        "gcp",
+        "java"
+      ],
+      "reasons": [
+        "Coincidencia parcial de stack: Angular, Azure, Azure DevOps, PostgreSQL",
+        "Puesto en Perú",
+        "Falta: Google Cloud, Java"
+      ],
+      "market": "peru"
     },
     {
       "id": "job-fbae770d",
@@ -4949,6 +5284,42 @@
       "market": "abroad"
     },
     {
+      "id": "job-612dfaa3",
+      "title": "Senior Fullstack Engineer",
+      "company": "Toptal",
+      "location": "Lima Metropolitan Area",
+      "remote": false,
+      "work_mode": "unknown",
+      "relocation": false,
+      "country": "PE",
+      "salary": null,
+      "url": "https://www.linkedin.com/jobs/view/4488624427",
+      "source": "linkedin",
+      "attribution": null,
+      "posted_at": "2026-11-17",
+      "expires_at": null,
+      "first_seen": "2026-11-17",
+      "last_seen": "2026-11-17",
+      "description": "About Toptal\nToptal is a global network of top talent in business, design, and technology that enables companies to scale their teams, on-demand. With $200+ million in annual revenue\nand team members based around the globe\n, Toptal is the world’s largest fully remote workforce.\nWe take the best elements of virtual teams and combine them with a support structure that encourages innovation, social interaction, and fun. We see no borders, move at a fast pace, and are never afraid to break the mold.\nJob Summary\nThe Billing Team is dedicated to building, maintaining, and evolving the technological backbone and functionality that underpin Toptal’s financial operations across all business areas. We’re looking for a full-stack engineer with a front-end focus who is comfortable working across the front-end and back-end, and who is keen to lead initiatives and work closely with our Product team.\nBy joining the team, you’ll have the opportunity to work on multiple applications, mainly in React front-end and Ruby on Rails back-end. We love TypeScript and Ruby, and heavily use GraphQL for communication between our front-end SPA apps and their back-ends. At Toptal, we push the boundaries of what’s possible every single day, and we’d love for you to be a part of it.\nWe strive to build performant, scalable, and well-organized apps that are aligned with business goals and non-functional requirements.\nThis is a remote position. We do not offer visa sponsorship or assistance. Resumes and communication must be submitted in English.\nResponsibilities:\n*The following information is intended to describe the general nature and level of work being performed. It is not intended to be an exhaustive list of all duties, responsibilities, or required skills.*\nWrite elegant, efficient, and testable React and Ruby code that is easy to maintain and debug.\nWrite, update, and integrate your features with React front-end components.\nImplement and maintain Ruby on Rails APIs to support seamless communication between front-end and back-end systems.\nCover code with tests and perform manual testing of features, while reviewing the work of colleagues.\nAs a true teammate, continuously improve the team’s processes, brainstorm ideas, and communicate statuses and progress.\nMentor other people, provide feedback, and grow as a part of the team.\nLearn new concepts and technologies.\nQualifications and Job Requirements:\n5+ years of web development experience.\nProficient in React and TypeScript, capable of integrating front-end components with back-end systems.\nHave hands-on experience with Ruby on Rails.\nHave a demonstrable understanding of back-end and development principles, databases, clean code, and best testing practices.\nProactive and adaptable, able to lead projects and work effectively within cross-functional teams.\nConsider multiple quality dimensions like user impact, failure tolerance, code maintenance, implementation time, availability, security breaches, and performance.\nTackle complex problems but also consider multiple solutions, weigh them, and decide on the best course of action.\nBe genuinely interested in technology and love to try new things.\nStrong communication skills, capable of clearly explaining complex concepts.\nAbility to work in a fast-paced, rapidly growing company and handle a wide variety of challenges, deadlines, and a diverse array of contacts.\nYou must be a world-class individual contributor to thrive at Toptal. You will not be here just to tell other people what to do.",
+      "score": 40,
+      "zone": "low",
+      "matched": [
+        "graphql",
+        "react",
+        "typescript"
+      ],
+      "missing": [
+        "ruby"
+      ],
+      "reasons": [
+        "Coincidencia parcial de stack: TypeScript, React, GraphQL",
+        "Puesto en Perú",
+        "La oferta trae pocos detalles técnicos",
+        "Falta: Ruby"
+      ],
+      "market": "peru"
+    },
+    {
       "id": "job-4480ac92",
       "title": "AI ML Engineer",
       "company": "Docusketch",
@@ -5385,6 +5756,45 @@
         "Falta: Ruby, Elasticsearch, Kubernetes"
       ],
       "market": "abroad"
+    },
+    {
+      "id": "job-41320a35",
+      "title": "PowerCenter / Java Developer",
+      "company": "Talan",
+      "location": "Lima Metropolitan Area",
+      "remote": false,
+      "work_mode": "unknown",
+      "relocation": false,
+      "country": "PE",
+      "salary": null,
+      "url": "https://www.linkedin.com/jobs/view/4491166508",
+      "source": "linkedin",
+      "attribution": null,
+      "posted_at": "2026-11-17",
+      "expires_at": null,
+      "first_seen": "2026-11-17",
+      "last_seen": "2026-11-17",
+      "description": "Talan – Positive Innovation\nTalan is an international consulting group specializing in innovation and business transformation through technology. With over 7,200 consultants in 21 countries and a turnover of €850M, we are committed to delivering impactful, future-ready solutions.\nTalan at a Glance\nHeadquartered in Paris and operating globally, Talan combines technology, innovation, and empowerment to deliver measurable results for our clients. Over the past 22 years, we’ve built a strong presence in the IT and consulting landscape, and we’re on track to reach €1 billion in revenue this year.\nOur Core Areas of Expertise\nData & Technologies:\nWe design and implement large-scale, end-to-end architecture and data solutions, including data integration, data science, visualization, Big Data, AI, and Generative AI.\nCloud & Application Services:\nWe integrate leading platforms such as SAP, Salesforce, Oracle, Microsoft, AWS, and IBM Maximo, helping clients transition to the cloud and improve operational efficiency.\nManagement & Innovation Consulting:\nWe lead business and digital transformation initiatives through project and change management best practices (PM, PMO, Agile, Scrum, Product Ownership), and support domains such as Supply Chain, Cybersecurity, and ESG/Low-Carbon strategies.\nWe work with major global clients across diverse sectors, including Transport & Logistics, Financial Services, Energy & Utilities, Retail, and Media & Telecommunications.\nJob Description\nWe are looking for a PowerCenter / Java Developer with experience in Informatica PowerCenter and Java to join a technology project involving data integration, application development, and Cloud environments.\nYou will join a technical team and work autonomously on the development, maintenance, and enhancement of applications and data integration processes. You will also collaborate closely with technical teams and users in an international environment.\nKey Responsibilities\nDevelop, maintain, and enhance data integration and data processing solutions using Informatica PowerCenter.\nDesign, develop, and maintain workflows, mappings, and ETL processes.\nDevelop and maintain applications and components using Java.\nAnalyze, troubleshoot, and resolve issues related to existing applications and processes.\nContribute to the evolution and modernization of applications toward Cloud environments, primarily Microsoft Azure.\nIntegrate applications and processes with other systems, databases, and services.\nParticipate throughout the full software development lifecycle, including analysis, development, testing, deployment, and support.\nCollaborate with technical and functional teams, as well as users, to understand requirements and translate them into technical solutions.\nParticipate in follow-up meetings and technical discussions in English when required.\nQualifications\nAt least 2 years of professional experience working with both Java and Informatica PowerCenter.\nProven hands-on experience in development projects using Informatica PowerCenter.\nPractical knowledge of ETL processes, data integration, and data transformation.\nExperience working with relational databases and SQL.\nExperience with projects or applications deployed in Cloud environments.\nKnowledge of or experience with Microsoft Azure.\nStrong analytical, troubleshooting, and problem-solving skills.\nMinimum B2 level of English, with the ability to communicate effectively with users and international teams.\nNice to Have\nAzure services related to application development and integration, such as Azure Functions, App Service, Storage Accounts, Key Vault, or Azure DevOps.\nDevelopment or consumption of REST APIs.\nGit and version control tools.\nDeployment automation.\nAgile/Scrum methodologies.\nExperience working in complex corporate environments, preferably within the financial or banking sector.\nAdditional Information\nWhat do we offer you?\nFull-time or B2B contract\nRemote within CET Time zone.\nPossibility to be part of a…",
+      "score": 35,
+      "zone": "low",
+      "matched": [
+        "azure",
+        "azure-devops",
+        "azure-functions",
+        "git",
+        "key-vault",
+        "rest-api"
+      ],
+      "missing": [
+        "java",
+        "aws"
+      ],
+      "reasons": [
+        "Coincidencia parcial de stack: Azure, Azure DevOps, Azure Functions, git",
+        "Puesto en Perú",
+        "Falta: Java, AWS"
+      ],
+      "market": "peru"
     },
     {
       "id": "job-29659f4c",

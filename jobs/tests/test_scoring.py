@@ -164,16 +164,30 @@ def test_filters(cfg):
     # Java title without any core term is dropped; with a core term it stays.
     assert not passes_filters(job("Java Developer", "Spring Boot"), cfg)[0]
     assert passes_filters(job("Java / C# Developer", "C# and Java"), cfg)[0]
-    # On-site outside Peru is dropped.
-    assert not passes_filters(job(".NET Developer", "C#", remote=False, location="Dallas, TX", country="US"), cfg)[0]
+    # Stated on-site outside Peru is dropped.
+    assert not passes_filters(job(".NET Developer", "C#. Full-time on-site role.", remote=False,
+                                  location="Dallas, TX", country="US"), cfg)[0]
 
 
 def test_onsite_is_dropped_unless_it_offers_relocation(cfg):
     lima = dict(remote=False, location="Lima", country="PE", market="peru")
-    assert passes_filters(job(".NET Developer", "C#", **lima), cfg) == (False, "on-site without relocation")
-    assert passes_filters(job(".NET Developer", "C#. Relocation package to Madrid.", remote=False,
+    assert passes_filters(job(".NET Developer", "C#. Trabajo presencial.", **lima), cfg) == (
+        False, "on-site without relocation")
+    assert passes_filters(job(".NET Developer", "C#. On-site in Madrid, relocation package.", remote=False,
                               location="Madrid, Spain", country="ES"), cfg)[0]
-    assert not passes_filters(job(".NET Developer", "C#. No relocation assistance.", **lima), cfg)[0]
+    assert not passes_filters(job(".NET Developer", "C#. Onsite. No relocation assistance.", **lima), cfg)[0]
+
+
+def test_unstated_mode_is_kept_and_marked_unknown(cfg):
+    vocab = build_vocabulary(json.loads((REPO_ROOT / "data" / "profile.json").read_text(encoding="utf-8")), cfg)
+    for loc, country, market in [("Lima", "PE", "peru"), ("Dallas, TX", "US", "abroad")]:
+        unstated = job(".NET Developer", "C# and SQL Server.", remote=False, location=loc, country=country,
+                       market=market)
+        assert passes_filters(unstated, cfg)[0]
+        assert score_job(unstated, vocab, cfg).work_mode == "unknown"
+    # An on-site interview is not an on-site job.
+    assert score_job(job(".NET Dev", "C#. Final onsite interview.", remote=False, location="Lima", country="PE",
+                         market="peru"), vocab, cfg).work_mode == "unknown"
 
 
 def test_hybrid_is_kept_in_peru_and_dropped_abroad_without_relocation(cfg):
@@ -189,7 +203,7 @@ def test_work_mode_and_relocation_are_recorded(cfg):
     hybrid = score_job(job(".NET Dev", "C#. Hybrid: 3 days in office.", remote=False, location="Lima",
                            country="PE", market="peru"), vocab, cfg)
     assert (hybrid.work_mode, hybrid.relocation) == ("hybrid", False)
-    reloc = score_job(job(".NET Dev", "C#. We offer visa sponsorship and relocation support.", remote=False,
+    reloc = score_job(job(".NET Dev", "C#. On-site in Berlin; visa sponsorship and relocation support.", remote=False,
                           location="Berlin, Germany", country="DE"), vocab, cfg)
     assert (reloc.work_mode, reloc.relocation) == ("onsite", True)
     # "hybrid" in the title/location wins over a remote flag set by a loose text match.

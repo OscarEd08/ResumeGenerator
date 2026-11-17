@@ -74,5 +74,6 @@ describe('workModeLabel', () => {
     expect(workModeLabel('hybrid', false)).toBe('Híbrido');
     expect(workModeLabel('onsite', true)).toBe('Presencial con reubicación');
     expect(workModeLabel('hybrid', true)).toBe('Híbrido con reubicación');
+    expect(workModeLabel('unknown', false)).toBe('Modalidad no indicada');
   });
 });

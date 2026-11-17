@@ -10,7 +10,7 @@ export const ZONE_THRESHOLDS = { apply: 85, review: 70 } as const;
 
 export const ZONES = ['apply', 'review', 'low'] as const;
 export const MARKETS = ['peru', 'abroad'] as const;
-export const WORK_MODES = ['remote', 'hybrid', 'onsite'] as const;
+export const WORK_MODES = ['remote', 'hybrid', 'onsite', 'unknown'] as const;
 export type WorkMode = (typeof WORK_MODES)[number];
 
 export const SOURCES = ['linkedin', 'indeed', 'glassdoor', 'google', 'remotive', 'remoteok', 'himalayas'] as const;
@@ -39,7 +39,7 @@ export const jobSchema = z.strictObject({
   company: z.string().min(1),
   location: z.string().min(1),
   remote: z.boolean(),
-  /** Derived at scoring time; on-site postings are kept only when they offer relocation. */
+  /** Derived at scoring time; on-site postings are kept only when they offer relocation; "unknown" = the posting names no mode. */
   work_mode: z.enum(WORK_MODES),
   relocation: z.boolean(),
   /** ISO-2 country, null when unknown or multi-country. */

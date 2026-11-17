@@ -114,7 +114,12 @@ const KEYWORD_LABEL: Record<string, string> = {
   'vb-net': 'VB.NET',
 };
 
-const WORK_MODE_LABEL: Record<WorkMode, string> = { remote: 'Remoto', hybrid: 'Híbrido', onsite: 'Presencial' };
+const WORK_MODE_LABEL: Record<WorkMode, string> = {
+  remote: 'Remoto',
+  hybrid: 'Híbrido',
+  onsite: 'Presencial',
+  unknown: 'Modalidad no indicada',
+};
 
 /** "Remoto" / "Híbrido" / "Presencial", plus "con reubicación" when the posting offers relocation. */
 export function workModeLabel(mode: WorkMode, relocation: boolean): string {

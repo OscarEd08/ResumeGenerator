@@ -45,6 +45,9 @@ _ISO2 = set(_COUNTRIES.values())
 
 
 _HYBRID = re.compile(r"\bh[ií]brid[oa]?\b|\bhybrid\b", re.I)
+_ONSITE = re.compile(
+    r"\b(?:on-?site|in[- ]office|in the office|presencial(?:mente)?|trabajo en oficina)\b"
+    r"(?!\s+(?:interview|entrevista))", re.I)
 _RELOCATION = re.compile(
     r"\b(?:relocat\w*|reubicaci[oó]n|relocalizaci[oó]n|visa sponsorship)", re.I)
 _NO_RELOCATION = re.compile(
@@ -54,16 +57,20 @@ _NO_RELOCATION = re.compile(
 
 
 def work_mode(title: str, location: str, description: str, remote: bool) -> str:
-    """Classify a posting as "remote", "hybrid" or "onsite".
+    """Classify a posting as "remote", "hybrid", "onsite" or "unknown".
 
     A hybrid mention in the title or location wins over the remote flag (sources set it from loose
     text matches); a hybrid mention only in the description applies to non-remote postings.
+    "onsite" requires an explicit statement; a posting that names no mode is "unknown", never on-site.
     """
     if _HYBRID.search(f"{title} {location}"):
         return "hybrid"
     if remote:
         return "remote"
-    return "hybrid" if _HYBRID.search(description) else "onsite"
+    text = f"{title} {location} {description}"
+    if _HYBRID.search(text):
+        return "hybrid"
+    return "onsite" if _ONSITE.search(text) else "unknown"
 
 
 def offers_relocation(text: str) -> bool:
