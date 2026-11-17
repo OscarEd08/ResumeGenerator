@@ -14,9 +14,10 @@ Branch: `feat/job-search` (from `feat/foundation`) · Delivery: ask-on-risk · R
 
 | ID | Specs | Route | Status | Commit |
 |---|---|---|---|---|
-| T1 | S1–S4 | delegated (user: "manda a un agente a hacerlo") | pending | |
+| T1 | S1–S4 | delegated (user: "manda a un agente a hacerlo") | done (38 pytest, 17 vitest; S3 untested on GitHub) | feat(jobs) + ci commits |
 
 ## Log
 
 - **L1** (2026-11-16) User: "si dale, manda a un agente a hacerlo" answering "¿Avanzo primero con el buscador automático (JobSpy en GitHub Actions + scoring), para que la interfaz se construya con datos reales?"
 - **L2** Decision (parent): deterministic scoring to keep zero cost; LLM re-scoring deferred.
+- **L3** T1 done: live run 119 jobs (apply 2, review 6, low 111); sources Remotive, RemoteOK, Himalayas, JobSpy LinkedIn/Indeed (LinkedIn 429 partial, Google 0). Attribution 'via <name>' links required in UI without nofollow; Himalayas apply link must be applicationLink. CI Python 3.13. Cron workflow untested until merged to main (Risk item 5).
