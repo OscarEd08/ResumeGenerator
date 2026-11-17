@@ -1,0 +1,62 @@
+name: Refresh job postings
+
+on:
+  schedule:
+    - cron: "0 11 * * *" # daily 11:00 UTC = 06:00 Lima
+  workflow_dispatch:
+
+permissions:
+  contents: write # commit data/jobs.json
+  actions: write # trigger the Pages deploy (pushes made with GITHUB_TOKEN do not trigger workflows)
+
+concurrency:
+  group: jobs-refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v7
+        with:
+          ref: main
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.13"
+          cache: pip
+          cache-dependency-path: jobs/requirements.txt
+
+      - name: Install pipeline dependencies
+        run: python -m pip install -r jobs/requirements.txt
+
+      - name: Test pipeline (offline fixtures)
+        run: python -m pytest jobs/tests -q
+
+      - name: Fetch, score and write data/jobs.json
+        run: python -m jobs.run
+
+      - name: Commit data/jobs.json if it changed
+        id: commit
+        run: |
+          if git diff --quiet -- data/jobs.json && ! git ls-files --others --exclude-standard -- data/jobs.json | grep -q .; then
+            echo "No changes in data/jobs.json"
+            echo "pushed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/jobs.json
+          git commit -m "chore(jobs): refresh job postings"
+          git pull --rebase origin main
+          git push origin HEAD:main
+          echo "pushed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Trigger the Pages deploy
+        if: steps.commit.outputs.pushed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run deploy.yml --ref main

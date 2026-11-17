@@ -20,11 +20,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v7
-      - name: Validate profile, test, build and upload the Pages artifact
+      - name: Validate profile and jobs, test, build and upload the Pages artifact
         uses: withastro/action@v6
         with:
           node-version: 24
-          build-cmd: npm run validate:profile && npm test && npm run build
+          build-cmd: npm run validate:profile && npm run validate:jobs && npm test && npm run build
 
   deploy:
     needs: build
