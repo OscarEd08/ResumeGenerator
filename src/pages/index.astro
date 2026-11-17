@@ -1,0 +1,33 @@
+---
+// Placeholder page: the real UI will be designed later.
+// Reads the profile bank at build time and validates it with the zod schema.
+import rawProfile from '../../data/profile.json';
+import { profileSchema } from '../lib/profile-schema';
+
+const profile = profileSchema.parse(rawProfile);
+// BASE_URL has no trailing slash ("/ResumeGenerator"); normalize before joining asset paths.
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
+    <meta name="viewport" content="width=device-width" />
+    <title>{profile.basics.name}</title>
+  </head>
+  <body>
+    <h1>{profile.basics.name}</h1>
+    <p>{profile.basics.headline}</p>
+    <h2>Experience</h2>
+    <ul>
+      {
+        profile.experience.map((entry) => (
+          <li>
+            {entry.company} | {entry.position} ({entry.start_date} to {entry.end_date})
+          </li>
+        ))
+      }
+    </ul>
+  </body>
+</html>

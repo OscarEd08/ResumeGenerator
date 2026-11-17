@@ -1,0 +1,846 @@
+{
+  "$schema_version": 1,
+  "basics": {
+    "name": "Oscar Pairazaman Arias",
+    "headline": ".NET C# Engineer | Full Stack Development",
+    "summary": "Software developer delivering client projects with C#/.NET, ASP.NET Core, Entity Framework and Azure. Experience spans SaaS features, enterprise integrations, production troubleshooting and automated delivery. Builds frontend features with Angular and React, with recent Next.js work in a personal finance PWA. Designs AI-assisted development workflows with human review and automated tests.",
+    "location": "Lima, Peru",
+    "email": "oscar.pairazaman11@gmail.com",
+    "phone": "+51 964 407 956",
+    "linkedin": "oscarpairazaman",
+    "github": "OscarEd08",
+    "languages": [
+      { "language": "Spanish", "level": "Native" },
+      { "language": "English", "level": "B2" }
+    ]
+  },
+  "experience": [
+    {
+      "id": "bertoni-solutions",
+      "company": "Bertoni Solutions",
+      "position": "Semi Senior Software Developer",
+      "location": "Remote from Lima, Peru",
+      "start_date": "2024-01",
+      "end_date": "present",
+      "summary": "Client projects for European companies (Bertoni Solutions GmbH, Baar, Zug, Switzerland), Azure DevOps and Scrum.",
+      "progression": [
+        { "position": ".NET Developer", "start_date": "2024-01", "end_date": "2024-09" },
+        { "position": "Software Developer", "start_date": "2024-09", "end_date": "2025-07" },
+        { "position": "Semi Senior Software Developer", "start_date": "2025-07", "end_date": "present" }
+      ],
+      "client_confidential": "The docs ask to confirm with Bertoni before publishing client names (Proquinorte, GlobalCertifica, Boyles Bros, CERV). Highlight texts use descriptive labels; the `project` field keeps the internal name and must not be printed until confirmed.",
+      "highlights": [
+        {
+          "id": "proquinorte-top-contributor",
+          "text": "Top contributor to the main repository of a B2B/B2C multi-store e-commerce platform for laboratory and healthcare supplies integrated with Microsoft Dynamics 365 Business Central (~1,474 commits across 6 repositories).",
+          "tags": ["dotnet", "ecommerce", "business-central", "nopcommerce", "fullstack"],
+          "evidence": "verified",
+          "project": "Proquinorte",
+          "source": { "path": "docs/bertoni-experience.md", "section": "Contribution footprint" }
+        },
+        {
+          "id": "proquinorte-search-microservice",
+          "text": "Built a .NET search microservice on Meilisearch from scratch, with matching strategies, ranking rules, autocomplete suggestions and client-certificate (mTLS) authentication between the store and the search API.",
+          "tags": ["dotnet", "csharp", "meilisearch", "search", "microservices", "security", "ecommerce"],
+          "evidence": "verified",
+          "project": "Proquinorte",
+          "source": { "path": "docs/bertoni-experience.md", "section": "1.1 Search engine (Meilisearch microservice in .NET)" }
+        },
+        {
+          "id": "proquinorte-federated-search",
+          "text": "Implemented disjunctive multi-search and federated search across several indexes, with per-store search routing for a multi-store setup.",
+          "tags": ["dotnet", "meilisearch", "search", "ecommerce"],
+          "evidence": "verified",
+          "project": "Proquinorte",
+          "source": { "path": "docs/bertoni-experience.md", "section": "1.1 Search engine (Meilisearch microservice in .NET)" }
+        },
+        {
+          "id": "proquinorte-relevance-tuning",
+          "text": "Tuned search relevance: exactness ranked before attributes, product-family promotion on exact SKU matches and prefix-match ranking for autocomplete.",
+          "tags": ["meilisearch", "search", "relevance-tuning", "ecommerce"],
+          "evidence": "verified",
+          "project": "Proquinorte",
+          "source": { "path": "docs/bertoni-experience.md", "section": "1.1 Search engine (Meilisearch microservice in .NET)" }
+        },
+        {
+          "id": "proquinorte-search-p95-latency",
+          "text": "Cut P95 search latency from ~1.6 s to ~150 ms on broad search terms.",
+          "tags": ["meilisearch", "search", "performance", "dotnet"],
+          "evidence": "verified",
+          "project": "Proquinorte",
+          "source": { "path": "docs/bertoni-experience.md", "section": "1.1 Search engine (Meilisearch microservice in .NET)" }
+        },
+        {
+          "id": "proquinorte-antibody-index",
+          "text": "Built a dedicated search index and API for an antibody catalog, with SKU lookup and attribute filtering.",
+          "tags": ["meilisearch", "search", "api", "dotnet"],
+          "evidence": "verified",
+          "project": "Proquinorte",
+          "source": { "path": "docs/bertoni-experience.md", "section": "1.1 Search engine (Meilisearch microservice in .NET)" }
+        },
+        {
+          "id": "proquinorte-search-api-standards",
+          "text": "Added an index-status endpoint, a standardized API response with centralized exception handling and store-aware output caching for product autocomplete.",
+          "tags": ["dotnet", "aspnet-core", "api", "caching", "search"],
+          "evidence": "verified",
+          "project": "Proquinorte",
+          "source": { "path": "docs/bertoni-experience.md", "section": "1.1 Search engine (Meilisearch microservice in .NET)" }
+        },
+        {
+          "id": "proquinorte-durable-indexation",
+          "text": "Built nightly search-index generation with Azure Durable Functions orchestrations, using chunked cursor-based processing, resumable fan-out with ContinueAsNew and an idempotency guard against duplicate rebuilds.",
+          "tags": ["azure", "azure-functions", "durable-functions", "serverless", "dotnet", "search"],
+          "evidence": "verified",
+          "project": "Proquinorte",
+          "source": { "path": "docs/bertoni-experience.md", "section": "1.2 Nightly indexation with Azure Durable Functions" }
+        },
+        {
+          "id": "proquinorte-image-pipeline",
+          "text": "Built a queue-based image optimization pipeline that produces multiple target widths with a daily backfill limit.",
+          "tags": ["azure", "azure-functions", "serverless", "performance"],
+          "evidence": "verified",
+          "project": "Proquinorte",
+          "source": { "path": "docs/bertoni-experience.md", "section": "1.2 Nightly indexation with Azure Durable Functions" }
+        },
+        {
+          "id": "proquinorte-storefront-features",
+          "text": "Built nopCommerce storefront and business features: customer-code login, checkout and order detail, product filtering, quotes and offers, VAT handling, a Portugal store launch, recurring orders with asynchronous processing and customer-specific catalogs aligned with Business Central.",
+          "tags": ["nopcommerce", "dotnet", "aspnet-core", "razor", "ecommerce", "business-central", "fullstack"],
+          "evidence": "verified",
+          "project": "Proquinorte",
+          "source": { "path": "docs/bertoni-experience.md", "section": "1.3 Storefront and business features (nopCommerce)" }
+        },
+        {
+          "id": "proquinorte-seo-core-web-vitals",
+          "text": "Improved SEO and Core Web Vitals with paginated product sitemaps generated from the search indexes, store-host canonical URLs, deferred widget loading and CLS/LCP fixes.",
+          "tags": ["seo", "core-web-vitals", "performance", "ecommerce", "frontend"],
+          "evidence": "verified",
+          "project": "Proquinorte",
+          "source": { "path": "docs/bertoni-experience.md", "section": "1.3 Storefront and business features (nopCommerce)" }
+        },
+        {
+          "id": "proquinorte-punchout-cxml",
+          "text": "Implemented cXML PunchOut so corporate buyers can shop from their own e-procurement systems, with form post back to the buyer system, discount-group persistence and order audit in Business Central.",
+          "tags": ["punchout", "cxml", "b2b", "integrations", "business-central", "erp", "dotnet"],
+          "evidence": "verified",
+          "project": "Proquinorte",
+          "source": { "path": "docs/bertoni-experience.md", "section": "1.4 B2B PunchOut (cXML)" }
+        },
+        {
+          "id": "proquinorte-punchout-failure-notifications",
+          "text": "Added automatic failure notifications to the support ticket queue for PunchOut orders.",
+          "tags": ["punchout", "observability", "integrations"],
+          "evidence": "partial",
+          "project": "Proquinorte",
+          "source": { "path": "docs/bertoni-experience.md", "section": "1.4 B2B PunchOut (cXML)" }
+        },
+        {
+          "id": "proquinorte-circuit-breakers",
+          "text": "Added resilience pipelines with circuit breakers (50% failure ratio, 15 s break) and 30 s timeouts on the outbound clients to Business Central and Meilisearch.",
+          "tags": ["resilience", "circuit-breaker", "dotnet", "integrations", "business-central"],
+          "evidence": "verified",
+          "project": "Proquinorte",
+          "source": { "path": "docs/bertoni-experience.md", "section": "1.5 Resilience and observability" }
+        },
+        {
+          "id": "proquinorte-telemetry",
+          "text": "Instrumented server- and browser-side Application Insights telemetry with an outbound-call telemetry handler, availability tests from 3 regions every 15 minutes with latency alerts, and monitoring of scheduled tasks.",
+          "tags": ["azure", "application-insights", "azure-monitor", "observability"],
+          "evidence": "verified",
+          "project": "Proquinorte",
+          "source": { "path": "docs/bertoni-experience.md", "section": "1.5 Resilience and observability" }
+        },
+        {
+          "id": "proquinorte-certificate-warmup",
+          "text": "Added certificate warm-up at startup to avoid cold-start latency.",
+          "tags": ["performance", "dotnet", "resilience"],
+          "evidence": "partial",
+          "project": "Proquinorte",
+          "source": { "path": "docs/bertoni-experience.md", "section": "1.5 Resilience and observability" }
+        },
+        {
+          "id": "proquinorte-secret-and-geoip-cache",
+          "text": "Added a Key Vault secret cache with a TTL and a geo-IP cache.",
+          "tags": ["azure", "key-vault", "caching", "performance"],
+          "evidence": "verified",
+          "project": "Proquinorte",
+          "source": { "path": "docs/bertoni-experience.md", "section": "1.5 Resilience and observability" }
+        },
+        {
+          "id": "proquinorte-bicep-front-door",
+          "text": "Wrote the Bicep infrastructure for Azure Front Door, a WAF module, QA and PROD environments, the DNS zone, and monitoring alerts with action groups.",
+          "tags": ["azure", "bicep", "iac", "front-door", "waf", "dns", "azure-monitor"],
+          "evidence": "verified",
+          "project": "Proquinorte",
+          "source": { "path": "docs/bertoni-experience.md", "section": "1.6 Azure infrastructure as code and edge security" }
+        },
+        {
+          "id": "proquinorte-waf-rules",
+          "text": "Configured WAF rules with per-IP rate limiting (350 requests / 5 min), blocking of requests without a User-Agent and a datacenter IP block list with verified crawler ranges, and validated the behavior with Playwright flows.",
+          "tags": ["azure", "waf", "security", "rate-limiting", "playwright"],
+          "evidence": "verified",
+          "project": "Proquinorte",
+          "source": { "path": "docs/bertoni-experience.md", "section": "1.6 Azure infrastructure as code and edge security" }
+        },
+        {
+          "id": "proquinorte-dns-migration",
+          "text": "Led the DNS migration to Azure DNS and the apex/www cutover to Azure Front Door, with an apex redirect and certificate-expiry monitoring.",
+          "tags": ["azure", "dns", "front-door", "leadership", "observability"],
+          "evidence": "verified",
+          "project": "Proquinorte",
+          "source": { "path": "docs/bertoni-experience.md", "section": "1.6 Azure infrastructure as code and edge security" }
+        },
+        {
+          "id": "proquinorte-waf-runbook",
+          "text": "Wrote WAF traffic-surge alerts, an operational runbook and a production deployment plan with rollback.",
+          "tags": ["azure", "waf", "observability", "documentation", "devops"],
+          "evidence": "verified",
+          "project": "Proquinorte",
+          "source": { "path": "docs/bertoni-experience.md", "section": "1.6 Azure infrastructure as code and edge security" }
+        },
+        {
+          "id": "proquinorte-azure-pipelines",
+          "text": "Built Azure DevOps pipelines: Bicep validate and what-if on pull requests, CD with QA/PROD environments and approval gates, pull-request validation for the store, and pipelines for the search service and the Functions.",
+          "tags": ["azure-devops", "ci-cd", "bicep", "iac", "devops"],
+          "evidence": "verified",
+          "project": "Proquinorte",
+          "source": { "path": "docs/bertoni-experience.md", "section": "1.7 CI/CD and test automation" }
+        },
+        {
+          "id": "proquinorte-playwright-e2e",
+          "text": "Built a Playwright E2E suite that runs after each deployment and on a weekly schedule, and ported it to nopCommerce 4.90.",
+          "tags": ["playwright", "e2e", "testing", "ci-cd"],
+          "evidence": "verified",
+          "project": "Proquinorte",
+          "source": { "path": "docs/bertoni-experience.md", "section": "1.7 CI/CD and test automation" }
+        },
+        {
+          "id": "proquinorte-nopcommerce-upgrade",
+          "text": "Led the upgrade of a heavily customized nopCommerce store to 4.90.6 on .NET 9: transferred 587 conflict-free files, reintegrated 92 heavily rewritten customized files and migrated custom permissions and the admin menu.",
+          "tags": ["nopcommerce", "dotnet", "migration", "leadership"],
+          "evidence": "verified",
+          "project": "Proquinorte",
+          "source": { "path": "docs/bertoni-experience.md", "section": "1.8 Platform upgrade: nopCommerce 4.90.6 on .NET 9" }
+        },
+        {
+          "id": "proquinorte-key-vault-secrets",
+          "text": "Moved application secrets to Azure Key Vault.",
+          "tags": ["azure", "key-vault", "security", "secret-management"],
+          "evidence": "verified",
+          "project": "Proquinorte",
+          "source": { "path": "docs/bertoni-experience.md", "section": "1.8 Platform upgrade: nopCommerce 4.90.6 on .NET 9" }
+        },
+        {
+          "id": "proquinorte-bc-extension",
+          "text": "Maintained the Business Central extension in AL through 134 releases, building API pages and queries for prices per SKU and customer, search, categories and checkout.",
+          "tags": ["business-central", "al", "erp", "api", "integrations"],
+          "evidence": "verified",
+          "project": "Proquinorte",
+          "source": { "path": "docs/bertoni-experience.md", "section": "1.9 Business Central extension (AL)" }
+        },
+        {
+          "id": "proquinorte-bc-codeunits",
+          "text": "Centralized promotion, gift, pricing and recurring-order logic in Business Central codeunits, and added contact/customer handling with web-account enablement, product attributes and traceability.",
+          "tags": ["business-central", "al", "erp"],
+          "evidence": "verified",
+          "project": "Proquinorte",
+          "source": { "path": "docs/bertoni-experience.md", "section": "1.9 Business Central extension (AL)" }
+        },
+        {
+          "id": "proquinorte-bc-query-utilities",
+          "text": "Built generic paginated query utilities in AL with recursive web-group matching.",
+          "tags": ["business-central", "al", "erp", "api"],
+          "evidence": "partial",
+          "project": "Proquinorte",
+          "source": { "path": "docs/bertoni-experience.md", "section": "1.9 Business Central extension (AL)" }
+        },
+        {
+          "id": "globalcertifica-oauth-onboarding",
+          "text": "Implemented Microsoft and Google OAuth login and password recovery and update flows for a multi-tenant digital credentials SaaS platform, and built part of its initial Angular frontend.",
+          "tags": ["oauth", "authentication", "angular", "dotnet", "abp", "saas", "multi-tenant"],
+          "evidence": "verified",
+          "project": "GlobalCertifica",
+          "source": { "path": "docs/bertoni-experience.md", "section": "2.1 Authentication and onboarding" }
+        },
+        {
+          "id": "globalcertifica-credential-lifecycle",
+          "text": "Built the credential lifecycle: templates, learning paths, preview and print, sharing with a public view, a revoked-credentials report and an image-to-PDF service, with e-mail delivery moved to background jobs.",
+          "tags": ["dotnet", "abp", "angular", "saas", "background-jobs", "fullstack"],
+          "evidence": "verified",
+          "project": "GlobalCertifica",
+          "source": { "path": "docs/bertoni-experience.md", "section": "2.2 Credential lifecycle" }
+        },
+        {
+          "id": "globalcertifica-multitenant-billing",
+          "text": "Built multi-tenant organization management (admins, sub-organizations, super-user flows), role management and the subscription and plan model with consumed-credit tracking, benefit gifting and plan reports with discounts.",
+          "tags": ["multi-tenant", "saas", "dotnet", "abp", "ddd", "billing"],
+          "evidence": "verified",
+          "project": "GlobalCertifica",
+          "source": { "path": "docs/bertoni-experience.md", "section": "2.3 Multi-tenant organizations, subscriptions, and billing" }
+        },
+        {
+          "id": "globalcertifica-gdpr",
+          "text": "Designed and implemented GDPR compliance features: configurable data retention policies, processing restriction, data masking and anonymization, a scheduled data deletion job and self-service account deletion.",
+          "tags": ["gdpr", "compliance", "security", "privacy", "dotnet", "abp"],
+          "evidence": "verified",
+          "project": "GlobalCertifica",
+          "source": { "path": "docs/bertoni-experience.md", "section": "2.4 GDPR compliance: data retention and account deletion" }
+        },
+        {
+          "id": "globalcertifica-audit-logging",
+          "text": "Added audit logging for account deletion and profile changes.",
+          "tags": ["gdpr", "security", "audit-logging", "dotnet"],
+          "evidence": "verified",
+          "project": "GlobalCertifica",
+          "source": { "path": "docs/bertoni-experience.md", "section": "2.4 GDPR compliance: data retention and account deletion" }
+        },
+        {
+          "id": "globalcertifica-reporting-ux",
+          "text": "Built report generation with loading states, an organization autocomplete, a reusable multi-select component, organization filtering and a URL navigation-state service in Angular.",
+          "tags": ["angular", "typescript", "frontend", "reporting"],
+          "evidence": "verified",
+          "project": "GlobalCertifica",
+          "source": { "path": "docs/bertoni-experience.md", "section": "2.5 Reporting and UX" }
+        },
+        {
+          "id": "globalcertifica-pdf-signing-poc",
+          "text": "Built a proof-of-concept Azure Function (.NET 8) that signs PDF documents with iText and BouncyCastle, protected by an API key.",
+          "tags": ["azure", "azure-functions", "dotnet", "serverless", "pdf", "poc"],
+          "evidence": "verified",
+          "project": "GlobalCertifica",
+          "source": { "path": "docs/bertoni-experience.md", "section": "2.6 Proof of concept: electronic PDF signing" }
+        },
+        {
+          "id": "ai-standards-sdlc-plugin",
+          "text": "Designed and built Bertoni's corporate standard for AI-assisted software delivery: a Claude Code plugin with 13 skills, 9 subagents (requirement, design, technical plan, work items, implementation, code review, PR, QA, release) and governance hooks, shipped from v1.0 to v1.8 across 18 releases and 131 commits.",
+          "text_es": "Diseñé y desarrollé el estándar corporativo de Bertoni para entrega de software con agentes de IA: plugin de Claude Code con 13 skills, 9 subagentes (requerimiento → diseño → plan técnico → work items → implementación → code review → PR → QA → release) y hooks de gobierno; v1.0 → v1.8 en 18 releases y 131 commits.",
+          "tags": ["ai", "claude-code", "ai-agents", "ai-assisted-development", "developer-tooling", "sdlc", "leadership"],
+          "evidence": "verified",
+          "project": "bertoni-ai-standards",
+          "source": { "path": "docs/cv-bertoni-proyectos.md", "section": "2.1 bertoni-ai-standards — Estándar corporativo de SDLC asistido por IA" }
+        },
+        {
+          "id": "ai-standards-autonomous-pr",
+          "text": "Defined and documented in an ADR autonomous delivery up to an open pull request with mandatory human review: a cloud pilot completed in ~29 min with 2 rounds of automated review, versus 3 h 45 min and USD 52 on the first attempt.",
+          "text_es": "Definí y documenté (ADR) la entrega autónoma hasta PR abierto con revisión humana obligatoria: piloto en la nube completado en ~29 min con 2 rondas de review automático, frente a 3 h 45 min y USD 52 del primer intento.",
+          "tags": ["ai", "claude-code", "ai-agents", "ai-assisted-development", "adr", "cost-optimization"],
+          "evidence": "verified",
+          "project": "bertoni-ai-standards",
+          "source": { "path": "docs/cv-bertoni-proyectos.md", "section": "2.1 bertoni-ai-standards — Estándar corporativo de SDLC asistido por IA" }
+        },
+        {
+          "id": "ai-standards-guardrails",
+          "text": "Implemented security and cost guardrails: no agent approves, merges or deploys; deny rules on protected branches and production resource groups; gitleaks secret scanning; a USD 8 per-PR review cap; and per-role model selection (Haiku/Sonnet) to optimize cost.",
+          "text_es": "Implementé guardrails de seguridad y costo: ningún agente aprueba, mergea ni despliega; reglas deny sobre ramas protegidas y resource groups productivos; escaneo de secretos (gitleaks); tope de USD 8 por PR en review; selección de modelo por rol (Haiku/Sonnet) para optimizar costo.",
+          "tags": ["ai", "claude-code", "security", "governance", "gitleaks", "cost-optimization"],
+          "evidence": "verified",
+          "project": "bertoni-ai-standards",
+          "source": { "path": "docs/cv-bertoni-proyectos.md", "section": "2.1 bertoni-ai-standards — Estándar corporativo de SDLC asistido por IA" }
+        },
+        {
+          "id": "ai-standards-azure-devops-sync",
+          "text": "Integrated Azure DevOps (Boards and Repos via the az CLI) as the source of truth, with bidirectional sync to GitHub for Claude cloud sessions and no secrets or pull requests on GitHub.",
+          "text_es": "Integré Azure DevOps (Boards y Repos vía az CLI) como fuente de verdad con sincronización bidireccional a GitHub para sesiones cloud de Claude, sin secretos ni PRs en GitHub.",
+          "tags": ["azure-devops", "github", "claude-code", "integrations", "ai-assisted-development"],
+          "evidence": "verified",
+          "project": "bertoni-ai-standards",
+          "source": { "path": "docs/cv-bertoni-proyectos.md", "section": "2.1 bertoni-ai-standards — Estándar corporativo de SDLC asistido por IA" }
+        },
+        {
+          "id": "ai-standards-test-suites",
+          "text": "Covered the plugin with 12 test suites (~4,700 lines, ~900 assertions) running as build validation in Azure Pipelines, with az and gh stubbed so they run without network access.",
+          "text_es": "Cubrí el propio plugin con 12 suites de tests (~4,700 líneas, ~900 aserciones) ejecutadas como build validation en Azure Pipelines, con az/gh simulados para correr sin red.",
+          "tags": ["testing", "bash", "azure-devops", "ci-cd", "claude-code"],
+          "evidence": "verified",
+          "project": "bertoni-ai-standards",
+          "source": { "path": "docs/cv-bertoni-proyectos.md", "section": "2.1 bertoni-ai-standards — Estándar corporativo de SDLC asistido por IA" }
+        },
+        {
+          "id": "ai-standards-bootstrap-command",
+          "text": "Built a project bootstrap command that scaffolds the standards into any repository and merges settings without overwriting local customizations, with a refresh mode for upgrades.",
+          "tags": ["claude-code", "developer-tooling", "bash", "awk", "ai-assisted-development"],
+          "evidence": "verified",
+          "project": "bertoni-ai-standards",
+          "source": { "path": "docs/bertoni-experience.md", "section": "3. bertoni-ai-standards" }
+        },
+        {
+          "id": "ai-standards-templates",
+          "text": "Wrote corporate templates (PR, QA handoff, technical plan, user story, work items, ADR, testing strategy, security policy, lint/format configs) and a pull-request validation pipeline template that comments on the PR with what failed and how to fix it.",
+          "tags": ["documentation", "azure-devops", "ci-cd", "developer-tooling", "standards"],
+          "evidence": "verified",
+          "project": "bertoni-ai-standards",
+          "source": { "path": "docs/bertoni-experience.md", "section": "3. bertoni-ai-standards" }
+        },
+        {
+          "id": "nexo-b2b-platform",
+          "text": "Built end to end a B2B operations platform pilot for an industrial distributor (orders, inventory, customer portal, gate and weighbridge control, supplier invoices, dashboard) on .NET 10 and Angular 22, delivering 18 requirements and 36 ADRs in 25 days (876 commits).",
+          "text_es": "Desarrollé de punta a punta una plataforma B2B de operaciones (pedidos, inventario, portal de clientes, control de garita y balanza, facturas de proveedores, dashboard) en .NET 10 + Angular 22, entregando 18 requerimientos y 36 ADRs en 25 días (876 commits).",
+          "tags": ["dotnet", "angular", "typescript", "fullstack", "b2b", "pilot"],
+          "evidence": "verified",
+          "project": "Nexo Industrial",
+          "source": { "path": "docs/cv-bertoni-proyectos.md", "section": "2.2 Nexo Industrial — Plataforma B2B de operaciones con asistente IA" }
+        },
+        {
+          "id": "nexo-modular-monolith",
+          "text": "Designed a 12-module modular monolith (Domain / Application / Contracts / Infrastructure / Endpoints) with one SQL schema per module, in-memory integration events and architecture rules verified with ArchUnitNET.",
+          "text_es": "Diseñé un monolito modular de 12 módulos (Domain / Application / Contracts / Infrastructure / Endpoints), con un esquema SQL por módulo, eventos de integración en memoria y reglas de arquitectura verificadas con ArchUnitNET.",
+          "tags": ["architecture", "modular-monolith", "clean-architecture", "dotnet", "sql-server", "archunitnet"],
+          "evidence": "verified",
+          "project": "Nexo Industrial",
+          "source": { "path": "docs/cv-bertoni-proyectos.md", "section": "2.2 Nexo Industrial — Plataforma B2B de operaciones con asistente IA" }
+        },
+        {
+          "id": "nexo-ai-assistant",
+          "text": "Implemented an AI assistant on Microsoft.Extensions.AI and Azure OpenAI (gpt-4.1) with read-only function calling, user-confirmed actions, citation grounding, prompt-injection defense (OWASP LLM01), a timeout and a daily quota, tested against a simulated model client.",
+          "text_es": "Implementé un asistente con IA sobre Microsoft.Extensions.AI y Azure OpenAI (gpt-4.1) con function calling de solo lectura, acción confirmada por el usuario, grounding de citas, defensa contra prompt injection (OWASP LLM01), timeout y cuota diaria.",
+          "tags": ["ai", "llm", "azure-openai", "function-calling", "security", "dotnet"],
+          "evidence": "verified",
+          "project": "Nexo Industrial",
+          "source": { "path": "docs/cv-bertoni-proyectos.md", "section": "2.2 Nexo Industrial — Plataforma B2B de operaciones con asistente IA" }
+        },
+        {
+          "id": "nexo-invoice-reading",
+          "text": "Automated supplier invoice reading with Azure Content Understanding and reconciliation against purchase orders.",
+          "text_es": "Automaticé la lectura de facturas con Azure Content Understanding y conciliación contra órdenes de compra.",
+          "tags": ["ai", "content-understanding", "document-ai", "azure"],
+          "evidence": "verified",
+          "project": "Nexo Industrial",
+          "source": { "path": "docs/cv-bertoni-proyectos.md", "section": "2.2 Nexo Industrial — Plataforma B2B de operaciones con asistente IA" }
+        },
+        {
+          "id": "nexo-strict-tdd",
+          "text": "Applied strict TDD with 1,747 xUnit tests, 1,025 Vitest tests and 238 Playwright E2E tests, using Testcontainers (SQL Server, Azurite).",
+          "text_es": "Apliqué TDD estricto: 1,747 tests xUnit, 1,025 tests Vitest y 238 E2E con Playwright, usando Testcontainers (SQL Server, Azurite).",
+          "tags": ["tdd", "testing", "xunit", "vitest", "playwright", "testcontainers"],
+          "evidence": "verified",
+          "project": "Nexo Industrial",
+          "source": { "path": "docs/cv-bertoni-proyectos.md", "section": "2.2 Nexo Industrial — Plataforma B2B de operaciones con asistente IA" }
+        },
+        {
+          "id": "nexo-azure-container-apps",
+          "text": "Deployed to Azure Container Apps with Bicep (Azure SQL, Storage, Microsoft Foundry, managed identity, Entra ID, budget alerts) and Azure DevOps pipelines with selective PR validation, gitleaks and dependency scanning.",
+          "text_es": "Desplegué en Azure Container Apps con Bicep (Azure SQL, Storage, Microsoft Foundry, managed identity, Entra ID, alertas de presupuesto) y pipelines de Azure DevOps con validación selectiva de PR, gitleaks y escaneo de dependencias.",
+          "tags": ["azure", "container-apps", "bicep", "iac", "azure-devops", "ci-cd", "managed-identity"],
+          "evidence": "verified",
+          "project": "Nexo Industrial",
+          "source": { "path": "docs/cv-bertoni-proyectos.md", "section": "2.2 Nexo Industrial — Plataforma B2B de operaciones con asistente IA" }
+        },
+        {
+          "id": "nexo-ai-sdlc-speedup",
+          "text": "Used the AI-agent SDLC (8 agents with human gates): actual time was 0.09x–0.14x of the documented estimate on the first requirements.",
+          "text_es": "Usé el SDLC con agentes de IA (8 agentes con gates humanos): el tiempo real fue 0.09x–0.14x del estimado en los primeros requerimientos, según la estimación documentada en el repo.",
+          "tags": ["ai-assisted-development", "ai-agents", "claude-code", "productivity"],
+          "evidence": "verified",
+          "project": "Nexo Industrial",
+          "source": { "path": "docs/cv-bertoni-proyectos.md", "section": "2.2 Nexo Industrial — Plataforma B2B de operaciones con asistente IA" }
+        },
+        {
+          "id": "boyles-invoice-reader",
+          "text": "Built and deployed in 6 days an AI invoice reader for a mining company's accounting team that registers 200–300 import invoices a month by hand: it extracts 18 fields and the line items from digital or scanned PDFs in Spanish or English.",
+          "text_es": "Construí y desplegué en 6 días un lector de facturas de importación con IA para un equipo contable que registra a mano 200–300 facturas al mes: extrae 18 campos (Incoterm, FOB/flete/seguro/CIF, pesos, carta de crédito, etc.) y las líneas de detalle de PDFs digitales o escaneados, en español o inglés.",
+          "tags": ["ai", "document-ai", "content-understanding", "dotnet", "blazor", "poc"],
+          "evidence": "verified",
+          "project": "Boyles Invoice Demo",
+          "source": { "path": "docs/cv-bertoni-proyectos.md", "section": "2.3 Boyles Invoice Demo — Lector de facturas de importación con IA" }
+        },
+        {
+          "id": "boyles-content-understanding",
+          "text": "Integrated Azure Content Understanding (GPT-4.1) with custom analyzers, per-field confidence, source highlighting on the PDF and deterministic validations (FOB + freight + insurance = CIF, net weight ≤ gross weight, Incoterms 2020).",
+          "text_es": "Integré Azure Content Understanding (GPT-4.1) con analyzers propios, confianza por campo, resaltado de la fuente en el PDF y validaciones deterministas (FOB + flete + seguro = CIF, peso neto ≤ bruto, Incoterms 2020).",
+          "tags": ["ai", "llm", "content-understanding", "document-ai", "azure", "validation"],
+          "evidence": "verified",
+          "project": "Boyles Invoice Demo",
+          "source": { "path": "docs/cv-bertoni-proyectos.md", "section": "2.3 Boyles Invoice Demo — Lector de facturas de importación con IA" }
+        },
+        {
+          "id": "boyles-model-evaluation",
+          "text": "Led a model evaluation (gpt-4.1, gpt-4.1-mini, gpt-5.4-mini, direct LLM extraction) against a manually reviewed ground truth and identified an alternative with the same accuracy (91.4%, 100% on critical fields) at ~3.6x lower cost per invoice.",
+          "text_es": "Lideré una evaluación de modelos (gpt-4.1, gpt-4.1-mini, gpt-5.4-mini, extracción directa con LLM) contra un ground truth revisado manualmente: identifiqué una alternativa con la misma precisión (91.4%, 100% en campos críticos) y ~3.6x menor costo por factura, motivada por la deprecación de gpt-4.1.",
+          "tags": ["ai", "llm", "model-evaluation", "cost-optimization", "leadership"],
+          "evidence": "verified",
+          "project": "Boyles Invoice Demo",
+          "source": { "path": "docs/cv-bertoni-proyectos.md", "section": "2.3 Boyles Invoice Demo — Lector de facturas de importación con IA" }
+        },
+        {
+          "id": "boyles-clean-architecture-tests",
+          "text": "Applied clean architecture (ports and adapters, tested layer rules) with 591 tests (xUnit, bUnit) plus Playwright smoke tests on the published build.",
+          "text_es": "Apliqué arquitectura limpia (puertos y adaptadores, reglas de capas testeadas) y 591 tests (xUnit, bUnit), más smoke tests con Playwright sobre el build publicado.",
+          "tags": ["clean-architecture", "hexagonal-architecture", "testing", "xunit", "bunit", "playwright", "dotnet"],
+          "evidence": "verified",
+          "project": "Boyles Invoice Demo",
+          "source": { "path": "docs/cv-bertoni-proyectos.md", "section": "2.3 Boyles Invoice Demo — Lector de facturas de importación con IA" }
+        },
+        {
+          "id": "boyles-security-hardening",
+          "text": "Hardened security after an audit: CSP with nonce, rate limiting, per-session and per-day extraction budgets, __Host- cookies and keyless managed identity.",
+          "text_es": "Endurecí la seguridad tras una auditoría: CSP con nonce, rate limiting, presupuesto de extracciones por sesión y por día, cookies __Host- y managed identity sin llaves.",
+          "tags": ["security", "csp", "rate-limiting", "managed-identity", "azure"],
+          "evidence": "verified",
+          "project": "Boyles Invoice Demo",
+          "source": { "path": "docs/cv-bertoni-proyectos.md", "section": "2.3 Boyles Invoice Demo — Lector de facturas de importación con IA" }
+        },
+        {
+          "id": "boyles-client-documentation",
+          "text": "Delivered functional and architecture documentation, diagrams, a Content Understanding guide and Azure Monitor consumption and cost scripts to the client.",
+          "text_es": "Entregué al cliente la documentación funcional y de arquitectura, los diagramas, la guía de Content Understanding y los scripts de consumo y costo con Azure Monitor.",
+          "tags": ["documentation", "azure-monitor", "client-delivery"],
+          "evidence": "verified",
+          "project": "Boyles Invoice Demo",
+          "source": { "path": "docs/cv-bertoni-proyectos.md", "section": "2.3 Boyles Invoice Demo — Lector de facturas de importación con IA" }
+        },
+        {
+          "id": "cerv-vehicle-inspection",
+          "text": "Built a demo of automatic pickup-truck inspection at mining gates: it detects 8 mandatory safety items, reads the plate and unit code with OCR and shows a green/amber/red signal with a simulated barrier.",
+          "text_es": "Desarrollé una demo de inspección automática de camionetas en garitas mineras: detecta 8 elementos de seguridad obligatorios (circulina, extintor, tacos, pértiga, etc.), lee placa y código de unidad con OCR y emite un semáforo verde/ámbar/rojo con barrera simulada.",
+          "tags": ["ai", "computer-vision", "ocr", "demo"],
+          "evidence": "verified",
+          "project": "Checkpoint Vision (CERV)",
+          "source": { "path": "docs/cv-bertoni-proyectos.md", "section": "2.4 Checkpoint Vision (CERV) — Inspección vehicular con visión computacional" }
+        },
+        {
+          "id": "cerv-inference-service",
+          "text": "Implemented the inference service in Python/FastAPI with zero-shot OWLv2 detection (no dataset or GPU) and RapidOCR (ONNX) behind a swappable interface, ready to migrate to a trained model (RF-DETR on Azure ML).",
+          "text_es": "Implementé el servicio de inferencia en Python/FastAPI con detección zero-shot OWLv2 (sin dataset ni GPU) y RapidOCR (ONNX) detrás de una interfaz intercambiable, preparado para migrar a un modelo entrenado (RF-DETR en Azure ML).",
+          "tags": ["python", "fastapi", "computer-vision", "owlv2", "ocr", "onnx", "ai"],
+          "evidence": "verified",
+          "project": "Checkpoint Vision (CERV)",
+          "source": { "path": "docs/cv-bertoni-proyectos.md", "section": "2.4 Checkpoint Vision (CERV) — Inspección vehicular con visión computacional" }
+        },
+        {
+          "id": "cerv-blazor-app",
+          "text": "Built the Blazor .NET 10 web app: versioned rules, audit of manual entries, supervisor review feeding a retraining queue (human-in-the-loop), a dashboard with Excel export and a video mode with motion detection that triggers inspections automatically.",
+          "text_es": "Construí la app web en Blazor .NET 10: reglas versionadas, auditoría de ingresos manuales, revisión del supervisor que alimenta una cola de reentrenamiento (human-in-the-loop), dashboard con exportación a Excel y modo video con detección de movimiento que dispara la inspección automáticamente.",
+          "tags": ["dotnet", "blazor", "human-in-the-loop", "computer-vision", "fullstack"],
+          "evidence": "verified",
+          "project": "Checkpoint Vision (CERV)",
+          "source": { "path": "docs/cv-bertoni-proyectos.md", "section": "2.4 Checkpoint Vision (CERV) — Inspección vehicular con visión computacional" }
+        },
+        {
+          "id": "cerv-offline-first-sync",
+          "text": "Designed offline-first synchronization (outbox pattern, idempotent Azure Blob paths, retries with backoff) to operate without connectivity.",
+          "text_es": "Diseñé la sincronización offline-first (patrón outbox, rutas idempotentes en Azure Blob, reintentos con backoff) para operar sin conectividad.",
+          "tags": ["offline-first", "outbox-pattern", "resilience", "azure", "blob-storage", "architecture"],
+          "evidence": "verified",
+          "project": "Checkpoint Vision (CERV)",
+          "source": { "path": "docs/cv-bertoni-proyectos.md", "section": "2.4 Checkpoint Vision (CERV) — Inspección vehicular con visión computacional" }
+        },
+        {
+          "id": "cerv-cpu-inference-tuning",
+          "text": "Tuned inference to 7–11 s per inspection on CPU (target < 20 s), with all 7 synthetic test scenes producing the expected result.",
+          "text_es": "Ajusté la inferencia hasta lograr 7–11 s por inspección en CPU (objetivo < 20 s) y que las 7 escenas de prueba dieran el resultado esperado.",
+          "tags": ["performance", "computer-vision", "python", "ai"],
+          "evidence": "verified",
+          "project": "Checkpoint Vision (CERV)",
+          "source": { "path": "docs/cv-bertoni-proyectos.md", "section": "2.4 Checkpoint Vision (CERV) — Inspección vehicular con visión computacional" }
+        },
+        {
+          "id": "cerv-parallel-ai-agents",
+          "text": "Orchestrated development with 3 AI agents working in parallel on git worktrees (inference, web, tooling) joined by a shared contract: 75 commits and ~250 tests (xUnit + pytest) in 2 working days.",
+          "text_es": "Orquesté el desarrollo con 3 agentes de IA en paralelo sobre git worktrees (inferencia, web, tooling) unidos por un contrato compartido: 75 commits y ~250 tests (xUnit + pytest) en 2 días de trabajo.",
+          "tags": ["ai-agents", "ai-assisted-development", "claude-code", "git-worktrees", "testing", "pytest", "xunit"],
+          "evidence": "verified",
+          "project": "Checkpoint Vision (CERV)",
+          "source": { "path": "docs/cv-bertoni-proyectos.md", "section": "2.4 Checkpoint Vision (CERV) — Inspección vehicular con visión computacional" }
+        },
+        {
+          "id": "cerv-bicep-container-apps",
+          "text": "Defined the infrastructure in Bicep (Azure Container Apps with scale-to-zero, ACR, managed identity) and the Azure DevOps pipeline, at an estimated cost of USD 0–5 per month.",
+          "text_es": "Definí la infraestructura en Bicep (Azure Container Apps con scale-to-zero, ACR, managed identity) y el pipeline de Azure DevOps, con un costo estimado de USD 0–5 al mes.",
+          "tags": ["azure", "bicep", "iac", "container-apps", "azure-devops", "cost-optimization"],
+          "evidence": "verified",
+          "project": "Checkpoint Vision (CERV)",
+          "source": { "path": "docs/cv-bertoni-proyectos.md", "section": "2.4 Checkpoint Vision (CERV) — Inspección vehicular con visión computacional" }
+        }
+      ]
+    },
+    {
+      "id": "freelance-ecommerce",
+      "company": "Freelance Development",
+      "position": "Full Stack Developer",
+      "start_date": "2026-10",
+      "end_date": "present",
+      "summary": "E-commerce project for a technology accessories retailer · Development and testing stage",
+      "client_confidential": "Ask the client before naming the store (Pulso Tech) or linking the repository; otherwise use \"Peruvian technology accessories retailer\". Present as freelance for a client, in development and testing (pre-launch), never as in production.",
+      "highlights": [
+        {
+          "id": "pulso-headless-ecommerce",
+          "text": "Built a headless e-commerce for a client that was deployed to their test environment within 2 weeks, replacing the store's PDF catalog with an online store with cart, WhatsApp checkout, autocomplete search and a consumer complaints book.",
+          "text_es": "Desarrollé para un cliente un e-commerce headless que en 2 semanas ya estaba desplegado en su entorno de pruebas. Reemplaza el catálogo en PDF de la tienda por una tienda online con carrito, checkout por WhatsApp, búsqueda con autocompletado y Libro de Reclamaciones.",
+          "tags": ["ecommerce", "headless-commerce", "fullstack", "freelance"],
+          "evidence": "verified",
+          "project": "Pulso Tech",
+          "source": { "path": "docs/cv-proyectos-personales.md", "section": "2.2 Pulso Tech — E-commerce headless para tienda de accesorios" }
+        },
+        {
+          "id": "pulso-vendure-backend",
+          "text": "Implemented the backend on Vendure 3.8 (NestJS) and PostgreSQL 16 with 5 custom plugins (checkout, complaints, offers, store configuration, API guard) and 12 expand/contract migrations so deploys can be rolled back.",
+          "text_es": "Implementé el backend en Vendure 3.8 (NestJS) y PostgreSQL 16, con 5 plugins propios (checkout, reclamos, ofertas, configuración de tienda, API guard) y 12 migraciones con expand/contract para poder revertir los deploys.",
+          "tags": ["vendure", "nestjs", "nodejs", "typescript", "postgresql", "graphql", "backend"],
+          "evidence": "verified",
+          "project": "Pulso Tech",
+          "source": { "path": "docs/cv-proyectos-personales.md", "section": "2.2 Pulso Tech — E-commerce headless para tienda de accesorios" }
+        },
+        {
+          "id": "pulso-astro-storefront",
+          "text": "Built the storefront in Astro 7 (hybrid) with Preact islands, Tailwind 4 and typed GraphQL (gql.tada); catalog pages are prerendered and a custom service rebuilds them on catalog edits and daily via cron, with debounce, one build at a time and an atomic release swap.",
+          "text_es": "Desarrollé el storefront en Astro 7 (híbrido), con islas Preact, Tailwind 4 y GraphQL tipado (gql.tada). Las páginas de catálogo se prerenderizan y un servicio propio las reconstruye cuando el admin edita el catálogo y cada día por cron, con debounce, un solo build a la vez y swap atómico de la release.",
+          "tags": ["astro", "preact", "tailwind", "graphql", "typescript", "frontend"],
+          "evidence": "verified",
+          "project": "Pulso Tech",
+          "source": { "path": "docs/cv-proyectos-personales.md", "section": "2.2 Pulso Tech — E-commerce headless para tienda de accesorios" }
+        },
+        {
+          "id": "pulso-infra-cicd",
+          "text": "Set up the infrastructure and CI/CD: Docker Compose with memory limits, GHCR images scanned with Trivy, GitHub Actions with SHA-pinned actions and Tailscale OIDC deploys to an SSH forced command with no open inbound ports, a database dump before each deploy, smoke tests, automatic rollback and nightly encrypted restic backups to Cloudflare R2.",
+          "text_es": "Monté la infraestructura y el CI/CD: Docker Compose con límites de memoria e imágenes en GHCR escaneadas con Trivy; GitHub Actions con acciones fijadas por SHA y deploy por Tailscale OIDC a un SSH forced command, sin puertos de entrada abiertos; dump de base de datos antes de cada deploy, smoke test y rollback automático; backups nocturnos cifrados (restic) en Cloudflare R2.",
+          "tags": ["docker", "github-actions", "ci-cd", "devops", "trivy", "tailscale", "cloudflare", "security"],
+          "evidence": "verified",
+          "project": "Pulso Tech",
+          "source": { "path": "docs/cv-proyectos-personales.md", "section": "2.2 Pulso Tech — E-commerce headless para tienda de accesorios" }
+        },
+        {
+          "id": "pulso-production-security",
+          "text": "Applied production-grade security: CSP with SHA-256 script hashes, fail-closed Cloudflare Turnstile, a GraphQL operation allowlist without introspection and a 16 KB request limit, hashed confirmation tokens compared in constant time and an npm audit gate with expiring exceptions.",
+          "text_es": "Apliqué seguridad de nivel producción: CSP con hashes SHA-256 de los scripts; Cloudflare Turnstile que falla cerrado; allow-list de operaciones GraphQL, sin introspección y con un límite de 16 KB por request; tokens de confirmación hasheados y comparados en tiempo constante; gate de npm audit con excepciones que vencen.",
+          "tags": ["security", "csp", "graphql", "cloudflare", "dependency-scanning"],
+          "evidence": "verified",
+          "project": "Pulso Tech",
+          "source": { "path": "docs/cv-proyectos-personales.md", "section": "2.2 Pulso Tech — E-commerce headless para tienda de accesorios" }
+        },
+        {
+          "id": "pulso-quality-gates",
+          "text": "Ensured quality with an estimated ~1,200 automated tests: Vitest, Playwright with axe-core accessibility checks, Lighthouse CI performance budgets (LCP < 2.5 s, CLS < 0.1) and a GraphQL schema contract test in CI.",
+          "text_es": "Aseguré la calidad con ~1,200 tests (estimado): Vitest, Playwright con accesibilidad (axe-core), Lighthouse CI con presupuesto (LCP < 2.5 s, CLS < 0.1) y una prueba de contrato del esquema GraphQL en CI.",
+          "tags": ["testing", "vitest", "playwright", "accessibility", "lighthouse", "performance", "contract-testing"],
+          "evidence": "partial",
+          "project": "Pulso Tech",
+          "source": { "path": "docs/cv-proyectos-personales.md", "section": "2.2 Pulso Tech — E-commerce headless para tienda de accesorios" }
+        },
+        {
+          "id": "pulso-seo-consent",
+          "text": "Took care of SEO (JSON-LD, sitemap, noindex on session pages) and consent before loading analytics (GA4 and Meta).",
+          "text_es": "Cuidé el SEO (JSON-LD, sitemap, noindex en las páginas de sesión) y el consentimiento antes de cargar analítica (GA4 y Meta).",
+          "tags": ["seo", "privacy", "analytics", "frontend"],
+          "evidence": "verified",
+          "project": "Pulso Tech",
+          "source": { "path": "docs/cv-proyectos-personales.md", "section": "2.2 Pulso Tech — E-commerce headless para tienda de accesorios" }
+        },
+        {
+          "id": "pulso-pdf-parser",
+          "text": "Wrote a custom PDF parser (ASCII85, Flate and DCT streams) that extracted the 38 catalog photos and matched them to their SKUs.",
+          "text_es": "Escribí un parser propio de PDF (streams ASCII85, Flate y DCT) que extrajo las 38 fotos del catálogo y las asoció a su SKU.",
+          "tags": ["pdf", "typescript", "data-migration"],
+          "evidence": "verified",
+          "project": "Pulso Tech",
+          "source": { "path": "docs/cv-proyectos-personales.md", "section": "2.2 Pulso Tech — E-commerce headless para tienda de accesorios" }
+        },
+        {
+          "id": "pulso-ai-agents",
+          "text": "Developed with AI agents (Claude Code, Codex and Hermes) guided by a shared AGENTS.md, custom skills, per-delivery specs and an independent verifier agent for each work wave: 356 commits and 6 ADRs.",
+          "text_es": "Desarrollé con agentes de IA (Claude Code, Codex y Hermes) guiados por un AGENTS.md compartido, skills propias, specs por entrega y un agente verificador independiente por cada ola de trabajo: 356 commits y 6 ADRs.",
+          "tags": ["ai-assisted-development", "ai-agents", "claude-code", "codex", "spec-driven-development"],
+          "evidence": "verified",
+          "project": "Pulso Tech",
+          "source": { "path": "docs/cv-proyectos-personales.md", "section": "2.2 Pulso Tech — E-commerce headless para tienda de accesorios" }
+        }
+      ]
+    },
+    {
+      "id": "cloud-store",
+      "company": "Cloud Store",
+      "position": "Freelance Web Developer",
+      "start_date": "2024-08",
+      "end_date": "2024-10",
+      "highlights": [
+        {
+          "id": "cloudstore-invoicing-app",
+          "text": "Maintained and extended an invoicing application built with ASP.NET MVC and VB.NET.",
+          "tags": ["aspnet-mvc", "vb-net", "dotnet", "backend"],
+          "evidence": "verified",
+          "source": { "path": "docs/previous-experience.md", "section": "Cloud Store" }
+        },
+        {
+          "id": "cloudstore-bsale-integration",
+          "text": "Integrated SQL Server with the Bsale API to automate invoice issuance and reduce manual data entry. Validated APIs with Postman within a Scrum workflow.",
+          "tags": ["sql-server", "integrations", "api", "postman", "scrum"],
+          "evidence": "partial",
+          "source": { "path": "docs/previous-experience.md", "section": "Cloud Store" }
+        }
+      ]
+    },
+    {
+      "id": "komatsu-mitsui",
+      "company": "Komatsu Mitsui",
+      "position": "Full Stack Web Developer",
+      "start_date": "2023-05",
+      "end_date": "2023-12",
+      "highlights": [
+        {
+          "id": "komatsu-react-migration",
+          "text": "Contributed to migrating an activity-planning application from ASP.NET MVC to React and a .NET REST API.",
+          "tags": ["react", "dotnet", "rest-api", "aspnet-mvc", "migration", "fullstack"],
+          "evidence": "verified",
+          "source": { "path": "docs/previous-experience.md", "section": "Komatsu Mitsui" }
+        },
+        {
+          "id": "komatsu-power-apps-migration",
+          "text": "Migrated a time-tracking application from Power Apps to a custom .NET and SQL Server solution.",
+          "tags": ["dotnet", "sql-server", "power-apps", "migration"],
+          "evidence": "verified",
+          "source": { "path": "docs/previous-experience.md", "section": "Komatsu Mitsui" }
+        },
+        {
+          "id": "komatsu-sql-optimization",
+          "text": "Optimized SQL Server schemas to improve data integrity and internal reporting performance.",
+          "tags": ["sql-server", "data-modeling", "performance", "reporting"],
+          "evidence": "verified",
+          "source": { "path": "docs/previous-experience.md", "section": "Komatsu Mitsui" }
+        }
+      ]
+    },
+    {
+      "id": "maquinarias-glory",
+      "company": "Importación de Maquinarias Glory",
+      "position": "Web Developer",
+      "start_date": "2022-08",
+      "end_date": "2023-01",
+      "highlights": [
+        {
+          "id": "glory-react-quotations",
+          "text": "Developed React functionality for automated quotation generation and maintained the company website using WordPress.",
+          "tags": ["react", "javascript", "wordpress", "frontend"],
+          "evidence": "verified",
+          "source": { "path": "docs/previous-experience.md", "section": "Importación de Maquinarias Glory" }
+        }
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "id": "personal-finance-app",
+      "name": "Personal Finance Application",
+      "summary": "Personal project · MVP PWA, deployable to Vercel (no confirmed live URL yet).",
+      "url": "https://github.com/OscarEd08/personal-finance-app",
+      "start_date": "2026-07",
+      "end_date": "2026-09",
+      "stack": ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS 4", "shadcn/ui", "Turso/libSQL", "Drizzle ORM", "NextAuth v5", "Google Gemini", "wa-sqlite + OPFS", "Serwist (PWA)", "Vitest", "ESLint boundaries", "Vercel", "OpenSpec", "Claude Code"],
+      "highlights": [
+        {
+          "id": "pfa-natural-language-expenses",
+          "text": "Designed and built a multi-user personal finance PWA where expenses are recorded in natural language or by voice; Gemini turns them into structured transactions using only the user's own categories, currencies and payment methods.",
+          "text_es": "Diseñé y desarrollé una PWA multiusuario de finanzas personales donde los gastos se registran en lenguaje natural o por voz (\"Compré un café por $3\"). Gemini los convierte en transacciones estructuradas, usando solo las categorías, monedas y medios de pago del propio usuario.",
+          "tags": ["ai", "llm", "gemini", "pwa", "nextjs", "react"],
+          "evidence": "verified",
+          "source": { "path": "docs/cv-proyectos-personales.md", "section": "2.1 Personal Finance App — Finanzas personales con IA y local-first" }
+        },
+        {
+          "id": "pfa-local-first",
+          "text": "Built an account-free local-first mode: SQLite in the browser (wa-sqlite over a custom OPFS file layer), client-side migrations, Web Locks, JSON export/import and later linking of local data to a cloud account.",
+          "text_es": "Construí un modo local-first sin cuenta: SQLite en el navegador (wa-sqlite sobre una capa de archivos OPFS propia), migraciones en el cliente, Web Locks, export/import en JSON y vinculación posterior de los datos locales con la cuenta en la nube.",
+          "tags": ["local-first", "sqlite", "browser", "pwa", "typescript"],
+          "evidence": "verified",
+          "source": { "path": "docs/cv-proyectos-personales.md", "section": "2.1 Personal Finance App — Finanzas personales con IA y local-first" }
+        },
+        {
+          "id": "pfa-nextjs-stack",
+          "text": "Implemented the product on Next.js 16 (App Router, Server Actions, Cache Components, partial prerendering) and React 19, with Turso (libSQL) and Drizzle ORM (16 migrations) and NextAuth v5 Google OAuth using revocable database sessions.",
+          "text_es": "Implementé el producto en Next.js 16 (App Router, Server Actions, Cache Components, partial prerendering) y React 19, con Turso (libSQL) y Drizzle ORM (16 migraciones), y autenticación con NextAuth v5 (Google OAuth) usando sesiones revocables en base de datos.",
+          "tags": ["nextjs", "react", "typescript", "turso", "sqlite", "drizzle", "oauth", "authentication"],
+          "evidence": "verified",
+          "source": { "path": "docs/cv-proyectos-personales.md", "section": "2.1 Personal Finance App — Finanzas personales con IA y local-first" }
+        },
+        {
+          "id": "pfa-business-rules",
+          "text": "Modeled real business rules: billing cycles with a configurable cutoff date per card, multiple currencies, fixed expenses with price history, per-category goals and a separate log of third-party expenses shared via WhatsApp.",
+          "text_es": "Modelé reglas de negocio reales: ciclos de facturación con fecha de corte configurable por tarjeta, varias monedas, gastos fijos con historial de precio, metas por categoría y un registro aparte de gastos de terceros que se comparte por WhatsApp.",
+          "tags": ["domain-modeling", "fintech", "typescript"],
+          "evidence": "verified",
+          "source": { "path": "docs/cv-proyectos-personales.md", "section": "2.1 Personal Finance App — Finanzas personales con IA y local-first" }
+        },
+        {
+          "id": "pfa-rate-limiting",
+          "text": "Protected the public AI endpoint with 3-tier rate limiting (device, IP and global), hashed counters shared across serverless instances and a fail-closed configuration.",
+          "text_es": "Protegí el endpoint público de IA con rate limiting en 3 niveles (dispositivo, IP y global), contadores hasheados compartidos entre instancias serverless y una configuración que falla cerrada.",
+          "tags": ["security", "rate-limiting", "serverless", "ai"],
+          "evidence": "verified",
+          "source": { "path": "docs/cv-proyectos-personales.md", "section": "2.1 Personal Finance App — Finanzas personales con IA y local-first" }
+        },
+        {
+          "id": "pfa-semantic-search",
+          "text": "Prepared semantic search by storing embeddings (gemini-embedding-001, 768 dimensions) as vectors in libSQL, choosing models by documenting cost and free-tier limits.",
+          "text_es": "Preparé búsqueda semántica guardando embeddings (gemini-embedding-001, 768 dimensiones) como vectores en libSQL, y elegí los modelos documentando costo y límites del free tier.",
+          "tags": ["ai", "embeddings", "vector-search", "gemini", "cost-optimization"],
+          "evidence": "verified",
+          "source": { "path": "docs/cv-proyectos-personales.md", "section": "2.1 Personal Finance App — Finanzas personales con IA y local-first" }
+        },
+        {
+          "id": "pfa-strict-tdd",
+          "text": "Applied strict TDD with dependency injection instead of mocks: ~2,100 Vitest tests in 149 files running against real in-memory libSQL.",
+          "text_es": "Apliqué TDD estricto con inyección de dependencias en lugar de mocks: ~2,100 tests (Vitest) en 149 archivos, que corren contra libSQL real en memoria.",
+          "tags": ["tdd", "testing", "vitest", "typescript"],
+          "evidence": "verified",
+          "source": { "path": "docs/cv-proyectos-personales.md", "section": "2.1 Personal Finance App — Finanzas personales con IA y local-first" }
+        },
+        {
+          "id": "pfa-architecture-spec-driven",
+          "text": "Enforced a feature-first architecture (ADR-0001) with ESLint boundary rules and developed with spec-driven development (OpenSpec: 20 specs, 25 archived changes) and parallel AI agents on git worktrees: 611 commits and 114 PRs in 3 months.",
+          "text_es": "Hice cumplir una arquitectura feature-first (ADR-0001) con reglas de límites en ESLint, y desarrollé con spec-driven development (OpenSpec: 20 specs, 25 cambios archivados) y agentes de IA en paralelo sobre git worktrees: 611 commits y 114 PRs en 3 meses.",
+          "tags": ["architecture", "spec-driven-development", "ai-assisted-development", "ai-agents", "git-worktrees", "eslint"],
+          "evidence": "verified",
+          "source": { "path": "docs/cv-proyectos-personales.md", "section": "2.1 Personal Finance App — Finanzas personales con IA y local-first" }
+        },
+        {
+          "id": "pfa-on-device-finetuning-research",
+          "text": "Researched fine-tuning a small on-device model to extract transactions in Spanish (synthetic dataset in Python and Colab). Experimental.",
+          "text_es": "Investigué el fine-tuning de un modelo pequeño on-device para extraer transacciones en español (dataset sintético en Python y Colab). Experimental.",
+          "tags": ["ai", "fine-tuning", "python", "research"],
+          "evidence": "verified",
+          "source": { "path": "docs/cv-proyectos-personales.md", "section": "2.1 Personal Finance App — Finanzas personales con IA y local-first" }
+        }
+      ]
+    }
+  ],
+  "education": [
+    {
+      "id": "unmsm",
+      "institution": "Universidad Nacional Mayor de San Marcos",
+      "degree": "Bachelor's Degree",
+      "area": "Software Engineering",
+      "location": "Lima, Peru",
+      "start_date": "2020",
+      "end_date": "2024",
+      "highlights": [
+        {
+          "id": "unmsm-top-10",
+          "text": "Ranked in the top 10 in the Faculty of Systems Engineering and Informatics.",
+          "tags": ["academic"],
+          "evidence": "verified",
+          "source": { "path": "docs/previous-experience.md", "section": "Universidad Nacional Mayor de San Marcos" }
+        },
+        {
+          "id": "unmsm-eneisoft-hackathon",
+          "text": "Second place in the Eneisoft Hackathon for an educational platform.",
+          "tags": ["hackathon", "academic"],
+          "evidence": "verified",
+          "source": { "path": "docs/previous-experience.md", "section": "Universidad Nacional Mayor de San Marcos" }
+        },
+        {
+          "id": "unmsm-pronabec-scholarship",
+          "text": "PRONABEC Higher Education Continuity Scholarship recipient.",
+          "tags": ["scholarship", "academic"],
+          "evidence": "verified",
+          "source": { "path": "docs/previous-experience.md", "section": "Universidad Nacional Mayor de San Marcos" }
+        }
+      ]
+    }
+  ],
+  "skills": [
+    { "label": "Backend", "details": ["C#", ".NET", "ASP.NET Core", "Entity Framework Core", "REST APIs and integrations"] },
+    { "label": "Frontend", "details": ["React", "Next.js", "Angular", "TypeScript", "JavaScript", "HTML", "CSS"] },
+    { "label": "Data", "details": ["SQL Server", "PostgreSQL", "SQLite", "relational data modeling"] },
+    { "label": "Cloud and delivery", "details": ["Azure", "Bicep", "Docker", "Git", "Azure DevOps", "GitHub Actions", "CI/CD"] },
+    { "label": "Quality", "details": ["xUnit", "Vitest", "Playwright", "Testcontainers", "code reviews", "Clean Architecture"] },
+    { "label": "AI-assisted development", "details": ["Claude Code", "Codex", "agent workflows", "specification-driven development"] },
+    { "label": "Languages", "details": ["Spanish - Native", "English - B2"] }
+  ]
+}
