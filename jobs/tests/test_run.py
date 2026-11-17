@@ -36,7 +36,7 @@ def test_pipeline_writes_sorted_valid_output(cfg, profile, tmp_path, monkeypatch
     assert "Java Backend Developer" not in titles
     assert titles[0] in {"Senior .NET Engineer (C#, Azure, Angular)", "Full Stack .NET Developer"}
     expected_keys = {
-        "id", "title", "company", "location", "remote", "country", "salary", "url", "source", "attribution",
+        "id", "title", "company", "location", "remote", "work_mode", "relocation", "country", "salary", "url", "source", "attribution",
         "posted_at", "expires_at", "first_seen", "last_seen", "description", "score", "zone", "matched",
         "missing", "reasons", "market",
     }

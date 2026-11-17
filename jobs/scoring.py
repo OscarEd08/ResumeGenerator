@@ -17,6 +17,7 @@ from functools import lru_cache
 
 from .config import Config
 from .models import Job
+from .text import offers_relocation, work_mode
 
 _NICE_HEADER = re.compile(
     r"(nice[- ]to[- ]have|bonus|preferred|a plus|is a plus|deseable|valorable|plus:|good to have|desirable)", re.I
@@ -123,9 +124,18 @@ def passes_filters(job: Job, cfg: Config) -> tuple[bool, str | None]:
     stack = _contains_any(job.title, f.exclude_title_stacks_without_core)
     if stack and not (find_terms(f"{job.title}\n{job.description}", cfg) & set(cfg.scoring.core_terms)):
         return False, f"{stack} role without the core stack"
-    if not job.remote and job.country not in f.onsite_countries:
+    mode, relocation = _work_mode(job)
+    if mode == "onsite" and not relocation:
+        return False, "on-site without relocation"
+    if mode == "hybrid" and job.country not in f.onsite_countries and not relocation:
         return False, "on-site outside the allowed countries"
     return True, None
+
+
+def _work_mode(job: Job) -> tuple[str, bool]:
+    """Work mode and relocation offer, derived from the posting text (see jobs.text)."""
+    return (work_mode(job.title, job.location, job.description, job.remote),
+            offers_relocation(f"{job.title}\n{job.description}"))
 
 
 def _region_restricted(job: Job, cfg: Config) -> bool:
@@ -194,7 +204,10 @@ def score_job(job: Job, vocab: dict[str, float], cfg: Config) -> Job:
     reasons = (positives[:2] + negatives)[:4]
     if len(reasons) < 2:
         reasons.append(f"Cobertura de palabras clave: {round(coverage * 100)}%")
+    mode, relocation = _work_mode(job)
     return job.model_copy(update={
+        "work_mode": mode,
+        "relocation": relocation,
         "score": final,
         "zone": zone_for(final, cfg),
         "matched": sorted(matched, key=lambda t: (-matched[t], t)),

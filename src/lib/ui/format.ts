@@ -1,4 +1,4 @@
-import type { Salary } from '../jobs-schema';
+import type { Salary, WorkMode } from '../jobs-schema';
 
 export function frameCode(index: number): string {
   return String(index + 1).padStart(3, '0');
@@ -113,6 +113,13 @@ const KEYWORD_LABEL: Record<string, string> = {
   vitest: 'Vitest',
   'vb-net': 'VB.NET',
 };
+
+const WORK_MODE_LABEL: Record<WorkMode, string> = { remote: 'Remoto', hybrid: 'Híbrido', onsite: 'Presencial' };
+
+/** "Remoto" / "Híbrido" / "Presencial", plus "con reubicación" when the posting offers relocation. */
+export function workModeLabel(mode: WorkMode, relocation: boolean): string {
+  return relocation ? `${WORK_MODE_LABEL[mode]} con reubicación` : WORK_MODE_LABEL[mode];
+}
 
 export function keywordLabel(slug: string): string {
   return KEYWORD_LABEL[slug] ?? slug;

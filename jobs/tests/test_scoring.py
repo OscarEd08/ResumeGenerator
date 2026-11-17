@@ -164,6 +164,34 @@ def test_filters(cfg):
     # Java title without any core term is dropped; with a core term it stays.
     assert not passes_filters(job("Java Developer", "Spring Boot"), cfg)[0]
     assert passes_filters(job("Java / C# Developer", "C# and Java"), cfg)[0]
-    # On-site outside Peru is dropped; on-site in Peru stays.
+    # On-site outside Peru is dropped.
     assert not passes_filters(job(".NET Developer", "C#", remote=False, location="Dallas, TX", country="US"), cfg)[0]
-    assert passes_filters(job(".NET Developer", "C#", remote=False, location="Lima", country="PE", market="peru"), cfg)[0]
+
+
+def test_onsite_is_dropped_unless_it_offers_relocation(cfg):
+    lima = dict(remote=False, location="Lima", country="PE", market="peru")
+    assert passes_filters(job(".NET Developer", "C#", **lima), cfg) == (False, "on-site without relocation")
+    assert passes_filters(job(".NET Developer", "C#. Relocation package to Madrid.", remote=False,
+                              location="Madrid, Spain", country="ES"), cfg)[0]
+    assert not passes_filters(job(".NET Developer", "C#. No relocation assistance.", **lima), cfg)[0]
+
+
+def test_hybrid_is_kept_in_peru_and_dropped_abroad_without_relocation(cfg):
+    assert passes_filters(job(".NET Developer", "C#. Modalidad híbrida, 2 días en oficina.", remote=False,
+                              location="Lima", country="PE", market="peru"), cfg)[0]
+    assert not passes_filters(job(".NET Developer (Hybrid)", "C#", remote=False, location="Austin, TX",
+                                  country="US"), cfg)[0]
+
+
+def test_work_mode_and_relocation_are_recorded(cfg):
+    vocab = build_vocabulary(json.loads((REPO_ROOT / "data" / "profile.json").read_text(encoding="utf-8")), cfg)
+    assert score_job(DOTNET_JOB, vocab, cfg).work_mode == "remote"
+    hybrid = score_job(job(".NET Dev", "C#. Hybrid: 3 days in office.", remote=False, location="Lima",
+                           country="PE", market="peru"), vocab, cfg)
+    assert (hybrid.work_mode, hybrid.relocation) == ("hybrid", False)
+    reloc = score_job(job(".NET Dev", "C#. We offer visa sponsorship and relocation support.", remote=False,
+                          location="Berlin, Germany", country="DE"), vocab, cfg)
+    assert (reloc.work_mode, reloc.relocation) == ("onsite", True)
+    # "hybrid" in the title/location wins over a remote flag set by a loose text match.
+    assert score_job(job(".NET Dev", "C#", remote=True, location="Lima (Hybrid)", country="PE", market="peru"),
+                     vocab, cfg).work_mode == "hybrid"

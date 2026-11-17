@@ -1,7 +1,7 @@
 ---
 import type { FramedJob } from '../lib/ui/data';
 import { href } from '../lib/ui/data';
-import { ageLabel, keywordLabel, strikePath } from '../lib/ui/format';
+import { ageLabel, keywordLabel, strikePath, workModeLabel } from '../lib/ui/format';
 import Score from './Score.astro';
 
 interface Props {
@@ -12,7 +12,7 @@ interface Props {
 }
 const { job, today, selected = false } = Astro.props;
 const stack = job.matched.slice(0, 3).map(keywordLabel).join(' · ');
-const search = [job.title, job.company, job.location, ...job.matched.map(keywordLabel), ...job.matched].join(' ');
+const search = [job.title, job.company, job.location, workModeLabel(job.work_mode, job.relocation), ...job.matched.map(keywordLabel), ...job.matched].join(' ');
 ---
 
 <li
@@ -31,7 +31,7 @@ const search = [job.title, job.company, job.location, ...job.matched.map(keyword
         >{job.title}</a
       ><span class="tag new" data-new-mark hidden>NUEVA</span><span class="tag applied">POSTULADA</span>
     </p>
-    <p class="meta"><span class="pcode" aria-hidden="true">{job.frame}</span>{job.company} · {job.location} · {ageLabel(job.posted_at, today)}</p>
+    <p class="meta"><span class="pcode" aria-hidden="true">{job.frame}</span>{job.company} · {workModeLabel(job.work_mode, job.relocation)} · {job.location} · {ageLabel(job.posted_at, today)}</p>
   </div>
   <p class="stack">{stack || 'Sin palabras clave'}</p>
   <div class="bar" aria-hidden="true"><i style={`width:${job.score}%`}></i></div>

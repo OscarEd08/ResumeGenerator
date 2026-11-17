@@ -11,6 +11,7 @@ from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 SourceName = Literal["linkedin", "indeed", "glassdoor", "google", "remotive", "remoteok", "himalayas"]
+WorkMode = Literal["remote", "hybrid", "onsite"]
 Zone = Literal["apply", "review", "low"]
 Market = Literal["peru", "abroad"]
 Period = Literal["yearly", "monthly", "weekly", "daily", "hourly"]
@@ -43,6 +44,8 @@ class Job(_Strict):
     company: str
     location: str
     remote: bool
+    work_mode: WorkMode = "onsite"  # derived at scoring time from remote + title/location/description
+    relocation: bool = False  # the posting offers relocation or visa sponsorship
     country: str | None = Field(default=None, pattern=r"^[A-Z]{2}$")
     salary: Salary | None = None
     url: str

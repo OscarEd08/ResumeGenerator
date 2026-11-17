@@ -42,7 +42,7 @@ is forced to UTF-8 so Windows consoles do not crash. The exit code is 1 only whe
 | `hours_old` | JobSpy only: postings from the last N hours. |
 | `sources.jobspy.searches` | Sites, location, Indeed country and remote flag per search. |
 | `sources.jobspy.results_wanted` | Results per site and call (keep small; boards block scrapers). |
-| `filters.*` | Stage 1 hard rules: role words in the title, excluded title words, other-stack titles without the core stack, on-site countries. |
+| `filters.*` | Stage 1 hard rules: role words in the title, excluded title words, other-stack titles without the core stack, on-site postings dropped unless they offer relocation; hybrid kept only in `onsite_countries`. Each job records `work_mode` (remote/hybrid/onsite) and `relocation`. |
 | `scoring.zones` | `apply` (>= 85), `review` (70-84), `low`. Keep in sync with `ZONE_THRESHOLDS` in `src/lib/jobs-schema.ts` (a Vitest test checks it). |
 | `scoring.min_score_to_keep` | Postings below this are not written. |
 | `scoring.core_terms` | Core stack weights. |

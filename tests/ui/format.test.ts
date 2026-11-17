@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { ageLabel, frameCode, salaryLabel, strikePath, tilt } from '../../src/lib/ui/format';
+import { ageLabel, workModeLabel, frameCode, salaryLabel, strikePath, tilt } from '../../src/lib/ui/format';
 
 describe('frameCode', () => {
   it('pads the 1-based index to three digits', () => {
@@ -65,5 +65,14 @@ describe('strikePath', () => {
       expect(n[1]).toBeGreaterThanOrEqual(13);
       expect(n[1]).toBeLessThanOrEqual(21);
     }
+  });
+});
+
+describe('workModeLabel', () => {
+  it('names the work mode in Spanish and flags relocation', () => {
+    expect(workModeLabel('remote', false)).toBe('Remoto');
+    expect(workModeLabel('hybrid', false)).toBe('Híbrido');
+    expect(workModeLabel('onsite', true)).toBe('Presencial con reubicación');
+    expect(workModeLabel('hybrid', true)).toBe('Híbrido con reubicación');
   });
 });

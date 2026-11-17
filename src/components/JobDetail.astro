@@ -2,7 +2,7 @@
 /** Job detail: compact in the desktop panel, full (with description) on its own page. */
 import type { FramedJob } from '../lib/ui/data';
 import { href } from '../lib/ui/data';
-import { dateLabel, keywordLabel, salaryLabel } from '../lib/ui/format';
+import { dateLabel, keywordLabel, salaryLabel, workModeLabel } from '../lib/ui/format';
 import Score from './Score.astro';
 import StatusControls from './StatusControls.astro';
 import TailorCommand from './TailorCommand.astro';
@@ -15,7 +15,7 @@ interface Props {
 const { job, full = false, headingLevel = 'h2' } = Astro.props;
 const Heading = headingLevel;
 const salary = salaryLabel(job.salary);
-const meta = [job.company, job.location, salary].filter(Boolean).join(' · ');
+const meta = [job.company, workModeLabel(job.work_mode, job.relocation), job.location, salary].filter(Boolean).join(' · ');
 const paragraphs = job.description
   .split(/\n+/)
   .map((p) => p.trim())
