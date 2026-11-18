@@ -11,7 +11,7 @@ cv:
     username: oscarpairazaman
   sections:
     ​:
-    - '*Full-stack developer delivering client projects with C#/.NET, ASP.NET Core, Angular and SQL Server. Builds REST APIs, backend services and integrations with external systems such as Business Central and corporate e-procurement platforms, and Angular features for multi-tenant SaaS products. Designs AI-assisted development workflows with Claude Code, human review and automated tests.*'
+    - '*Full-stack software developer delivering client projects with C#, ASP.NET Core, Angular and SQL Server. Builds REST APIs and enterprise integrations, including a B2B/B2C e-commerce platform for laboratory and healthcare supplies integrated with Microsoft Dynamics 365 Business Central. Built Angular frontends for a multi-tenant SaaS platform and a B2B operations platform on .NET and Angular. Designs AI-assisted development workflows with Claude Code, human review and automated tests.*'
     PROFESSIONAL EXPERIENCE:
     - company: Bertoni Solutions
       position: Semi Senior Software Developer
@@ -19,13 +19,14 @@ cv:
       start_date: 2024-01
       end_date: present
       highlights:
-      - 'Built .NET backend services and Angular features for a multi-tenant digital credentials SaaS platform: Microsoft and Google OAuth login, organization and role management, the subscription and plan model, and report generation with reusable Angular components.'
-      - Built end to end a B2B operations platform pilot for an industrial distributor on .NET 10 and Angular 22, designed as a 12-module modular monolith with one SQL schema per module, delivering 18 requirements in 25 days.
-      - 'Implemented integrations with Business Central and corporate e-procurement systems: cXML PunchOut with order audit, and API pages and queries in AL for prices, search, categories and checkout across 134 extension releases.'
-      - Built a .NET search microservice with ranking rules, autocomplete, client-certificate (mTLS) authentication, a standardized API response with centralized exception handling and output caching.
-      - Added resilience pipelines with circuit breakers and timeouts on outbound integration clients, and instrumented Application Insights telemetry with availability tests, latency alerts and monitoring of scheduled tasks.
-      - Built Azure DevOps pipelines with pull-request validation, QA/PROD approval gates and Bicep what-if checks, plus a Playwright E2E suite that runs after each deployment.
-      - "Designed and built Bertoni's corporate standard for AI-assisted software delivery: a Claude Code plugin with 13 skills, 9 subagents and governance hooks, with guardrails so no agent approves, merges or deploys."
+      - Built end to end a B2B operations platform pilot for an industrial distributor (orders, inventory, customer portal, gate and weighbridge control, supplier invoices, dashboard) on .NET 10 and Angular 22, delivering 18 requirements and 36 ADRs in 25 days (876 commits).
+      - Implemented Microsoft and Google OAuth login and password recovery and update flows for a multi-tenant digital credentials SaaS platform, and built part of its initial Angular frontend.
+      - 'Built the credential lifecycle: templates, learning paths, preview and print, sharing with a public view, a report of revoked credentials and an image to PDF service, with email delivery moved to background jobs.'
+      - Designed a 12-module modular monolith (Domain / Application / Contracts / Infrastructure / Endpoints) with one SQL schema per module, in-memory integration events and architecture rules verified with ArchUnitNET.
+      - Top contributor to the main repository of a B2B/B2C multi-store e-commerce platform for laboratory and healthcare supplies integrated with Microsoft Dynamics 365 Business Central (~1,474 commits across 6 repositories).
+      - Implemented cXML PunchOut so corporate buyers can shop from their own e-procurement systems, with form post back to the buyer system, discount-group persistence and order audit in Business Central.
+      - Built a .NET search microservice on Meilisearch from scratch, with client-certificate (mTLS) authentication between the store and the search API, and cut P95 search latency from ~1.6 s to ~150 ms on broad search terms.
+      - "Designed and built Bertoni's corporate standard for AI-assisted software delivery: a Claude Code plugin with 13 skills, 9 subagents (requirement, design, technical plan, work items, implementation, code review, PR, QA, release) and governance hooks, shipped from v1.0 to v1.8 across 18 releases and 131 commits."
     - company: Freelance Development
       location: ​
       position: Full Stack Developer
@@ -33,16 +34,16 @@ cv:
       end_date: present
       summary: '*E-commerce project for a technology accessories retailer · Development and testing stage*'
       highlights:
-      - Implemented the backend on Vendure 3.8 (NestJS) and PostgreSQL 16 with 5 custom plugins (checkout, complaints, offers, store configuration, API guard) and 12 expand/contract migrations so deploys can be rolled back.
-      - Set up CI/CD with Docker Compose, GitHub Actions, Trivy image scanning, a database dump before each deploy, smoke tests and automatic rollback.
+      - Built a headless e-commerce for a client that was deployed to their test environment within 2 weeks, replacing the store's PDF catalog with an online store with cart, WhatsApp checkout, autocomplete search and a consumer complaints book.
+      - 'Developed with AI agents (Claude Code, Codex and Hermes) guided by shared agent instructions, custom skills, per-delivery specs and an independent verifier agent for each work wave: 356 commits and 6 ADRs.'
     - company: Cloud Store
       location: ​
       position: Freelance Web Developer
       start_date: 2024-08
       end_date: 2024-10
       highlights:
-      - Maintained and extended an invoicing application built with ASP.NET MVC and VB.NET.
       - Integrated SQL Server with the Bsale API to automate invoice issuance and reduce manual data entry. Validated APIs with Postman within a Scrum workflow.
+      - Maintained and extended an invoicing application built with ASP.NET MVC and VB.NET.
     - company: Komatsu Mitsui
       location: ​
       position: Full Stack Web Developer
@@ -64,7 +65,7 @@ cv:
       summary: Next.js · React · TypeScript · SQLite · Gemini
       highlights:
       - Designed and built a multi-user personal finance PWA where expenses are recorded in natural language or by voice; Gemini turns them into structured transactions using only the user's own categories, currencies and payment methods.
-      - 'Enforced a feature-first architecture (ADR-0001) with ESLint boundary rules and developed with spec-driven development (OpenSpec: 20 specs, 25 archived changes) and parallel AI agents on git worktrees: 611 commits and 114 PRs in 3 months.'
+      - Implemented the product on Next.js 16 (App Router, Server Actions, Cache Components, partial prerendering) and React 19, with Turso (libSQL) and Drizzle ORM (16 migrations) and NextAuth v5 Google OAuth using revocable database sessions.
     EDUCATION:
     - institution: Universidad Nacional Mayor de San Marcos
       area: Bachelor’s Degree in Software Engineering
@@ -76,17 +77,17 @@ cv:
       - PRONABEC Higher Education Continuity Scholarship recipient.
     TECHNOLOGIES AND SKILLS:
     - label: Backend
-      details: C#, .NET, ASP.NET Core, Entity Framework Core, REST APIs and integrations.
+      details: C#, .NET, ASP.NET Core, REST APIs and integrations, Entity Framework Core.
     - label: Frontend
-      details: Angular, TypeScript, JavaScript, React, HTML, CSS.
+      details: Angular, TypeScript, JavaScript, HTML, CSS, React, Next.js.
     - label: Data
-      details: SQL Server, PostgreSQL, SQLite, relational data modeling.
-    - label: Cloud and delivery
-      details: Azure, Azure DevOps, Git, Bicep, Docker, GitHub Actions, CI/CD.
-    - label: Quality
-      details: xUnit, Playwright, Vitest, Testcontainers, code reviews, Clean Architecture.
+      details: SQL Server, relational data modeling, PostgreSQL, SQLite.
     - label: AI-assisted development
       details: Claude Code, Codex, agent workflows, specification-driven development.
+    - label: Cloud and delivery
+      details: Azure, Azure DevOps, Git, CI/CD, Docker, Bicep, GitHub Actions.
+    - label: Quality
+      details: xUnit, Playwright, Testcontainers, Vitest, code reviews, Clean Architecture.
     - label: Languages
       details: Spanish - Native · English - B2.
 design:

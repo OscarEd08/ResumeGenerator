@@ -1,70 +1,186 @@
 {
   "job_id": "job-b9c6199b",
-  "summary": "Full-stack developer delivering client projects with C#/.NET, ASP.NET Core, Angular and SQL Server. Builds REST APIs, backend services and integrations with external systems such as Business Central and corporate e-procurement platforms, and Angular features for multi-tenant SaaS products. Designs AI-assisted development workflows with Claude Code, human review and automated tests.",
+  "summary": "Full-stack software developer delivering client projects with C#, ASP.NET Core, Angular and SQL Server. Builds REST APIs and enterprise integrations, including a B2B/B2C e-commerce platform for laboratory and healthcare supplies integrated with Microsoft Dynamics 365 Business Central. Built Angular frontends for a multi-tenant SaaS platform and a B2B operations platform on .NET and Angular. Designs AI-assisted development workflows with Claude Code, human review and automated tests.",
   "experience": {
     "bertoni-solutions": [
       {
-        "ids": ["globalcertifica-oauth-onboarding", "globalcertifica-multitenant-billing", "globalcertifica-reporting-ux"],
-        "text": "Built .NET backend services and Angular features for a multi-tenant digital credentials SaaS platform: Microsoft and Google OAuth login, organization and role management, the subscription and plan model, and report generation with reusable Angular components."
+        "ids": [
+          "nexo-b2b-platform"
+        ]
       },
       {
-        "ids": ["nexo-b2b-platform", "nexo-modular-monolith"],
-        "text": "Built end to end a B2B operations platform pilot for an industrial distributor on .NET 10 and Angular 22, designed as a 12-module modular monolith with one SQL schema per module, delivering 18 requirements in 25 days."
+        "ids": [
+          "globalcertifica-oauth-onboarding"
+        ]
       },
       {
-        "ids": ["proquinorte-punchout-cxml", "proquinorte-bc-extension"],
-        "text": "Implemented integrations with Business Central and corporate e-procurement systems: cXML PunchOut with order audit, and API pages and queries in AL for prices, search, categories and checkout across 134 extension releases."
+        "ids": [
+          "globalcertifica-credential-lifecycle"
+        ],
+        "text": "Built the credential lifecycle: templates, learning paths, preview and print, sharing with a public view, a report of revoked credentials and an image to PDF service, with email delivery moved to background jobs."
       },
       {
-        "ids": ["proquinorte-search-microservice", "proquinorte-search-api-standards"],
-        "text": "Built a .NET search microservice with ranking rules, autocomplete, client-certificate (mTLS) authentication, a standardized API response with centralized exception handling and output caching."
+        "ids": [
+          "nexo-modular-monolith"
+        ]
       },
       {
-        "ids": ["proquinorte-circuit-breakers", "proquinorte-telemetry"],
-        "text": "Added resilience pipelines with circuit breakers and timeouts on outbound integration clients, and instrumented Application Insights telemetry with availability tests, latency alerts and monitoring of scheduled tasks."
+        "ids": [
+          "proquinorte-top-contributor"
+        ]
       },
       {
-        "ids": ["proquinorte-azure-pipelines", "proquinorte-playwright-e2e"],
-        "text": "Built Azure DevOps pipelines with pull-request validation, QA/PROD approval gates and Bicep what-if checks, plus a Playwright E2E suite that runs after each deployment."
+        "ids": [
+          "proquinorte-punchout-cxml"
+        ]
       },
       {
-        "ids": ["ai-standards-sdlc-plugin", "ai-standards-guardrails"],
-        "text": "Designed and built Bertoni's corporate standard for AI-assisted software delivery: a Claude Code plugin with 13 skills, 9 subagents and governance hooks, with guardrails so no agent approves, merges or deploys."
+        "ids": [
+          "proquinorte-search-microservice",
+          "proquinorte-search-p95-latency"
+        ],
+        "text": "Built a .NET search microservice on Meilisearch from scratch, with client-certificate (mTLS) authentication between the store and the search API, and cut P95 search latency from ~1.6 s to ~150 ms on broad search terms."
+      },
+      {
+        "ids": [
+          "ai-standards-sdlc-plugin"
+        ]
       }
     ],
     "freelance-ecommerce": [
-      { "ids": ["pulso-vendure-backend"] },
       {
-        "ids": ["pulso-infra-cicd"],
-        "text": "Set up CI/CD with Docker Compose, GitHub Actions, Trivy image scanning, a database dump before each deploy, smoke tests and automatic rollback."
+        "ids": [
+          "pulso-headless-ecommerce"
+        ]
+      },
+      {
+        "ids": [
+          "pulso-ai-agents"
+        ],
+        "text": "Developed with AI agents (Claude Code, Codex and Hermes) guided by shared agent instructions, custom skills, per-delivery specs and an independent verifier agent for each work wave: 356 commits and 6 ADRs."
       }
     ],
     "cloud-store": [
-      { "ids": ["cloudstore-invoicing-app"] },
-      { "ids": ["cloudstore-bsale-integration"] }
+      {
+        "ids": [
+          "cloudstore-bsale-integration"
+        ]
+      },
+      {
+        "ids": [
+          "cloudstore-invoicing-app"
+        ]
+      }
     ],
     "komatsu-mitsui": [
-      { "ids": ["komatsu-react-migration"] },
-      { "ids": ["komatsu-power-apps-migration"] },
-      { "ids": ["komatsu-sql-optimization"] }
+      {
+        "ids": [
+          "komatsu-react-migration"
+        ]
+      },
+      {
+        "ids": [
+          "komatsu-power-apps-migration"
+        ]
+      },
+      {
+        "ids": [
+          "komatsu-sql-optimization"
+        ]
+      }
     ],
     "maquinarias-glory": [
-      { "ids": ["glory-react-quotations"] }
+      {
+        "ids": [
+          "glory-react-quotations"
+        ]
+      }
     ]
   },
   "projects": {
     "personal-finance-app": [
-      { "ids": ["pfa-natural-language-expenses"] },
-      { "ids": ["pfa-architecture-spec-driven"] }
+      {
+        "ids": [
+          "pfa-natural-language-expenses"
+        ]
+      },
+      {
+        "ids": [
+          "pfa-nextjs-stack"
+        ]
+      }
     ]
   },
   "skills": [
-    { "label": "Backend", "details": ["C#", ".NET", "ASP.NET Core", "Entity Framework Core", "REST APIs and integrations"] },
-    { "label": "Frontend", "details": ["Angular", "TypeScript", "JavaScript", "React", "HTML", "CSS"] },
-    { "label": "Data", "details": ["SQL Server", "PostgreSQL", "SQLite", "relational data modeling"] },
-    { "label": "Cloud and delivery", "details": ["Azure", "Azure DevOps", "Git", "Bicep", "Docker", "GitHub Actions", "CI/CD"] },
-    { "label": "Quality", "details": ["xUnit", "Playwright", "Vitest", "Testcontainers", "code reviews", "Clean Architecture"] },
-    { "label": "AI-assisted development", "details": ["Claude Code", "Codex", "agent workflows", "specification-driven development"] },
-    { "label": "Languages", "details": ["Spanish - Native", "English - B2"] }
+    {
+      "label": "Backend",
+      "details": [
+        "C#",
+        ".NET",
+        "ASP.NET Core",
+        "REST APIs and integrations",
+        "Entity Framework Core"
+      ]
+    },
+    {
+      "label": "Frontend",
+      "details": [
+        "Angular",
+        "TypeScript",
+        "JavaScript",
+        "HTML",
+        "CSS",
+        "React",
+        "Next.js"
+      ]
+    },
+    {
+      "label": "Data",
+      "details": [
+        "SQL Server",
+        "relational data modeling",
+        "PostgreSQL",
+        "SQLite"
+      ]
+    },
+    {
+      "label": "AI-assisted development",
+      "details": [
+        "Claude Code",
+        "Codex",
+        "agent workflows",
+        "specification-driven development"
+      ]
+    },
+    {
+      "label": "Cloud and delivery",
+      "details": [
+        "Azure",
+        "Azure DevOps",
+        "Git",
+        "CI/CD",
+        "Docker",
+        "Bicep",
+        "GitHub Actions"
+      ]
+    },
+    {
+      "label": "Quality",
+      "details": [
+        "xUnit",
+        "Playwright",
+        "Testcontainers",
+        "Vitest",
+        "code reviews",
+        "Clean Architecture"
+      ]
+    },
+    {
+      "label": "Languages",
+      "details": [
+        "Spanish - Native",
+        "English - B2"
+      ]
+    }
   ]
 }
