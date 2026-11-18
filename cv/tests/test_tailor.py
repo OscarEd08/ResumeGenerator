@@ -212,11 +212,15 @@ def test_spanish_yaml_translates_headings_and_uses_text_es(profile, selection_es
 # --- CLI ----------------------------------------------------------------------------------------
 
 
+GIT_ENV = {"GIT_AUTHOR_NAME": "Test", "GIT_AUTHOR_EMAIL": "test@example.com",
+           "GIT_COMMITTER_NAME": "Test", "GIT_COMMITTER_EMAIL": "test@example.com"}
+
+
 def run_tailor(*args: str) -> subprocess.CompletedProcess:
     return subprocess.run(
         [sys.executable, str(TAILOR), *args],
         capture_output=True, text=True, encoding="utf-8", errors="replace",
-        env={**build.utf8_env()},
+        env={**build.utf8_env(), **GIT_ENV},
     )
 
 
@@ -325,3 +329,80 @@ def test_cv_file_name_adds_the_role_when_the_company_already_has_a_cv(tmp_path):
     # Rebuilding the same job keeps its own name.
     assert tailor.unique_cv_file_name("Oscar Pairazaman Arias", "Acme", "Anything", "job-11111111",
                                       tmp_path) == "Oscar_Pairazaman_CV_Acme.pdf"
+
+
+# --- publish: commit the CV and push it to main ----------------------------------------------------
+
+
+
+def git(repo: Path, *args: str) -> str:
+    result = subprocess.run(["git", *args], cwd=repo, capture_output=True, text=True, env={**build.utf8_env(), **GIT_ENV})
+    assert result.returncode == 0, result.stderr
+    return result.stdout.strip()
+
+
+def make_clone(tmp_path: Path, name: str, origin: Path) -> Path:
+    clone = tmp_path / name
+    git(tmp_path, "clone", "-q", str(origin), str(clone))
+    return clone
+
+
+def make_origin(tmp_path: Path) -> Path:
+    origin = tmp_path / "origin.git"
+    git(tmp_path, "init", "-q", "--bare", "-b", "main", str(origin))
+    seed = make_clone(tmp_path, "seed", origin)
+    (seed / "data").mkdir()
+    (seed / "data" / "jobs.json").write_text("{}\n", encoding="utf-8")
+    git(seed, "add", ".")
+    git(seed, "commit", "-q", "-m", "init")
+    git(seed, "push", "-q", "origin", "HEAD:main")
+    return origin
+
+
+def write_cv_outputs(repo: Path, job_id: str) -> None:
+    (repo / "cv" / "tailored").mkdir(parents=True, exist_ok=True)
+    (repo / "public" / "cv").mkdir(parents=True, exist_ok=True)
+    for name in (f"{job_id}.selection.json", f"{job_id}.yaml"):
+        (repo / "cv" / "tailored" / name).write_text("x\n", encoding="utf-8")
+    (repo / "cv" / "tailored" / f"{job_id}.meta.json").write_text(json.dumps({"company": "Acme"}), encoding="utf-8")
+    for name in (f"{job_id}.pdf", f"{job_id}_1.png"):
+        (repo / "public" / "cv" / name).write_bytes(b"%PDF")
+    (repo / "notes.txt").write_text("unrelated work in progress\n", encoding="utf-8")
+
+
+def test_publish_commits_only_the_cv_and_pushes_to_main(tmp_path):
+    origin = make_origin(tmp_path)
+    work = make_clone(tmp_path, "work", origin)
+    write_cv_outputs(work, "job-12345678")
+    result = run_tailor("publish", "job-12345678", "--repo", str(work))
+    assert result.returncode == 0, result.stdout + result.stderr
+    remote_files = git(origin, "ls-tree", "-r", "--name-only", "main").splitlines()
+    assert {"cv/tailored/job-12345678.meta.json", "public/cv/job-12345678.pdf", "public/cv/job-12345678_1.png"} <= set(remote_files)
+    assert "notes.txt" not in remote_files
+    assert git(origin, "log", "-1", "--format=%s", "main") == "chore(cv): tailor CV for Acme (job-12345678)"
+    assert "Published to origin/main" in result.stdout
+
+
+def test_publish_rebases_over_a_bot_commit(tmp_path):
+    origin = make_origin(tmp_path)
+    work = make_clone(tmp_path, "work", origin)
+    bot = make_clone(tmp_path, "bot", origin)
+    (bot / "data" / "jobs.json").write_text('{"refreshed": true}\n', encoding="utf-8")
+    git(bot, "commit", "-q", "-am", "chore(jobs): refresh job postings")
+    git(bot, "push", "-q", "origin", "HEAD:main")
+    write_cv_outputs(work, "job-12345678")
+    result = run_tailor("publish", "job-12345678", "--repo", str(work))
+    assert result.returncode == 0, result.stdout + result.stderr
+    subjects = git(origin, "log", "--format=%s", "main").splitlines()
+    assert subjects[:2] == ["chore(cv): tailor CV for Acme (job-12345678)", "chore(jobs): refresh job postings"]
+
+
+def test_publish_refuses_outside_main(tmp_path):
+    origin = make_origin(tmp_path)
+    work = make_clone(tmp_path, "work", origin)
+    git(work, "switch", "-q", "-c", "feature")
+    write_cv_outputs(work, "job-12345678")
+    result = run_tailor("publish", "job-12345678", "--repo", str(work))
+    assert result.returncode == 1
+    assert "main" in result.stderr
+    assert "chore(cv)" not in git(origin, "log", "--format=%s", "main")

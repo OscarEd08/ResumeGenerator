@@ -26,6 +26,7 @@ The site's job page copies `/tailor <job-id>`. Run it in Claude Code from the re
     .venv/Scripts/python cv/tailor.py context <job-id>   # job + bank bullets ranked by the job's keywords (JSON)
     # Claude writes cv/tailored/<job-id>.selection.json (summary, bullet ids, optional rephrasing, skills order)
     .venv/Scripts/python cv/tailor.py build <job-id>     # validate, write YAML, render, ATS + 2-page check, report
+    .venv/Scripts/python cv/tailor.py publish <job-id>   # commit only this CV's files and push to origin/main (rebases over the job bot)
 
 `build` does the following:
 

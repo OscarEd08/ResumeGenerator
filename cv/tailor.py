@@ -37,6 +37,7 @@ import json
 import re
 import sys
 import shutil
+import subprocess
 import tempfile
 import types
 import unicodedata
@@ -603,6 +604,53 @@ def cmd_build(args) -> int:
     return 0
 
 
+PUBLISH_ATTEMPTS = 3
+
+
+def _git(repo: Path, *args: str, check: bool = True) -> subprocess.CompletedProcess:
+    result = subprocess.run(["git", *args], cwd=repo, capture_output=True, text=True, encoding="utf-8",
+                            errors="replace")
+    if check and result.returncode != 0:
+        detail = (result.stderr or result.stdout).strip()
+        raise TailorError(f"git {' '.join(args)} failed: {detail}")
+    return result
+
+
+def publish(job_id: str, repo: Path, remote: str = "origin", branch: str = "main") -> str:
+    """Commit only this CV's files and push them to `remote/branch`.
+
+    The daily job refresh also pushes to main, so a rejected push is retried after a rebase. Other
+    work in the tree is left alone (`--autostash` restores it). Returns the pushed commit.
+    """
+    current = _git(repo, "rev-parse", "--abbrev-ref", "HEAD").stdout.strip()
+    if current != branch:
+        raise TailorError(f"The CV is published from '{branch}', but the current branch is '{current}'. "
+                          f"Switch to '{branch}' and run publish again.")
+    paths = [f":(glob)cv/tailored/{job_id}.*", f":(glob)public/cv/{job_id}.pdf", f":(glob)public/cv/{job_id}_*.png"]
+    _git(repo, "add", "-A", "--", *paths)
+    if _git(repo, "diff", "--cached", "--quiet", "--", *paths, check=False).returncode != 0:
+        meta_path = repo / "cv" / "tailored" / f"{job_id}.meta.json"
+        try:
+            company = json.loads(meta_path.read_text(encoding="utf-8")).get("company") or job_id
+        except (OSError, json.JSONDecodeError):
+            company = job_id
+        _git(repo, "commit", "-q", "-m", f"chore(cv): tailor CV for {company} ({job_id})", "--", *paths)
+    for attempt in range(1, PUBLISH_ATTEMPTS + 1):
+        _git(repo, "pull", "-q", "--rebase", "--autostash", remote, branch)
+        pushed = _git(repo, "push", "-q", remote, f"HEAD:{branch}", check=False)
+        if pushed.returncode == 0:
+            return _git(repo, "rev-parse", "--short", "HEAD").stdout.strip()
+        if attempt == PUBLISH_ATTEMPTS:
+            raise TailorError(f"git push failed after {attempt} attempts: {pushed.stderr.strip()}")
+    raise AssertionError("unreachable")
+
+
+def cmd_publish(args) -> int:
+    sha = publish(args.job_id, args.repo)
+    print(f"Published to origin/main: {sha}")
+    return 0
+
+
 def main(argv: list[str] | None = None) -> int:
     for stream in (sys.stdout, sys.stderr):
         stream.reconfigure(encoding="utf-8")
@@ -620,9 +668,13 @@ def main(argv: list[str] | None = None) -> int:
             cmd.add_argument("--out", type=Path, default=PUBLIC_CV, help="where the PDF and PNGs go (default: public/cv)")
             cmd.add_argument("--named-dir", type=Path, default=NAMED_DIR,
                              help="where the friendly-named PDF copy goes (default: cv/out)")
+    pub = sub.add_parser("publish", help="commit this CV's files and push them to origin/main")
+    pub.add_argument("job_id", help="job id whose CV files to publish")
+    pub.add_argument("--repo", type=Path, default=REPO_ROOT, help="repository root (default: this repo)")
     args = parser.parse_args(argv)
+    commands = {"context": cmd_context, "build": cmd_build, "publish": cmd_publish}
     try:
-        return cmd_context(args) if args.command == "context" else cmd_build(args)
+        return commands[args.command](args)
     except TailorError as error:
         print(error, file=sys.stderr)
         return 1

@@ -4,9 +4,9 @@ argument-hint: <job-id>
 allowed-tools: Bash(.venv/Scripts/python cv/tailor.py:*), Bash(.venv/bin/python cv/tailor.py:*), Read, Write, Edit
 ---
 
-Tailor the CV to job `$ARGUMENTS` and hand the user the PDF.
+Tailor the CV to job `$ARGUMENTS`, publish it to `main` and hand the user the PDF.
 
-The user only wants the file. Run the steps below without narrating them, asking questions or offering options. Don't commit, push, run npm or start a server unless the user asks. Work from the repository root and use `.venv/Scripts/python` (`.venv/bin/python` outside Windows).
+The user only wants the file, published. Run the steps below without narrating them, asking questions or offering options. The user has pre-authorized step 4 (commit and push to `main`), so don't ask before it. Do no other git operation, and don't run npm or start a server. Work from the repository root and use `.venv/Scripts/python` (`.venv/bin/python` outside Windows).
 
 ## 1. Context
 
@@ -67,13 +67,22 @@ If it fails, fix only what each error names and run `build` again:
 
 Never edit `data/profile.json` or the generated YAML to get past an error.
 
-## 4. Reply
+## 4. Publish
+
+Run `.venv/Scripts/python cv/tailor.py publish $ARGUMENTS`.
+
+It commits only this CV's files (`cv/tailored/$ARGUMENTS.*` and `public/cv/$ARGUMENTS.pdf` with its PNGs) and pushes them to `origin/main`. If the daily job refresh pushed first, it rebases and retries. The push starts the site deploy.
+
+If it fails (for example because you are not on `main`), still give the user the PDF in step 5 and add one line that quotes the error. Don't try to fix git by hand.
+
+## 5. Reply
 
 Reply in the user's language with exactly these lines and nothing else:
 
 ```
 CV listo: <absolute path from the build's "CV:" line>
 Keywords: <covered>/<total> cubiertas<; faltan: <missing>, if any>
+Publicado en main (<commit>); la web se actualiza en ~2 min.
 ```
 
 Add one more line only if `build` lists keywords "not in the profile". That line names them as gaps for the user. Never add them to the CV.
