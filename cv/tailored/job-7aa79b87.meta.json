@@ -1,0 +1,22 @@
+{
+  "id": "job-7aa79b87",
+  "file_name": "Oscar_Pairazaman_CV_EPAM-Systems.pdf",
+  "title": "Senior Full-Stack .NET Developer",
+  "company": "EPAM Systems",
+  "market": "abroad",
+  "language": "en",
+  "generated_at": "2026-11-18",
+  "pages": 2,
+  "covered": [
+    "dotnet",
+    "aspnet-mvc",
+    "ci-cd",
+    "csharp",
+    "rest-api",
+    "sql-server",
+    "css",
+    "html",
+    "oauth"
+  ],
+  "missing": []
+}

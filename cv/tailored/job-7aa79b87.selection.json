@@ -1,0 +1,47 @@
+{
+  "job_id": "job-7aa79b87",
+  "summary": "Full-stack software developer delivering client projects with C#/.NET, ASP.NET Core and SQL Server. Experience includes upgrading a heavily customized nopCommerce store to .NET 9, maintaining ASP.NET MVC applications and migrating an ASP.NET MVC application to a .NET REST API. Builds security into delivery with OAuth login, mTLS between services, WAF rules and secrets in Azure Key Vault, shipped through Azure DevOps CI/CD pipelines. Works daily in English (B2).",
+  "experience": {
+    "bertoni-solutions": [
+      { "ids": ["proquinorte-nopcommerce-upgrade"] },
+      { "ids": ["proquinorte-search-microservice"] },
+      { "ids": ["globalcertifica-oauth-onboarding"] },
+      { "ids": ["nexo-modular-monolith"] },
+      { "ids": ["proquinorte-waf-rules"] },
+      { "ids": ["proquinorte-key-vault-secrets"] },
+      { "ids": ["proquinorte-azure-pipelines"] },
+      { "ids": ["proquinorte-top-contributor"] }
+    ],
+    "freelance-ecommerce": [
+      { "ids": ["pulso-production-security"] },
+      { "ids": ["pulso-infra-cicd"] }
+    ],
+    "cloud-store": [
+      { "ids": ["cloudstore-invoicing-app"] },
+      { "ids": ["cloudstore-bsale-integration"] }
+    ],
+    "komatsu-mitsui": [
+      { "ids": ["komatsu-react-migration"] },
+      { "ids": ["komatsu-power-apps-migration"] },
+      { "ids": ["komatsu-sql-optimization"] }
+    ],
+    "maquinarias-glory": [
+      { "ids": ["glory-react-quotations"] }
+    ]
+  },
+  "projects": {
+    "personal-finance-app": [
+      { "ids": ["pfa-nextjs-stack"] },
+      { "ids": ["pfa-rate-limiting"] }
+    ]
+  },
+  "skills": [
+    { "label": "Backend", "details": ["C#", ".NET", "ASP.NET Core", "REST APIs and integrations", "Entity Framework Core"] },
+    { "label": "Data", "details": ["SQL Server", "relational data modeling", "PostgreSQL", "SQLite"] },
+    { "label": "Frontend", "details": ["HTML", "CSS", "JavaScript", "TypeScript", "Angular", "React", "Next.js"] },
+    { "label": "Cloud and delivery", "details": ["CI/CD", "Azure DevOps", "Azure", "Git", "GitHub Actions", "Docker", "Bicep"] },
+    { "label": "Quality", "details": ["xUnit", "Playwright", "Testcontainers", "code reviews", "Clean Architecture"] },
+    { "label": "AI-assisted development", "details": ["Claude Code", "Codex", "agent workflows"] },
+    { "label": "Languages", "details": ["Spanish - Native", "English - B2"] }
+  ]
+}
