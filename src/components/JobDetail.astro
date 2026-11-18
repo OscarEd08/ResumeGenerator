@@ -79,6 +79,8 @@ const paragraphs = job.description
     <h3 class="sec">Adaptar CV</h3>
     <TailorCommand id={job.id} />
     <p class="hint">Ejecuta el comando en Claude Code; el CV aparecerá en CVs.</p>
+    <TailorCommand id={job.id} name="cover-letter" primary={false} />
+    <p class="hint">¿Piden carta de presentación? Este comando la genera; se descarga desde el CV.</p>
   </section>
 
   <dl class="facts">

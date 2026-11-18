@@ -11,6 +11,8 @@ export interface CvEntry {
   isBase: boolean;
   /** File name the download saves as, e.g. `Oscar_Pairazaman_CV_Acme.pdf`. */
   downloadName: string;
+  /** Cover letter rendered by `tailor.py letter`, when one exists. */
+  letter: { pdf: string; downloadName: string } | null;
 }
 
 /** Title and company that `cv/tailor.py build` stores next to a tailored CV, so it outlives its job. */
@@ -19,6 +21,8 @@ export interface CvMeta {
   company: string | null;
   /** Friendly PDF name chosen by `tailor.py build`; null in sidecars written before it existed. */
   fileName: string | null;
+  /** Friendly cover letter name chosen by `tailor.py letter`; null until a letter exists. */
+  letterFileName?: string | null;
 }
 
 export const BASE_CV_ID = 'base';
@@ -33,12 +37,15 @@ export function readTailoredMeta(id: string, dir: string = TAILORED_DIR): CvMeta
       title?: unknown;
       company?: unknown;
       file_name?: unknown;
+      letter_file_name?: unknown;
     };
     if (typeof meta.title !== 'string' || meta.title === '') return null;
     return {
       title: meta.title,
       company: typeof meta.company === 'string' && meta.company ? meta.company : null,
       fileName: typeof meta.file_name === 'string' && meta.file_name.endsWith('.pdf') ? meta.file_name : null,
+      letterFileName:
+        typeof meta.letter_file_name === 'string' && meta.letter_file_name.endsWith('.pdf') ? meta.letter_file_name : null,
     };
   } catch {
     return null;
@@ -49,7 +56,10 @@ export function listCvs(
   files: string[],
   jobs: { id: string; title: string; company: string }[],
   readMeta: (id: string) => CvMeta | null = readTailoredMeta,
+  /** File names in `public/cv/letters/` (`<id>.pdf`). */
+  letters: string[] = [],
 ): CvEntry[] {
+  const letterIds = new Set(letters.filter((f) => f.endsWith('.pdf')).map((f) => f.slice(0, -4)));
   const byId = new Map(jobs.map((job) => [job.id, job]));
   const stems = files.filter((f) => f.endsWith('.pdf')).map((f) => f.slice(0, -4));
   const entries = stems.map((stem): CvEntry => {
@@ -70,6 +80,10 @@ export function listCvs(
       pages,
       isBase,
       downloadName: isBase ? BASE_DOWNLOAD_NAME : (meta?.fileName ?? `${stem}.pdf`),
+      letter:
+        !isBase && letterIds.has(stem)
+          ? { pdf: `letters/${stem}.pdf`, downloadName: meta?.letterFileName ?? `${stem}-cover-letter.pdf` }
+          : null,
     };
   });
   return entries.sort((a, b) => Number(b.isBase) - Number(a.isBase) || a.id.localeCompare(b.id));

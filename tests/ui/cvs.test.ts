@@ -11,7 +11,7 @@ describe('listCvs', () => {
     const cvs = listCvs(['base_2.png', 'base.pdf', 'base_1.png'], jobs);
     expect(cvs).toEqual([
       { id: 'base', title: 'CV base', company: null, pdf: 'base.pdf', pages: ['base_1.png', 'base_2.png'], isBase: true,
-        downloadName: 'Oscar_Pairazaman_CV.pdf' },
+        downloadName: 'Oscar_Pairazaman_CV.pdf', letter: null },
     ]);
   });
 
@@ -25,6 +25,7 @@ describe('listCvs', () => {
       pages: ['job-b9c6199b_1.png'],
       isBase: false,
       downloadName: 'job-b9c6199b.pdf',
+      letter: null,
     });
   });
 
@@ -37,7 +38,7 @@ describe('listCvs', () => {
     const files = ['x.txt', 'orphan_1.png', 'base.pdf', 'base_10.png', 'base_2.png'];
     expect(listCvs(files, jobs)).toEqual([
       { id: 'base', title: 'CV base', company: null, pdf: 'base.pdf', pages: ['base_2.png', 'base_10.png'], isBase: true,
-        downloadName: 'Oscar_Pairazaman_CV.pdf' },
+        downloadName: 'Oscar_Pairazaman_CV.pdf', letter: null },
     ]);
   });
 });
@@ -67,12 +68,25 @@ describe('tailored CV sidecar', () => {
       writeFileSync(join(dir, 'job-11111111.meta.json'), JSON.stringify({ id: 'job-11111111', title: 'Backend .NET', company: 'Beta' }));
       writeFileSync(join(dir, 'job-22222222.meta.json'), '{ not json');
       writeFileSync(join(dir, 'job-33333333.meta.json'), JSON.stringify({ title: '' }));
-      expect(readTailoredMeta('job-11111111', dir)).toEqual({ title: 'Backend .NET', company: 'Beta', fileName: null });
+      expect(readTailoredMeta('job-11111111', dir)).toEqual({ title: 'Backend .NET', company: 'Beta', fileName: null, letterFileName: null });
       expect(readTailoredMeta('job-22222222', dir)).toBeNull();
       expect(readTailoredMeta('job-33333333', dir)).toBeNull();
       expect(readTailoredMeta('job-44444444', dir)).toBeNull();
     } finally {
       rmSync(dir, { recursive: true, force: true });
     }
+  });
+});
+
+describe('cover letters', () => {
+  it('attaches a cover letter found in public/cv/letters, under its friendly name', () => {
+    const readMeta = () => ({ title: 'T', company: 'Acme', fileName: null, letterFileName: 'Oscar_Pairazaman_Cover_Letter_Acme.pdf' });
+    const [cv] = listCvs(['job-b9c6199b.pdf'], jobs, readMeta, ['job-b9c6199b.pdf']);
+    expect(cv.letter).toEqual({ pdf: 'letters/job-b9c6199b.pdf', downloadName: 'Oscar_Pairazaman_Cover_Letter_Acme.pdf' });
+  });
+
+  it('has no letter when none was generated, and the base CV never has one', () => {
+    expect(listCvs(['job-b9c6199b.pdf'], jobs, () => null, [])[0].letter).toBeNull();
+    expect(listCvs(['base.pdf'], jobs, () => null, ['base.pdf'])[0].letter).toBeNull();
   });
 });

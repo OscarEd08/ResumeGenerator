@@ -406,3 +406,58 @@ def test_publish_refuses_outside_main(tmp_path):
     assert result.returncode == 1
     assert "main" in result.stderr
     assert "chore(cv)" not in git(origin, "log", "--format=%s", "main")
+
+
+# --- Cover letter ----------------------------------------------------------------------------------
+
+
+@pytest.fixture
+def letter_en() -> dict:
+    return json.loads((CV_DIR / "tests" / "fixtures" / "letter_en.json").read_text(encoding="utf-8"))
+
+
+def test_letter_fixture_is_valid(profile, cfg, letter_en):
+    assert tailor.validate_letter(letter_en, profile, cfg) == []
+
+
+def test_letter_with_unbacked_technology_or_number_is_rejected(profile, cfg, letter_en):
+    letter = copy.deepcopy(letter_en)
+    letter["paragraphs"][1] += " I also ran Kubernetes clusters for 98765 teams."
+    errors = " ".join(tailor.validate_letter(letter, profile, cfg))
+    assert "kubernetes" in errors.lower() and "98765" in errors
+
+
+def test_letter_needs_paragraphs_and_a_closing(profile, cfg, letter_en):
+    assert tailor.validate_letter({**letter_en, "paragraphs": []}, profile, cfg)
+    assert tailor.validate_letter({**letter_en, "closing": ""}, profile, cfg)
+    assert tailor.validate_letter({**letter_en, "extra": 1}, profile, cfg)
+
+
+def test_letter_end_to_end(tmp_path, letter_en):
+    job = highest_scoring_job()
+    letter_path = write_json(tmp_path / "letter.json", letter_en)
+    tailored, out, named = tmp_path / "tailored", tmp_path / "out", tmp_path / "named"
+    result = run_tailor("letter", job["id"], "--letter", str(letter_path), "--tailored-dir", str(tailored),
+                        "--out", str(out), "--named-dir", str(named))
+    assert result.returncode == 0, result.stdout + result.stderr
+    pdf = out / "letters" / f"{job['id']}.pdf"
+    assert len(pypdf.PdfReader(pdf).pages) == 1
+    text = build.normalize(" ".join(page.extract_text() for page in pypdf.PdfReader(pdf).pages))
+    assert text.startswith("Oscar Pairazaman Arias")
+    assert job["company"] in text and "Sincerely," in text
+    for paragraph in letter_en["paragraphs"]:
+        assert build._squash(paragraph) in build._squash(text)
+    meta = json.loads((tailored / f"{job['id']}.meta.json").read_text(encoding="utf-8"))
+    assert meta["letter_file_name"].startswith("Oscar_Pairazaman_Cover_Letter_")
+    assert (named / meta["letter_file_name"]).read_bytes() == pdf.read_bytes()
+    assert result.stdout.splitlines()[0] == f"Carta: {named / meta['letter_file_name']}"
+
+
+def test_publish_includes_the_cover_letter(tmp_path):
+    origin = make_origin(tmp_path)
+    work = make_clone(tmp_path, "work", origin)
+    write_cv_outputs(work, "job-12345678")
+    (work / "public" / "cv" / "letters").mkdir()
+    (work / "public" / "cv" / "letters" / "job-12345678.pdf").write_bytes(b"%PDF")
+    assert run_tailor("publish", "job-12345678", "--repo", str(work)).returncode == 0
+    assert "public/cv/letters/job-12345678.pdf" in git(origin, "ls-tree", "-r", "--name-only", "main").splitlines()

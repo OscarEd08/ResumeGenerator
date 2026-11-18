@@ -36,7 +36,13 @@ export function loadCvs(): CvEntry[] {
   } catch {
     files = [];
   }
-  return listCvs(files, loadJobs().jobs);
+  let letters: string[] = [];
+  try {
+    letters = readdirSync(resolve(process.cwd(), 'public/cv/letters'));
+  } catch {
+    letters = [];
+  }
+  return listCvs(files, loadJobs().jobs, undefined, letters);
 }
 
 /** BASE_URL is "/ResumeGenerator" (no trailing slash); join paths safely. */

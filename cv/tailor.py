@@ -54,6 +54,7 @@ for _path in (CV_DIR, REPO_ROOT):
         sys.path.insert(0, str(_path))
 
 import build  # noqa: E402  (cv/build.py: rendering + ATS checks)
+import letter as letter_pdf  # noqa: E402  (cv/letter.py: cover letter layout)
 
 PROFILE_PATH = REPO_ROOT / "data" / "profile.json"
 JOBS_PATH = REPO_ROOT / "data" / "jobs.json"
@@ -120,6 +121,9 @@ LOCALE_ES = {"language": "spanish", "present": "Presente"}
 LANGUAGE_NAMES = {"en": "English", "es": "Spanish"}
 
 SELECTION_KEYS = {"job_id", "summary", "headline", "experience", "projects", "education", "skills"}
+LETTER_KEYS = {"job_id", "greeting", "paragraphs", "closing"}
+LETTER_MAX_PARAGRAPHS = 5
+LETTER_MAX_WORDS = 400
 BULLET_KEYS = {"ids", "text"}
 
 # --- Loading ------------------------------------------------------------------------------------
@@ -297,6 +301,28 @@ def validate_selection(selection: dict, profile: dict, lang: str, cfg) -> list[s
         errors += _check_skills(selection["skills"], profile)
     if lang == "es":
         errors += _check_education_language(selection, profile)
+    return errors
+
+
+def validate_letter(letter: dict, profile: dict, cfg) -> list[str]:
+    """Every reason the cover letter could make an unbacked claim. Same rule as the summary: only
+    technologies and numbers the bank contains. Empty means valid."""
+    if not isinstance(letter, dict):
+        return ["the letter must be a JSON object"]
+    errors = [f"unknown top-level key '{key}'" for key in sorted(set(letter) - LETTER_KEYS)]
+    for key in ("greeting", "closing"):
+        if not isinstance(letter.get(key), str) or not letter[key].strip():
+            errors.append(f"{key}: must be a non-empty string")
+    paragraphs = letter.get("paragraphs")
+    if not isinstance(paragraphs, list) or not 1 <= len(paragraphs) <= LETTER_MAX_PARAGRAPHS:
+        return errors + [f"paragraphs: must be a list of 1-{LETTER_MAX_PARAGRAPHS} strings"]
+    profile_terms = _profile_terms(profile, cfg)
+    bank_numbers = set().union(*map(_numbers, _bank_texts(profile)))
+    for position, paragraph in enumerate(paragraphs, start=1):
+        errors += _check_free_text(f"paragraph {position}", paragraph, profile_terms, bank_numbers, cfg)
+    words = sum(len(str(p).split()) for p in paragraphs)
+    if words > LETTER_MAX_WORDS:
+        errors.append(f"paragraphs: {words} words; keep the letter under {LETTER_MAX_WORDS} so it fits one page")
     return errors
 
 
@@ -626,7 +652,13 @@ def publish(job_id: str, repo: Path, remote: str = "origin", branch: str = "main
     if current != branch:
         raise TailorError(f"The CV is published from '{branch}', but the current branch is '{current}'. "
                           f"Switch to '{branch}' and run publish again.")
-    paths = [f":(glob)cv/tailored/{job_id}.*", f":(glob)public/cv/{job_id}.pdf", f":(glob)public/cv/{job_id}_*.png"]
+    paths = [f":(glob)cv/tailored/{job_id}.*", f":(glob)public/cv/{job_id}.pdf", f":(glob)public/cv/{job_id}_*.png",
+             f":(glob)public/cv/letters/{job_id}.pdf"]
+    # A pathspec that matches nothing makes `git add` fail (e.g. no cover letter for this job): keep the ones
+    # that match a file on disk or a tracked file (a tracked file that was deleted must be staged as deleted).
+    paths = [p for p in paths if _git(repo, "ls-files", "-c", "-o", "--exclude-standard", "--", p).stdout.strip()]
+    if not paths:
+        raise TailorError(f"No CV files for {job_id} to publish. Run build first.")
     _git(repo, "add", "-A", "--", *paths)
     if _git(repo, "diff", "--cached", "--quiet", "--", *paths, check=False).returncode != 0:
         meta_path = repo / "cv" / "tailored" / f"{job_id}.meta.json"
@@ -645,6 +677,65 @@ def publish(job_id: str, repo: Path, remote: str = "origin", branch: str = "main
     raise AssertionError("unreachable")
 
 
+def letter_file_name(cv_name: str, lang: str) -> str:
+    """`Oscar_Pairazaman_CV_Acme.pdf` -> `Oscar_Pairazaman_Cover_Letter_Acme.pdf` (`Carta_Presentacion` in Spanish)."""
+    return cv_name.replace("_CV_", "_Cover_Letter_" if lang == "en" else "_Carta_Presentacion_", 1)
+
+
+def cmd_letter(args) -> int:
+    job = _job_or_fail(args.job_id, args.jobs)
+    profile, cfg, lang = load_profile(args.profile), load_scoring_config(), language_for(job)
+    letter_path = args.letter or args.tailored_dir / f"{job['id']}.letter.json"
+    if not letter_path.is_file():
+        raise TailorError(f"Letter file not found: {_display(letter_path)}. Write it first.")
+    try:
+        letter = _read_json(letter_path)
+    except json.JSONDecodeError as error:
+        raise TailorError(f"{_display(letter_path)} is not valid JSON: {error}") from error
+    errors = validate_letter(letter, profile, cfg)
+    if isinstance(letter, dict) and letter.get("job_id") not in (None, job["id"]):
+        errors.append(f"job_id is '{letter['job_id']}', expected '{job['id']}'")
+    if errors:
+        raise TailorError("The letter was rejected:\n" + "\n".join(f"  - {e}" for e in errors))
+
+    cv = load_base()["cv"]
+    with tempfile.TemporaryDirectory(prefix="letter_") as staging:
+        pdf = letter_pdf.render(cv, job, letter, lang, Path(staging) / f"{job['id']}.pdf")
+        pages = len(pypdf.PdfReader(pdf).pages)
+        if pages != 1:
+            raise TailorError(f"The letter has {pages} pages; it must fit on one. Shorten the paragraphs.")
+        squashed = build._squash(build.pdf_text(pdf))
+        missing = [p for p in [cv["name"], *letter["paragraphs"], letter["closing"]] if build._squash(p) not in squashed]
+        if missing:
+            raise TailorError("The letter PDF failed the ATS text check; not found in order: "
+                              + "; ".join(repr(m[:60]) for m in missing))
+        published = args.out / "letters" / f"{job['id']}.pdf"
+        published.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(pdf, published)
+
+    args.tailored_dir.mkdir(parents=True, exist_ok=True)
+    meta_path = args.tailored_dir / f"{job['id']}.meta.json"
+    try:
+        meta = json.loads(meta_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        meta = {"id": job["id"], "title": job["title"], "company": job["company"], "market": job.get("market"),
+                "language": lang}
+    cv_name = meta.get("file_name") or unique_cv_file_name(cv["name"], job["company"], job["title"], job["id"],
+                                                          args.tailored_dir)
+    meta["letter_file_name"] = letter_file_name(cv_name, lang)
+    meta_path.write_text(json.dumps(meta, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    args.named_dir.mkdir(parents=True, exist_ok=True)
+    named = args.named_dir / meta["letter_file_name"]
+    shutil.copyfile(published, named)
+
+    print(f"Carta: {named}")
+    print(f"Cover letter for {job['id']}: {job['title']} at {job['company']} ({LANGUAGE_NAMES[lang]}), 1 page")
+    print("Files:")
+    for path in [letter_path, meta_path, published]:
+        print(f"  {_display(path)}")
+    return 0
+
+
 def cmd_publish(args) -> int:
     sha = publish(args.job_id, args.repo)
     print(f"Published to origin/main: {sha}")
@@ -657,13 +748,17 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Tailor the CV to one job from data/jobs.json.")
     sub = parser.add_subparsers(dest="command", required=True)
     for name, helptext in (("context", "print the job and the ranked bank bullets as JSON"),
-                           ("build", "validate the selection, render the CV and report coverage")):
+                           ("build", "validate the selection, render the CV and report coverage"),
+                           ("letter", "validate the cover letter and render it to one page")):
         cmd = sub.add_parser(name, help=helptext)
         cmd.add_argument("job_id", help="job id from data/jobs.json, e.g. job-b9c6199b")
         cmd.add_argument("--jobs", type=Path, default=JOBS_PATH, help="jobs file (default: data/jobs.json)")
         cmd.add_argument("--profile", type=Path, default=PROFILE_PATH, help="bank (default: data/profile.json)")
+        if name == "letter":
+            cmd.add_argument("--letter", type=Path, help="letter file (default: cv/tailored/<job-id>.letter.json)")
         if name == "build":
             cmd.add_argument("--selection", type=Path, help="selection file (default: cv/tailored/<job-id>.selection.json)")
+        if name in ("build", "letter"):
             cmd.add_argument("--tailored-dir", type=Path, default=TAILORED_DIR, help="where the YAML and meta go")
             cmd.add_argument("--out", type=Path, default=PUBLIC_CV, help="where the PDF and PNGs go (default: public/cv)")
             cmd.add_argument("--named-dir", type=Path, default=NAMED_DIR,
@@ -672,7 +767,7 @@ def main(argv: list[str] | None = None) -> int:
     pub.add_argument("job_id", help="job id whose CV files to publish")
     pub.add_argument("--repo", type=Path, default=REPO_ROOT, help="repository root (default: this repo)")
     args = parser.parse_args(argv)
-    commands = {"context": cmd_context, "build": cmd_build, "publish": cmd_publish}
+    commands = {"context": cmd_context, "build": cmd_build, "letter": cmd_letter, "publish": cmd_publish}
     try:
         return commands[args.command](args)
     except TailorError as error:

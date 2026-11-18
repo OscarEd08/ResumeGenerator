@@ -1,14 +1,18 @@
 ---
 interface Props {
   id: string;
+  /** Claude Code command to copy; `/tailor` by default. */
+  name?: 'tailor' | 'cover-letter';
+  /** The view's one primary action wears yellow; secondary commands get the quiet outline. */
+  primary?: boolean;
 }
-const { id } = Astro.props;
-const command = `/tailor ${id}`;
+const { id, name = 'tailor', primary = true } = Astro.props;
+const command = `/${name} ${id}`;
 ---
 
 <div class="cmd">
   <code>{command}</code>
-  <button type="button" class="btn primary" data-copy={command} aria-live="polite">Copiar</button>
+  <button type="button" class:list={['btn', { primary }]} data-copy={command} aria-live="polite">Copiar</button>
 </div>
 
 <style>

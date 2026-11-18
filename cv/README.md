@@ -26,6 +26,7 @@ The site's job page copies `/tailor <job-id>`. Run it in Claude Code from the re
     .venv/Scripts/python cv/tailor.py context <job-id>   # job + bank bullets ranked by the job's keywords (JSON)
     # Claude writes cv/tailored/<job-id>.selection.json (summary, bullet ids, optional rephrasing, skills order)
     .venv/Scripts/python cv/tailor.py build <job-id>     # validate, write YAML, render, ATS + 2-page check, report
+    .venv/Scripts/python cv/tailor.py letter <job-id>    # cover letter from cv/tailored/<job-id>.letter.json: 1 page, same header and font
     .venv/Scripts/python cv/tailor.py publish <job-id>   # commit only this CV's files and push to origin/main (rebases over the job bot)
 
 `build` does the following:
@@ -42,3 +43,13 @@ The site's job page copies `/tailor <job-id>`. Run it in Claude Code from the re
 Options for testing or other inputs: `--jobs`, `--profile`, `--selection`, `--tailored-dir`, `--out` and `--named-dir`.
 
 Keyword matching reuses `jobs/scoring.py` and `jobs/config.yaml`. That code loads YAML with PyYAML, which this venv does not install, so `tailor.py` passes it `ruamel.yaml`'s safe loader instead. Both read the config identically.
+
+## Cover letters (`/cover-letter <job-id>`)
+
+When an application asks for a cover letter, run `/cover-letter <job-id>` in Claude Code. The job page has a button that copies it. The command (`.claude/commands/cover-letter.md`):
+
+1. Writes `cv/tailored/<job-id>.letter.json`: greeting, 3-4 paragraphs and a closing, in the CV's language.
+2. Runs `tailor.py letter`. It rejects technologies or numbers that are not in the bank, the same rule as the CV summary, and renders one US Letter page with `cv/letter.py`, using Typst and the CV's XCharter font and header. It also checks that the PDF text reads in order.
+3. Writes `public/cv/letters/<job-id>.pdf`. The site shows a "Descargar carta" button on that job's CV page.
+4. Copies the letter to `cv/out/Oscar_Pairazaman_Cover_Letter_<Company>.pdf`, or `..._Carta_Presentacion_...` in Spanish, ready to attach.
+5. Publishes it to `main` with `tailor.py publish`.
