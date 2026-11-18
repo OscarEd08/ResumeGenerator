@@ -1,0 +1,11 @@
+{
+  "job_id": "job-b9c6199b",
+  "greeting": "Dear Hiring Team,",
+  "paragraphs": [
+    "I am applying for the Senior Full-Stack Developer (Angular / .NET Core) role at Resourceful Talent Group. I build client applications with C#, ASP.NET Core, Angular and SQL Server, I develop and maintain REST APIs and integrations with external systems, and I use AI coding tools every day to deliver features faster.",
+    "At Bertoni Solutions I built end to end a B2B operations platform pilot on .NET and Angular, with orders, inventory, a customer portal, supplier invoices and a dashboard, delivering 18 requirements in 25 days. I designed it as a modular monolith with one SQL schema per module. I am also the top contributor to a B2B/B2C e-commerce platform for laboratory and healthcare supplies integrated with Microsoft Dynamics 365 Business Central, where I implemented cXML PunchOut for corporate buyers and built a .NET search microservice that cut P95 search latency from about 1.6 s to about 150 ms.",
+    "I also designed my company's corporate standard for AI-assisted software delivery, a Claude Code plugin with subagents for design, implementation, code review and QA, where every change still goes through human review and automated tests.",
+    "I would welcome the chance to talk about how I can help your team expand its healthcare billing platform. Thank you for your time and consideration."
+  ],
+  "closing": "Sincerely,"
+}
