@@ -9,24 +9,37 @@ export interface CvEntry {
   pdf: string;
   pages: string[];
   isBase: boolean;
+  /** File name the download saves as, e.g. `Oscar_Pairazaman_CV_Acme.pdf`. */
+  downloadName: string;
 }
 
 /** Title and company that `cv/tailor.py build` stores next to a tailored CV, so it outlives its job. */
 export interface CvMeta {
   title: string;
   company: string | null;
+  /** Friendly PDF name chosen by `tailor.py build`; null in sidecars written before it existed. */
+  fileName: string | null;
 }
 
 export const BASE_CV_ID = 'base';
+export const BASE_DOWNLOAD_NAME = 'Oscar_Pairazaman_CV.pdf';
 
 const TAILORED_DIR = resolve(process.cwd(), 'cv/tailored');
 
 /** Reads `cv/tailored/<id>.meta.json`; null when it is missing or has no title. */
 export function readTailoredMeta(id: string, dir: string = TAILORED_DIR): CvMeta | null {
   try {
-    const meta = JSON.parse(readFileSync(join(dir, `${id}.meta.json`), 'utf-8')) as { title?: unknown; company?: unknown };
+    const meta = JSON.parse(readFileSync(join(dir, `${id}.meta.json`), 'utf-8')) as {
+      title?: unknown;
+      company?: unknown;
+      file_name?: unknown;
+    };
     if (typeof meta.title !== 'string' || meta.title === '') return null;
-    return { title: meta.title, company: typeof meta.company === 'string' && meta.company ? meta.company : null };
+    return {
+      title: meta.title,
+      company: typeof meta.company === 'string' && meta.company ? meta.company : null,
+      fileName: typeof meta.file_name === 'string' && meta.file_name.endsWith('.pdf') ? meta.file_name : null,
+    };
   } catch {
     return null;
   }
@@ -42,7 +55,8 @@ export function listCvs(
   const entries = stems.map((stem): CvEntry => {
     const isBase = stem === BASE_CV_ID;
     // Jobs are pruned from jobs.json after 30 days; the sidecar keeps the CV titled after that.
-    const job = byId.get(stem) ?? (isBase ? null : readMeta(stem));
+    const meta = isBase ? null : readMeta(stem);
+    const job = byId.get(stem) ?? meta;
     const pages = files
       .map((f) => ({ f, m: f.match(/^(.+)_(\d+)\.png$/) }))
       .filter(({ m }) => m?.[1] === stem)
@@ -55,6 +69,7 @@ export function listCvs(
       pdf: `${stem}.pdf`,
       pages,
       isBase,
+      downloadName: isBase ? BASE_DOWNLOAD_NAME : (meta?.fileName ?? `${stem}.pdf`),
     };
   });
   return entries.sort((a, b) => Number(b.isBase) - Number(a.isBase) || a.id.localeCompare(b.id));

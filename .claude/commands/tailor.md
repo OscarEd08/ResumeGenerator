@@ -4,23 +4,23 @@ argument-hint: <job-id>
 allowed-tools: Bash(.venv/Scripts/python cv/tailor.py:*), Bash(.venv/bin/python cv/tailor.py:*), Read, Write, Edit
 ---
 
-Tailor the CV to job `$ARGUMENTS`. Work from the repository root. Use `.venv/Scripts/python` on Windows and `.venv/bin/python` elsewhere.
+Tailor the CV to job `$ARGUMENTS` and hand the user the PDF.
 
-## 1. Read the context
+The user only wants the file. Run the steps below without narrating them, asking questions or offering options. Don't commit, push, run npm or start a server unless the user asks. Work from the repository root and use `.venv/Scripts/python` (`.venv/bin/python` outside Windows).
 
-Run `.venv/Scripts/python cv/tailor.py context $ARGUMENTS`.
+## 1. Context
 
-It prints JSON with:
+Run `.venv/Scripts/python cv/tailor.py context $ARGUMENTS`. It prints JSON with:
 - `job`: the posting and its weighted keyword `terms`.
 - `language`: `en` for jobs abroad, `es` for Peru.
-- `entries`: every bank entry, with its highlights ranked by how many job keywords they cover (`relevance`, `covers`).
-- `selection_path`: where to write the selection.
+- `entries`: every bank entry, with its highlights ranked by `relevance` and the keywords each one `covers`.
 - `base`: the base headline and summary.
 - `skills`: the bank's skill groups.
+- `selection_path`: where to write the selection.
 
-If the job is not found, stop and say so. Jobs are pruned from `data/jobs.json` after 30 days.
+If the job is not found, say so in one line and stop. Jobs are pruned from `data/jobs.json` after 30 days.
 
-## 2. Write the selection file
+## 2. Selection
 
 Write `cv/tailored/$ARGUMENTS.selection.json`:
 
@@ -40,38 +40,40 @@ Write `cv/tailored/$ARGUMENTS.selection.json`:
 }
 ```
 
-Choosing content (S1):
-- Lead each entry with the bullets that cover the job's keywords and responsibilities. Order skill groups and items so the job's stack comes first.
-- Every experience and project entry keeps at least one bullet, so the timeline has no gaps.
-- Keep about as much text as `cv/base.yaml` (about 7 bullets for the current role and 1-3 for the others). The CV must fit in 2 pages.
-- `education` is optional in English. Leave it out to print every education highlight. In Spanish, list it with a translated `text`.
-- `skills` items must be copied exactly from the bank's `details` under the same `label`. Drop items or groups that do not help, but never add new ones.
+What to include:
+- Put first the bullets and skills that cover the job's keywords.
+- Keep at least one bullet for each experience and project entry.
+- Aim for about 7 bullets for the current role and 1-3 for each of the others, so the CV fits in 2 pages.
+- `education` is optional in English. In Spanish, list it with a translated `text`.
+- Copy `skills` items exactly from the bank's `details` under the same `label`. You may drop items, but never add any.
 
-Never invent (S2):
-- A bullet without `text` prints its highlight verbatim (`text_es` in Spanish).
-- A `text` may only shorten, merge, reorder or translate what its cited highlights say. Do not add technologies, numbers, scope, results or claims they do not contain.
-- Cite only ids from that same entry. Never cite an id twice.
-- Write in the context's `language`. For Spanish, use `text_es` when it exists. Otherwise translate faithfully in `text`.
+Never invent anything:
+- A bullet without `text` prints its highlight verbatim, using `text_es` in Spanish.
+- A `text` may only shorten, merge, reorder or translate what its cited highlights say. It must not add technologies, numbers, scope, results or claims.
+- Cite ids from the same entry only, and never cite one twice.
 - The summary may only mention technologies and facts that are in the bank.
-- Respect each entry's `client_confidential` note. Never print internal client or project names that it says to keep out.
+- Respect each entry's `client_confidential` note.
+
+To get it right the first time, prefer verbatim bullets. Write a merged `text` only when the page limit forces it.
 
 ## 3. Build
 
-Run `.venv/Scripts/python cv/tailor.py build $ARGUMENTS`.
+Run `.venv/Scripts/python cv/tailor.py build $ARGUMENTS`. It validates the selection, renders the PDF, runs the ATS checks and the 2-page limit, and copies the PDF with a readable name to `cv/out/`.
 
-The build checks the selection, writes `cv/tailored/$ARGUMENTS.yaml` and renders the PDF and PNGs. Then it runs the ATS checks and the 2-page limit, and publishes to `public/cv/`.
+If it fails, fix only what each error names and run `build` again:
+- An unknown id or an id from another entry: cite the right id.
+- A number or technology that is not in the sources: drop that detail.
+- More than 2 pages: drop the lowest-ranked bullets.
 
-If it fails, read the errors, fix the selection and run `build` again:
-- An unknown id or a cross-entry id: cite the right id.
-- A number or technology not in its sources: drop that detail.
-- More than 2 pages: drop or shorten bullets.
+Never edit `data/profile.json` or the generated YAML to get past an error.
 
-Never fix a rejection by editing `data/profile.json` or the generated YAML.
+## 4. Reply
 
-## 4. Report
+Reply in the user's language with exactly these lines and nothing else:
 
-Relay the build output: the covered and missing keywords, the page count and the file paths.
+```
+CV listo: <absolute path from the build's "CV:" line>
+Keywords: <covered>/<total> cubiertas<; faltan: <missing>, if any>
+```
 
-Keywords listed as "not in the profile" are gaps to mention to the user. Never add them to the CV.
-
-The site lists the new CV on `/cvs` and previews it at `/cv/$ARGUMENTS` after the next `npm run build` or `npm run dev`.
+Add one more line only if `build` lists keywords "not in the profile". That line names them as gaps for the user. Never add them to the CV.

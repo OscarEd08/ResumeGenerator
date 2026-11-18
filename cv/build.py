@@ -159,14 +159,21 @@ def check_entries_read_company_position_dates(text: str, cv: dict, locale: dict 
     return problems
 
 
+def _squash(text: str) -> str:
+    """Drop spaces and hyphens: a bullet wrapped at a hyphen (`image-to-` / `PDF`) or hyphenated by Typst
+    (`creden-` / `tials`) extracts with a stray space or hyphen, yet still reads in order."""
+    return re.sub("[\\s\\-­‐‑]+", "", normalize(text))
+
+
 def check_every_highlight_present(text: str, cv: dict) -> list[str]:
+    squashed = _squash(text)
     return [
         f"bullet not found in reading order: {highlight!r}"
         for section in cv["sections"].values()
         for entry in section
         if isinstance(entry, dict)
         for highlight in entry.get("highlights") or []
-        if normalize(highlight) not in text
+        if _squash(highlight) not in squashed
     ]
 
 

@@ -109,3 +109,11 @@ def test_date_formatting_follows_the_locale():
     spanish = {"language": "spanish", "present": "Presente"}
     assert build.entry_date({"start_date": "2024-01", "end_date": "2024-12"}, spanish) == "Ene 2024 - Dic 2024"
     assert build.entry_date({"date": "2020 - 2024"}) == "2020 - 2024"
+
+
+def test_bullet_split_by_a_line_break_at_a_hyphen_is_still_found():
+    # pypdf extracts "image-to-PDF" broken across lines as "image-to- PDF" and Typst hyphenation as "creden- tials".
+    cv = {"sections": {"experience": [{"highlights": ["Built an image-to-PDF service for credentials and e-mail."]}]}}
+    text = build.normalize("Built an image-to-\nPDF service for creden-\ntials and e-\nmail.")
+    assert build.check_every_highlight_present(text, cv) == []
+    assert build.check_every_highlight_present(build.normalize("Built a PDF service."), cv) != []

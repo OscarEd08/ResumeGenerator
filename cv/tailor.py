@@ -36,8 +36,10 @@ import copy
 import json
 import re
 import sys
+import shutil
 import tempfile
 import types
+import unicodedata
 from datetime import date
 from pathlib import Path
 
@@ -56,6 +58,7 @@ PROFILE_PATH = REPO_ROOT / "data" / "profile.json"
 JOBS_PATH = REPO_ROOT / "data" / "jobs.json"
 BASE_YAML = CV_DIR / "base.yaml"
 TAILORED_DIR = CV_DIR / "tailored"
+NAMED_DIR = CV_DIR / "out"  # friendly-named copies to attach when applying (git-ignored)
 PUBLIC_CV = REPO_ROOT / "public" / "cv"
 MAX_PAGES = 2
 EXCLUDED_MARK = "❓"  # claims flagged with this mark in docs/*.md never reach the bank or the CV
@@ -511,6 +514,32 @@ def cmd_context(args) -> int:
     return 0
 
 
+def _slug(text: str) -> str:
+    """ASCII words joined by hyphens: "Compañía Ñandú S.A.C." -> "Compania-Nandu-SAC"."""
+    ascii_text = unicodedata.normalize("NFKD", text).encode("ascii", "ignore").decode()
+    words = re.findall(r"[A-Za-z0-9]+", ascii_text.replace(".", ""))
+    return "-".join(words)
+
+
+def cv_file_name(owner: str, company: str) -> str:
+    """`Oscar_Pairazaman_CV_<Company>.pdf`: first name and first surname, then the company."""
+    first_two = "_".join(_slug(word) for word in owner.split()[:2])
+    return f"{first_two}_CV_{_slug(company) or 'Company'}.pdf"
+
+
+def unique_cv_file_name(owner: str, company: str, title: str, job_id: str, tailored_dir: Path) -> str:
+    """The company name, plus the role when another job's CV for that company already took it."""
+    name = cv_file_name(owner, company)
+    for meta_path in tailored_dir.glob("*.meta.json"):
+        try:
+            other = json.loads(meta_path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            continue
+        if other.get("id") != job_id and other.get("file_name") == name:
+            return f"{name[:-4]}_{_slug(title)}.pdf"
+    return name
+
+
 def cmd_build(args) -> int:
     job = _job_or_fail(args.job_id, args.jobs)
     profile, cfg, lang = load_profile(args.profile), load_scoring_config(), language_for(job)
@@ -548,13 +577,18 @@ def cmd_build(args) -> int:
         published = build.publish(rendered, args.out, job["id"])
 
     report = coverage(job, text, profile, cfg)
-    meta = {"id": job["id"], "title": job["title"], "company": job["company"], "market": job.get("market"),
+    file_name = unique_cv_file_name(doc["cv"]["name"], job["company"], job["title"], job["id"], args.tailored_dir)
+    args.named_dir.mkdir(parents=True, exist_ok=True)
+    named = args.named_dir / file_name
+    shutil.copyfile(published[0], named)
+    meta = {"id": job["id"], "file_name": file_name, "title": job["title"], "company": job["company"], "market": job.get("market"),
             "language": lang, "generated_at": date.today().isoformat(), "pages": pages,
             "covered": report["covered"], "missing": report["missing"]}
     meta_path = args.tailored_dir / f"{job['id']}.meta.json"
     meta_path.write_text(json.dumps(meta, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
     total = len(report["covered"]) + len(report["missing"])
+    print(f"CV: {named}")
     print(f"Tailored CV for {job['id']}: {job['title']} at {job['company']} ({LANGUAGE_NAMES[lang]}, market {job.get('market')})")
     print(f"Covered keywords: {_labels(report['covered'], cfg)} ({len(report['covered'])}/{total})")
     print(f"Missing keywords: {_labels(report['missing'], cfg)}")
@@ -584,6 +618,8 @@ def main(argv: list[str] | None = None) -> int:
             cmd.add_argument("--selection", type=Path, help="selection file (default: cv/tailored/<job-id>.selection.json)")
             cmd.add_argument("--tailored-dir", type=Path, default=TAILORED_DIR, help="where the YAML and meta go")
             cmd.add_argument("--out", type=Path, default=PUBLIC_CV, help="where the PDF and PNGs go (default: public/cv)")
+            cmd.add_argument("--named-dir", type=Path, default=NAMED_DIR,
+                             help="where the friendly-named PDF copy goes (default: cv/out)")
     args = parser.parse_args(argv)
     try:
         return cmd_context(args) if args.command == "context" else cmd_build(args)

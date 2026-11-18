@@ -268,7 +268,7 @@ def render_end_to_end(tmp_path: Path, job_id: str, jobs_path: Path, selection: d
     selection_path = write_json(tmp_path / "selection.json", selection)
     tailored, out = tmp_path / "tailored", tmp_path / "out"
     result = run_tailor("build", job_id, "--jobs", str(jobs_path), "--selection", str(selection_path),
-                        "--tailored-dir", str(tailored), "--out", str(out))
+                        "--tailored-dir", str(tailored), "--out", str(out), "--named-dir", str(tmp_path / "named"))
     assert result.returncode == 0, result.stdout + result.stderr
     pdf = out / f"{job_id}.pdf"
     source = YAML(typ="safe").load((tailored / f"{job_id}.yaml").read_text(encoding="utf-8"))
@@ -286,6 +286,9 @@ def assert_rendered_cv(result, pdf: Path, source: dict, tailored: Path, out: Pat
     assert "Missing keywords:" in result.stdout
     assert f"Pages: {pages}" in result.stdout
     assert f"{job_id}.pdf" in result.stdout
+    named = tailored.parent / "named" / meta["file_name"]
+    assert meta["file_name"].startswith("Oscar_Pairazaman_CV_") and named.read_bytes() == pdf.read_bytes()
+    assert result.stdout.splitlines()[0] == f"CV: {named}"
 
 
 def test_end_to_end_highest_scoring_job_in_english(tmp_path, selection_en):
@@ -303,3 +306,22 @@ def test_end_to_end_peru_job_in_spanish(tmp_path, selection_es):
     text = build.normalize(" ".join(page.extract_text() for page in pypdf.PdfReader(pdf).pages))
     assert "EXPERIENCIA PROFESIONAL" in text
     assert "Presente" in text
+
+
+# --- Friendly file name --------------------------------------------------------------------------
+
+
+def test_cv_file_name_uses_owner_and_company():
+    assert tailor.cv_file_name("Oscar Pairazaman Arias", "Resourceful Talent Group") == (
+        "Oscar_Pairazaman_CV_Resourceful-Talent-Group.pdf")
+    assert tailor.cv_file_name("Oscar Pairazaman Arias", "Compañía Ñandú S.A.C.") == "Oscar_Pairazaman_CV_Compania-Nandu-SAC.pdf"
+
+
+def test_cv_file_name_adds_the_role_when_the_company_already_has_a_cv(tmp_path):
+    (tmp_path / "job-11111111.meta.json").write_text(json.dumps(
+        {"id": "job-11111111", "file_name": "Oscar_Pairazaman_CV_Acme.pdf"}), encoding="utf-8")
+    assert tailor.unique_cv_file_name("Oscar Pairazaman Arias", "Acme", "Senior .NET Engineer", "job-22222222",
+                                      tmp_path) == "Oscar_Pairazaman_CV_Acme_Senior-NET-Engineer.pdf"
+    # Rebuilding the same job keeps its own name.
+    assert tailor.unique_cv_file_name("Oscar Pairazaman Arias", "Acme", "Anything", "job-11111111",
+                                      tmp_path) == "Oscar_Pairazaman_CV_Acme.pdf"

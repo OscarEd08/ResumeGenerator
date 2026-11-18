@@ -33,9 +33,11 @@ The site's job page copies `/tailor <job-id>`. Run it in Claude Code from the re
 - It writes `cv/tailored/<job-id>.yaml` with `base.yaml`'s header, entry headers, design and layout. Only the summary, bullets and skills change.
 - It picks the language from the job's `market`: English for jobs abroad, Spanish (`text_es`, Spanish headings and dates) for Peru.
 - It renders into a staging directory. Then it runs the same ATS checks as `cv/tests/test_ats.py` (the `check_*` functions in `build.py`) and enforces a maximum of 2 pages. Only then does it publish `public/cv/<job-id>.pdf` and `<job-id>_<n>.png`.
-- It writes `cv/tailored/<job-id>.meta.json` (title, company, coverage). The site uses it to title the CV after the job is pruned from `jobs.json`.
+- It writes `cv/tailored/<job-id>.meta.json` (title, company, file name, coverage). The site uses it to title the CV after the job is pruned from `jobs.json`, and to download it under the readable name.
+- It copies the PDF to `cv/out/Oscar_Pairazaman_CV_<Company>.pdf` (git-ignored), ready to attach. If another job's CV for the same company already took that name, the role is appended. The first output line, `CV: <path>`, names that file.
+- The ATS check finds a bullet even when the PDF wraps it at a hyphen (`image-to-` / `PDF`).
 - It prints the covered and missing keywords, the page count and the file paths.
 
-Options for testing or other inputs: `--jobs`, `--profile`, `--selection`, `--tailored-dir` and `--out`.
+Options for testing or other inputs: `--jobs`, `--profile`, `--selection`, `--tailored-dir`, `--out` and `--named-dir`.
 
 Keyword matching reuses `jobs/scoring.py` and `jobs/config.yaml`. That code loads YAML with PyYAML, which this venv does not install, so `tailor.py` passes it `ruamel.yaml`'s safe loader instead. Both read the config identically.
