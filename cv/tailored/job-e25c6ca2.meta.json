@@ -1,0 +1,22 @@
+{
+  "id": "job-e25c6ca2",
+  "file_name": "Oscar_Pairazaman_CV_NTT-DATA-Europe-Latam.pdf",
+  "title": "Desarrollador .NET",
+  "company": "NTT DATA Europe & Latam",
+  "market": "peru",
+  "language": "es",
+  "generated_at": "2026-11-18",
+  "pages": 2,
+  "covered": [
+    "dotnet",
+    "aspnet-core",
+    "azure",
+    "css",
+    "html",
+    "javascript",
+    "key-vault"
+  ],
+  "missing": [
+    "aws"
+  ]
+}
