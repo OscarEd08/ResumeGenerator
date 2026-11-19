@@ -1,6 +1,6 @@
 # Experiencia en Bertoni Solutions — material para CV y LinkedIn
 
-> Fuente: análisis de los repositorios `nexo-industrial`, `boyless-bros-demo`, `CERV/checkpoint-vision` y `bertoni-ai-standards` (git log, código, ADRs, docs). Fecha: 2026-11-02.
+> Fuente: análisis de los repositorios `nexo-industrial`, `boyless-bros-demo`, `CERV/checkpoint-vision`, `bertoni-ai-standards` y `merch-designer` (sección 2.5) (git log, código, ADRs, docs). Fecha: 2026-11-02.
 > Todos los números son verificables en los repos salvo que se marque *(estimado)*.
 > Complementa `bertoni-experience.md` (Proquinorte, GlobalCertifica).
 
@@ -82,6 +82,29 @@
 
 ---
 
+### 2.5 Merch Designer — Editor de personalización de productos promocionales con vista 3D
+*Demo para una propuesta comercial (RFP de un proveedor de productos promocionales) · Nov 2026 · Desarrollador (único autor)*
+
+> Fuente: repositorio `merch-designer` (git log, `README.md`, `PRODUCT.md`, `odd/tasks/merch-designer.md`, `infra/`, `pipelines/`) y el brief interno del proyecto. Leyenda: ✅ verificado en código, git o docs · ⚠️ parcial o inferido · ❓ no verificable.
+> **Confidencialidad:** el nombre del cliente no se publica en ningún lado. Usa "Merch Designer" o "proveedor de productos promocionales". El repo y la app ya son neutros (sin nombre de cliente ni datos de país).
+
+**CV (español):**
+- ✅ Construí un **simulador web de personalización de merchandising** para presentar en una propuesta comercial: el cliente elige producto (termo, polo, gorra, tote bag), color y técnica (impresión UV, grabado láser, bordado, serigrafía/DTF), coloca logo, texto e íconos dentro de la zona de impresión real con su **medida en cm**, guarda el diseño y envía una solicitud de cotización. *(`README.md`, `PRODUCT.md`, brief)*
+- ✅ Lo entregué en **4 días (9–12 nov 2026), 84 commits como único autor**, cumpliendo los 11 criterios de aceptación del brief, cada uno trazado a tests E2E en escritorio y celular. *(git log; `README.md` «Acceptance criteria → tests»)*
+- ✅ Desarrollé el editor en **Angular 22 (signals) + Fabric.js 7**: zonas de impresión por producto, vista y técnica definidas en **JSON de configuración** (agregar un producto es un cambio de datos, no de código), historial deshacer/rehacer por vista, gestos táctiles (mover, pellizcar, rotar), texto en arco con *text-on-path* nativo y efectos por técnica (grabado monocromo, textura de bordado, contador de tintas en serigrafía). *(`README.md`, `src/app/editor/`, T4–T11, T17)*
+- ✅ Agregué una **vista 3D con three.js** que muestra el diseño sobre el modelo del producto en el color elegido (calcomanía proyectada o etiqueta curva en el termo), cargada como *chunk* diferido (~142 kB transferidos) para no engordar el editor; modelos GLB generados desde una foto con **TRELLIS.2** y comprimidos con gltf-transform (0.3–0.9 MB), solo con herramientas open source. *(`README.md` «3D view», T18, T20)*
+- ✅ Tras un **análisis de 9 personalizadores de la competencia** (Custom Ink, Printful, Zakeke, Vistaprint, etc.) propuse e implementé ubicaciones de impresión fijas (varias por vista), tabla de tallas, cantidades mínimas, prueba de diseño con aprobación, enlace para compartir sin backend (diseño comprimido en el hash de la URL) y "usar el mismo diseño en otro producto". *(`odd/tasks/merch-designer.md` L21, S12–S18, S23)*
+- ✅ Cubrí la demo con **264 tests unitarios (Vitest) y 179 E2E con Playwright** (escritorio 1440×900 y Pixel 7) en verde al cierre de la última tarea. *(`odd/tasks/merch-designer.md` T21)*
+- ✅ La publiqué en **Azure Container Apps** (contenedor nginx no-root, Bicep con managed identity y AcrPull reutilizando el entorno y el registro compartidos, scale-to-zero con regla KEDA en horario de oficina) y un **pipeline de Azure DevOps** con tests, `az acr build`, despliegue, smoke tests y purga de imágenes. *(`infra/main.bicep`, `pipelines/deploy.yml`, commit `d3a0dbf`, Log L46–L49)*
+- ✅ Reduje el peso de las fotos del catálogo de **100 MB a 6.7 MB** (WebP a tamaño de pantalla con sharp) y las serví con caché de un año versionada por hash. *(commits `311276c`, `3e16e19`; Log L56)*
+- ✅ Dirigí el desarrollo con un **flujo asistido por IA (Claude Code)**: documento de especificación con 24 specs y 23 tareas, escritores delegados en paralelo, evidencia RED/GREEN por tarea y verificadores independientes en los cambios de riesgo (formato de diseños guardados, infraestructura). *(`odd/tasks/merch-designer.md`, `.claude/`)*
+- ⚠️ Preparé también el documento de propuesta y el prototipo de diseño que acompañan la demo. *(commit `7b7bdd3` agrega `docs/design/proposal/propuesta-merch-designer.docx` y el prototipo; la autoría del contenido de la propuesta se infiere del commit)*
+- ❓ Resultado comercial: si la propuesta se presentó, si se ganó el RFP y si el código pasó a ser la base del simulador real. No hay evidencia en el repo.
+
+**Stack:** Angular 22 (standalone, signals, signal forms), TypeScript 6, Fabric.js 7, three.js, Tailwind CSS 4, Vitest, Playwright, sharp, TRELLIS.2, gltf-transform, nginx, Docker, Bicep, Azure Container Apps, Azure Container Registry, Managed Identity, Azure DevOps Pipelines (workload identity federation).
+
+---
+
 ## 3. Bullet resumen (si el CV tiene poco espacio)
 
 Si solo cabe un bloque para Bertoni, usa esto bajo el puesto actual:
@@ -122,6 +145,7 @@ Son demos y pilotos, y eso está bien, **siempre que el CV no los venda como pro
 | Boyles | Desplegado en Azure, probado con facturas reales del cliente | Integración con A+ (está simulada) |
 | CERV | 7/7 escenas correctas **en escenas sintéticas** | Cifras de precisión en campo (`PRODUCT.md` dice explícitamente que no se afirmen) |
 | CERV | Infra definida en Bicep y pipeline listo | Que está desplegado (según el log aún no se había desplegado) |
+| merch-designer | Demo desplegada en Azure para una propuesta comercial; persistencia simulada en el navegador (localStorage) | Que tiene backend, precios o pedidos reales, o que el RFP se ganó (sin evidencia) |
 | Boyles | Autoría: 26 commits como "Oscar Pairazaman" y 34 como "oscarrBS" (tu cuenta de GitHub, usada en las ejecuciones de agentes) | — |
 
 **Sobre "construido con agentes de IA":** es tu mayor diferencial, pero preséntalo como **"diseñé y dirigí"** el flujo, no como "la IA lo hizo". La evidencia que lo respalda está en los repos: specs, ADRs, gates humanos, reviews numerados y evidencia RED/GREEN.

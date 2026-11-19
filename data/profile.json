@@ -550,6 +550,96 @@
           "evidence": "verified",
           "project": "Checkpoint Vision (CERV)",
           "source": { "path": "docs/cv-bertoni-proyectos.md", "section": "2.4 Checkpoint Vision (CERV) — Inspección vehicular con visión computacional" }
+        },
+        {
+          "id": "merch-designer-customizer",
+          "text": "Built a web merchandise customizer for a sales proposal to a promotional-products supplier: the customer picks a product (thermos, polo, cap, tote bag), color and decoration technique (UV print, laser engraving, embroidery, screen print/DTF), places a logo, text and icons inside the real print zone with its size in cm, saves the design and sends a quote request.",
+          "text_es": "Construí un simulador web de personalización de merchandising para una propuesta comercial: el cliente elige producto (termo, polo, gorra, tote bag), color y técnica (impresión UV, grabado láser, bordado, serigrafía/DTF), coloca logo, texto e íconos dentro de la zona de impresión real con su medida en cm, guarda el diseño y envía una solicitud de cotización.",
+          "tags": ["angular", "typescript", "frontend", "fabricjs", "demo", "ecommerce"],
+          "evidence": "verified",
+          "project": "Merch Designer",
+          "source": { "path": "docs/cv-bertoni-proyectos.md", "section": "2.5 Merch Designer — Editor de personalización de productos promocionales con vista 3D" }
+        },
+        {
+          "id": "merch-designer-four-day-delivery",
+          "text": "Delivered it in 4 days (84 commits as sole author), meeting all 11 acceptance criteria of the brief, each traced to end-to-end tests on desktop and phone.",
+          "text_es": "Lo entregué en 4 días (84 commits como único autor), cumpliendo los 11 criterios de aceptación del brief, cada uno trazado a tests E2E en escritorio y celular.",
+          "tags": ["delivery", "testing", "playwright", "demo"],
+          "evidence": "verified",
+          "project": "Merch Designer",
+          "source": { "path": "docs/cv-bertoni-proyectos.md", "section": "2.5 Merch Designer — Editor de personalización de productos promocionales con vista 3D" }
+        },
+        {
+          "id": "merch-designer-editor-engine",
+          "text": "Built the editor on Angular 22 (signals) and Fabric.js 7: print zones per product, view and technique in JSON configuration (a new product is a data change, not a code change), per-view undo/redo, touch gestures (move, pinch, rotate), text on an arc and per-technique effects (monochrome engraving, embroidery texture, screen-print ink counter).",
+          "text_es": "Desarrollé el editor en Angular 22 (signals) + Fabric.js 7: zonas de impresión por producto, vista y técnica en JSON de configuración (agregar un producto es un cambio de datos, no de código), deshacer/rehacer por vista, gestos táctiles (mover, pellizcar, rotar), texto en arco y efectos por técnica (grabado monocromo, textura de bordado, contador de tintas en serigrafía).",
+          "tags": ["angular", "signals", "fabricjs", "typescript", "frontend", "mobile", "configuration-driven"],
+          "evidence": "verified",
+          "project": "Merch Designer",
+          "source": { "path": "docs/cv-bertoni-proyectos.md", "section": "2.5 Merch Designer — Editor de personalización de productos promocionales con vista 3D" }
+        },
+        {
+          "id": "merch-designer-3d-view",
+          "text": "Added a three.js 3D view that shows the design on the product model in the chosen color (projected decal, or a curved label on the thermos), lazy-loaded as a separate chunk (~142 kB transferred); GLB models generated from one photo with TRELLIS.2 and compressed with gltf-transform (0.3–0.9 MB), using only open-source tools.",
+          "text_es": "Agregué una vista 3D con three.js que muestra el diseño sobre el modelo del producto en el color elegido (calcomanía proyectada o etiqueta curva en el termo), cargada como chunk diferido (~142 kB transferidos); modelos GLB generados desde una foto con TRELLIS.2 y comprimidos con gltf-transform (0.3–0.9 MB), solo con herramientas open source.",
+          "tags": ["threejs", "3d", "webgl", "performance", "frontend", "open-source"],
+          "evidence": "verified",
+          "project": "Merch Designer",
+          "source": { "path": "docs/cv-bertoni-proyectos.md", "section": "2.5 Merch Designer — Editor de personalización de productos promocionales con vista 3D" }
+        },
+        {
+          "id": "merch-designer-competitor-research",
+          "text": "Analyzed 9 competitor customizers (Custom Ink, Printful, Zakeke, Vistaprint, etc.) and then proposed and built fixed print locations (several per view), size charts, minimum quantities, a design proof with approval, a backend-free share link (design compressed in the URL hash) and reuse of a design on another product.",
+          "text_es": "Tras analizar 9 personalizadores de la competencia (Custom Ink, Printful, Zakeke, Vistaprint, etc.) propuse e implementé ubicaciones de impresión fijas (varias por vista), tabla de tallas, cantidades mínimas, prueba de diseño con aprobación, enlace para compartir sin backend (diseño comprimido en el hash de la URL) y uso del mismo diseño en otro producto.",
+          "tags": ["product-thinking", "research", "ux", "frontend"],
+          "evidence": "verified",
+          "project": "Merch Designer",
+          "source": { "path": "docs/cv-bertoni-proyectos.md", "section": "2.5 Merch Designer — Editor de personalización de productos promocionales con vista 3D" }
+        },
+        {
+          "id": "merch-designer-test-suite",
+          "text": "Covered the demo with 264 Vitest unit tests and 179 Playwright end-to-end tests (desktop 1440×900 and Pixel 7), all green at the close of the last task.",
+          "text_es": "Cubrí la demo con 264 tests unitarios (Vitest) y 179 E2E con Playwright (escritorio 1440×900 y Pixel 7), en verde al cierre de la última tarea.",
+          "tags": ["testing", "vitest", "playwright", "e2e", "tdd"],
+          "evidence": "verified",
+          "project": "Merch Designer",
+          "source": { "path": "docs/cv-bertoni-proyectos.md", "section": "2.5 Merch Designer — Editor de personalización de productos promocionales con vista 3D" }
+        },
+        {
+          "id": "merch-designer-azure-deploy",
+          "text": "Published it on Azure Container Apps (non-root nginx container; Bicep with managed identity and AcrPull reusing the shared environment and registry; scale-to-zero with a KEDA office-hours rule) with an Azure DevOps pipeline that runs tests, az acr build, deploy, smoke checks and image purge.",
+          "text_es": "La publiqué en Azure Container Apps (contenedor nginx no-root; Bicep con managed identity y AcrPull reutilizando el entorno y el registro compartidos; scale-to-zero con regla KEDA en horario de oficina) y un pipeline de Azure DevOps con tests, az acr build, despliegue, smoke tests y purga de imágenes.",
+          "tags": ["azure", "container-apps", "bicep", "iac", "azure-devops", "ci-cd", "docker", "managed-identity"],
+          "evidence": "verified",
+          "project": "Merch Designer",
+          "source": { "path": "docs/cv-bertoni-proyectos.md", "section": "2.5 Merch Designer — Editor de personalización de productos promocionales con vista 3D" }
+        },
+        {
+          "id": "merch-designer-image-optimization",
+          "text": "Cut catalog photo weight from 100 MB to 6.7 MB (display-size WebP with sharp) and served them with one-year caching versioned by content hash.",
+          "text_es": "Reduje el peso de las fotos del catálogo de 100 MB a 6.7 MB (WebP a tamaño de pantalla con sharp) y las serví con caché de un año versionada por hash.",
+          "tags": ["performance", "web-performance", "caching", "nginx"],
+          "evidence": "verified",
+          "project": "Merch Designer",
+          "source": { "path": "docs/cv-bertoni-proyectos.md", "section": "2.5 Merch Designer — Editor de personalización de productos promocionales con vista 3D" }
+        },
+        {
+          "id": "merch-designer-ai-workflow",
+          "text": "Directed development with an AI-assisted workflow (Claude Code): a specification document with 24 specs and 23 tasks, delegated writers working in parallel, RED/GREEN evidence per task and independent verifiers on risky changes (saved-design format, infrastructure).",
+          "text_es": "Dirigí el desarrollo con un flujo asistido por IA (Claude Code): documento de especificación con 24 specs y 23 tareas, escritores delegados en paralelo, evidencia RED/GREEN por tarea y verificadores independientes en los cambios de riesgo (formato de diseños guardados, infraestructura).",
+          "tags": ["ai-assisted-development", "ai-agents", "claude-code", "tdd", "spec-driven-development"],
+          "evidence": "verified",
+          "project": "Merch Designer",
+          "source": { "path": "docs/cv-bertoni-proyectos.md", "section": "2.5 Merch Designer — Editor de personalización de productos promocionales con vista 3D" }
+        },
+        {
+          "id": "merch-designer-proposal-materials",
+          "text": "Also prepared the proposal document and the design prototype that accompany the demo.",
+          "text_es": "Preparé también el documento de propuesta y el prototipo de diseño que acompañan la demo.",
+          "tags": ["presales", "documentation", "prototyping"],
+          "evidence": "partial",
+          "project": "Merch Designer",
+          "source": { "path": "docs/cv-bertoni-proyectos.md", "section": "2.5 Merch Designer — Editor de personalización de productos promocionales con vista 3D" }
         }
       ]
     },
