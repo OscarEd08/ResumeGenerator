@@ -1,0 +1,47 @@
+{
+  "job_id": "job-7e3bdcf5",
+  "summary": "Backend developer delivering client projects with C#/.NET and ASP.NET Core on Azure. Built a .NET search microservice that cut P95 search latency from ~1.6 s to ~150 ms, Azure Durable Functions indexing jobs, resilience pipelines with circuit breakers and Application Insights telemetry. Deploys with Docker, Azure Container Apps and Bicep through Azure DevOps and GitHub Actions CI/CD pipelines. Designs SQL Server and PostgreSQL schemas and integrations with external systems.",
+  "experience": {
+    "bertoni-solutions": [
+      { "ids": ["proquinorte-search-microservice"] },
+      { "ids": ["proquinorte-search-p95-latency"] },
+      { "ids": ["proquinorte-durable-indexation"] },
+      { "ids": ["proquinorte-circuit-breakers"] },
+      { "ids": ["proquinorte-telemetry"] },
+      { "ids": ["nexo-modular-monolith"] },
+      { "ids": ["nexo-azure-container-apps"] },
+      { "ids": ["cerv-inference-service"] }
+    ],
+    "freelance-ecommerce": [
+      { "ids": ["pulso-infra-cicd"] },
+      { "ids": ["pulso-vendure-backend"] }
+    ],
+    "cloud-store": [
+      { "ids": ["cloudstore-invoicing-app"] },
+      { "ids": ["cloudstore-bsale-integration"] }
+    ],
+    "komatsu-mitsui": [
+      { "ids": ["komatsu-power-apps-migration"] },
+      { "ids": ["komatsu-react-migration"] },
+      { "ids": ["komatsu-sql-optimization"] }
+    ],
+    "maquinarias-glory": [
+      { "ids": ["glory-react-quotations"] }
+    ]
+  },
+  "projects": {
+    "personal-finance-app": [
+      { "ids": ["pfa-architecture-spec-driven"] },
+      { "ids": ["pfa-rate-limiting"] }
+    ]
+  },
+  "skills": [
+    { "label": "Backend", "details": ["C#", ".NET", "ASP.NET Core", "REST APIs and integrations", "Entity Framework Core"] },
+    { "label": "Cloud and delivery", "details": ["Azure", "Docker", "GitHub Actions", "CI/CD", "Git", "Azure DevOps", "Bicep"] },
+    { "label": "Data", "details": ["SQL Server", "PostgreSQL", "SQLite", "relational data modeling"] },
+    { "label": "Quality", "details": ["xUnit", "Testcontainers", "Playwright", "code reviews", "Clean Architecture"] },
+    { "label": "Frontend", "details": ["TypeScript", "Angular", "React", "Next.js"] },
+    { "label": "AI-assisted development", "details": ["Claude Code", "Codex", "agent workflows"] },
+    { "label": "Languages", "details": ["Spanish - Native", "English - B2"] }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "id": "job-7e3bdcf5",
+  "file_name": "Oscar_Pairazaman_CV_DataKrew-Pvt-Ltd.pdf",
+  "title": "Backend Developer (.NET - C#)",
+  "company": "DataKrew Pvt. Ltd.",
+  "market": "abroad",
+  "language": "en",
+  "generated_at": "2026-11-18",
+  "pages": 2,
+  "covered": [
+    "csharp",
+    "dotnet",
+    "azure",
+    "ci-cd",
+    "docker",
+    "git",
+    "github-actions",
+    "python"
+  ],
+  "missing": [
+    "aws",
+    "kubernetes",
+    "java"
+  ]
+}
